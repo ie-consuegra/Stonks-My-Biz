@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base target="_top">
+  <title>Stonks App</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    header,
+    main
+
+    /*, footer*/
+      {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header,
+      main
+
+      /*, footer*/
+        {
+        padding-left: 0;
+      }
+    }
+
+    /************ 
+    nav 
+    ************/
+    nav {
+      background-color: white;
+      box-shadow: none;
+    }
+
+    @media only screen and (min-width: 992px) {
+      nav {
+        border-bottom: solid 1px #e0e0e0;
+      }
+    }
+
+    @media only screen and (max-width : 992px) {
+      nav .nav-wrapper {
+        border: solid 1px #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 1px 1px 3px #e0e0e0, -1px -1px 3px #e0e0e0;
+        margin-top: 12px;
+        margin-left: 6%;
+        width: 88%;
+      }
+    }
+
+    @media only screen and (min-width: 992px) {
+      .nav-form-wrapper {
+        padding: 8px 0 8px 0;
+      }
+    }
+
+    nav form {
+      border-radius: 8px;
+      margin-left: 60px;
+      width: calc(100% - 100px);
+    }
+
+    @media only screen and (min-width: 601px) {
+      nav form {
+        margin-right: 60px;
+        width: calc(100% - 120px);
+      }
+    }
+
+    @media only screen and (max-width : 601px) {
+      nav .input-field {
+        height: 54px;
+        line-height: 54px;
+      }
+    }
+
+    @media only screen and (max-width : 992px) {
+      nav .input-field {
+        height: 62px;
+        line-height: 62px;
+      }
+    }
+
+    @media only screen and (min-width: 992px) {
+      nav .input-field {
+        border: solid 1px #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 1px 1px 3px #e0e0e0, -1px -1px 3px #e0e0e0;
+        height: 46px;
+        line-height: 46px;
+        margin-left: 2%;
+        width: 96%;
+      }
+    }
+
+    @media only screen and (min-width: 992px) {
+      nav .input-field i {
+        height: 46px;
+        line-height: 46px;
+      }
+    }
+
+    @media only screen and (min-width: 992px) {
+      #search {
+        border-radius: 8px;
+        height: 44px;
+      }
+    }
+
+    /*************
+    sidenav
+    **************/
+    .sidenav {
+      box-shadow: none;
+    }
+
+    .sidenav li {
+      padding-right: 2.5%;
+    }
+
+    .sidenav li>a {
+      color: #5F6368;
+      border-top-right-radius: 24px;
+      border-bottom-right-radius: 24px;
+      padding-left: 28px;
+    }
+
+    .sidenav .brand {
+      border-bottom: solid 1px #e0e0e0;
+      display: flex;
+      margin-bottom: 8px;
+      padding: 12px 32px 11px 12px;
+      position: relative;
+    }
+
+    .sidenav .brand>a {
+      display: flex;
+      flex-direction: row;
+      height: auto;
+      padding: 0;
+    }
+
+    .sidenav .brand>a:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .sidenav .brand>a .icon {
+      height: 40px;
+      width: 40px;
+      /* display: block; */
+      padding: 0;
+      margin-right: 4px;
+      margin-left: 8px;
+    }
+
+    .sidenav .brand>a .name {
+      font-size: 20px;
+      line-height: 24px;
+      padding-top: 8px;
+      margin-left: 4px;
+    }
+
+    .sidenav li>a>i.material-icons {
+      margin: 0 24px 0 0;
+    }
+
+    .sidenav ul li>a.collapsible-header {
+      padding: 0 32px;
+    }
+
+    .sidenav ul li>div.collapsible-body ul li>a {
+      padding-left: 38px;
+    }
+
+    .sidenav .divider {
+      margin-bottom: 8px;
+    }
+
+    /******************
+    main and content
+    ******************/
+
+    main>.row {
+      margin-bottom: 0;
+    }
+
+    .card {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    @media only screen and (min-width: 992px) {
+      .container.container-large {
+        max-width: 1620px;
+        width: 90%;
+      }
+    }
+
+    /*************
+    tables 
+    **************/
+    /* narrow class */
+    table.narrow td,
+    table.narrow th {
+      padding: 4px 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+
+        <a href="#" class="sidenav-trigger hide-on-med-and-large" data-target="nav-mobile"><i
+            class="material-icons grey-text darken-4-text">menu</i></a>
+
+        <div class="nav-form-wrapper">
+          <form action="" class="">
+            <div class="input-field">
+              <input placeholder="Search" id="search" type="search" required>
+              <label for="search" class="label-icon"><i
+                  class="material-icons grey-text darken-4-text">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidenav -->
+    <ul class="sidenav sidenav-fixed" id="nav-mobile">
+      <li class="brand">
+        <a href="">
+          <!-- App icon  -->
+          <svg class="icon" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40"
+            viewBox="0 0 10.583333 10.583333" version="1.1" id="svg993">
+            <title id="title854">Stonks App</title>
+            <defs id="defs987">
+              <linearGradient xlink:href="#linearGradient985" id="linearGradient922" gradientUnits="userSpaceOnUse"
+                gradientTransform="matrix(0.1244712,0,0,0.12342658,-5.6612123,-9.9088885)" x1="108.36819" y1="102.939"
+                x2="78.57151" y2="153.12767" />
+              <linearGradient id="linearGradient985">
+                <stop id="stop979" offset="0" style="stop-color:#ffde24;stop-opacity:0.89999998" />
+                <stop style="stop-color:#e78c3f;stop-opacity:0.80000001" offset="0.40801683" id="stop981" />
+                <stop id="stop983" offset="1" style="stop-color:#d0665a;stop-opacity:0.69999999" />
+              </linearGradient>
+              <linearGradient xlink:href="#linearGradient953" id="linearGradient924" gradientUnits="userSpaceOnUse"
+                gradientTransform="matrix(0.1244712,0,0,0.12342658,-5.6612123,-9.9088885)" x1="120.72052" y1="90.078674"
+                x2="66.350838" y2="170.82309" />
+              <linearGradient id="linearGradient953">
+                <stop id="stop949" offset="0" style="stop-color:#fdc262;stop-opacity:1;" />
+                <stop id="stop951" offset="1" style="stop-color:#fdc262;stop-opacity:0;" />
+              </linearGradient>
+            </defs>
+            <metadata id="metadata990">
+              <rdf:RDF>
+                <cc:Work rdf:about="">
+                  <dc:format>image/svg+xml</dc:format>
+                  <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                  <dc:title>Stonks App</dc:title>
+                </cc:Work>
+              </rdf:RDF>
+            </metadata>
+            <g id="layer1">
+              <path id="path908"
+                d="M 0.36378132,3.2226798 10.125098,0.95572982 10.153398,9.6275999 2.6656092,9.0851499 Z"
+                style="display:inline;opacity:1;fill:#081d9a;fill-opacity:1;stroke:#3e80d7;stroke-width:0.396875;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              <path id="path910" d="M 0.99096732,4.8424796 10.110919,3.7458598"
+                style="display:inline;opacity:1;fill:none;stroke:#3e80d7;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              <path
+                style="display:inline;opacity:1;fill:none;stroke:#3e80d7;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                d="m 1.6088142,6.4184895 8.4973438,-0.36899" id="path912" />
+              <path id="path914" d="m 2.2204692,7.8791999 7.9236388,0.13795"
+                style="display:inline;opacity:1;fill:#3c7fd5;fill-opacity:1;stroke:#3e80d7;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              <path id="path916" d="M 3.8170092,2.3892798 5.441939,9.3085589"
+                style="display:inline;opacity:1;fill:none;stroke:#3e80d7;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              <path
+                style="display:inline;opacity:1;fill:none;stroke:#3e80d7;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                d="M 1.9140162,2.8216398 3.974749,9.1607399" id="path918" />
+              <path
+                style="display:inline;opacity:1;fill:url(#linearGradient922);fill-opacity:1;stroke:url(#linearGradient924);stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                d="m 4.367569,9.1639789 3.6160504,-5.1372792 0.90657,0.49057 -0.14457,-2.4273099 -2.4245505,0.99726 0.78007,0.4717601 -3.5516999,5.553019 z"
+                id="path920" />
+            </g>
+          </svg>
+          <span class="name">Stonks App</span>
+        </a>
+      </li>
+      <li><a href="javascript:void(0)" onclick="viewSwitcher('dashboard-view')" class="">Dashboard<i
+            class="material-icons">dashboard</i></a></li>
+      <li><a class="subheader">INVENTORY</a></li>
+      <li><a href="javascript:void(0)" onclick="viewSwitcher('stock-view')">Stock<i
+            class="material-icons">format_list_bulleted</i></a></li>
+      <li><a href="javascript:void(0)" onclick="viewSwitcher('receipts-and-issues-view')">Receipts and issues<i
+            class="material-icons">import_export</i></a></li>
+      <li><a href="javascript:void(0)" onclick="viewSwitcher('suppliers-view')">Suppliers<i
+            class="material-icons">shopping_basket</i></a></li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li><a href="javascript:void(0)" onclick="viewSwitcher('settings-view')">Configuration<i
+            class="material-icons">settings</i></a></li>
+      <li><a href="#">Help and comments<i class="material-icons">help_outline</i></a></li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li><a href="#">About Stonks App</a></li>
+    </ul>
+
+    <!-- Action button -->
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large waves-effect light-blue darken-3 z-depth-3">
+        <i class="large material-icons white-text">more_vert</i>
+      </a>
+      <ul>
+        <li id="addBtn"><a class="btn-floating green"><i class="material-icons">add</i></a></li>
+        <li id="editBtn"><a class="btn-floating yellow"><i class="material-icons">edit</i></a></li>
+        <li id="deleteBtn"><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+      </ul>
+    </div>
+  </header>
+  <main>
+    <div id="views">
+      <div id="dashboard-view">
+        <div class="row">
+          <div class="content-wrapper">
+            <div class="col s12">
+              <div class="container">
+                <div class="section">
+                  <div class="row">
+                    <div class="col s12 m8">
+                      <div class="card">
+                        <div class="card-content">
+                          <span class="right">
+                            <i class="material-icons">account_balance</i>
+                          </span>
+                          <span class="card-title" id="balance">Balance: $210,000</span>
+                          <br>
+                          <p><strong>Last registry</strong></p>
+                          <p>(Outcome) Bio-Blister packs: $5,400</p>
+                          <p></p>
+                        </div>
+                        <div class="card-action">
+                          <a href="#" class="red-text text-darken-2">View all</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s12 m4">
+                      <div class="card yellow lighten-3">
+                        <div class="card-content">
+                          <span class="card-title">Notes</span>
+                          <p>Stonks App looks awesome!</p>
+                        </div>
+                        <div class="card-action">
+                          <a href="#" class="red-text text-darken-2">Notes</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <div class="card">
+                        <div class="card-content">
+                          <span class="right">
+                            <i class="material-icons">history</i>
+                          </span>
+                          <span class="card-title">History</span>
+                          <br>
+                          <p><strong>Last 3 months</strong> (A Striped + narrow table)</p>
+                          <table class="striped narrow">
+                            <thead>
+                              <tr>
+                                <th>Month</th>
+                                <th>Income</th>
+                                <th>Outcome</th>
+                                <th>Balance</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <tr>
+                                <td>June</td>
+                                <td>$59,110</td>
+                                <td>$31,920</td>
+                                <td>$28,800</td>
+                              </tr>
+                              <tr>
+                                <td>July</td>
+                                <td>$65,400</td>
+                                <td>$33,750</td>
+                                <td>$32,310</td>
+                              </tr>
+                              <tr>
+                                <td>August</td>
+                                <td>$64,500</td>
+                                <td>$34,500</td>
+                                <td>$30,200</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="card-action">
+                          <a href="#" class="red-text text-darken-2">View annual report</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="stock-view">
+        <div class="container container-large">
+          <h5>Stock</h5>
+          <div id="stock-preloader">
+            <!-- The spinning colorful circle -->
+            <div class="section">
+              <div class="container">
+                <div class="row">
+                  <div class="col s2 offset-s5">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="stock-table-container"></div>
+        </div>
+      </div>
+      <div id="receipts-and-issues-view">
+        <div class="container container-large">
+          <h5>Inventory receipts and issues</h5>
+          <div id="receipts-and-issues-preloader">
+            <!-- The spinning colorful circle -->
+            <div class="section">
+              <div class="container">
+                <div class="row">
+                  <div class="col s2 offset-s5">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="receipts-and-issues-table-container"></div>
+        </div>
+      </div>
+      <div id="suppliers-view">
+        <div class="container container-large">
+          <h5>Suppliers</h5>
+          <div id="suppliers-preloader">
+            <!-- The spinning colorful circle -->
+            <div class="section">
+              <div class="container">
+                <div class="row">
+                  <div class="col s2 offset-s5">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="suppliers-table-container"></div>
+        </div>
+      </div>
+      <div id="submit-new-product-view">
+        <div class="container">
+          <h5>New product</h5>
+          <form id="new-product-form" onsubmit="submitNewProduct(this)">
+            <input type="text" name="CODE" placeholder="Code" />
+            <input type="text" name="PRODUCT" placeholder="Product" />
+            <input type="text" name="CATEGORY" placeholder="Category" />
+            <input type="text" name="WAREHOUSE" placeholder="Warehouse" />
+            <input type="text" name="UNIT" placeholder="Unit of measurement" />
+            <input type="text" name="MINIMUM" placeholder="Minimum stock" />
+            <input type="text" name="STOCK" placeholder="Stock" />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+      <div id="edit-product-view">
+        <div class="container">
+          <h5>Edit product information</h5>
+          <form id="update-values-form" onsubmit="update(this)">
+            <input type="text" name="_ID" id="UPDID" readonly />
+            <input type="text" name="CODE" placeholder="Code" />
+            <input type="text" name="PRODUCT" placeholder="Product" />
+            <input type="text" name="CATEGORY" placeholder="Category" />
+            <input type="text" name="WAREHOUSE" placeholder="Warehouse" />
+            <input type="text" name="UNIT" placeholder="Unit of measurement" />
+            <input type="text" name="MINIMUM" placeholder="Minimum stock" />
+            <input type="text" name="STOCK" placeholder="Stock" />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+      <div id="settings-view">
+      </div>
+    </div>
+  </main>
+
+  <!--                     Script                     -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+
+  </script>
+</body>
+
+</html>
