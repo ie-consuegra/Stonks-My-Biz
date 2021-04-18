@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
 * Class representing a table the user can interact with
 */

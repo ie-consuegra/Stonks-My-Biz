@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // Prevent forms from reloading on submitting.
 function preventFormSubmit() {
   const forms = document.querySelectorAll('form');
@@ -18,15 +17,6 @@ function loadInitValues({ stock, suppliers, receiptsAndIssues }) {
 
   suppliersTable.load(suppliers);
   suppliersPreloader.style.display = 'none';
-}
-
-// Fetch all necesary data
-function fetchAll() {
-  google
-    .script
-    .run
-    .withSuccessHandler(loadInitValues)
-    .fetchAllInventoryValues();
 }
 
 window.addEventListener('load', () => {

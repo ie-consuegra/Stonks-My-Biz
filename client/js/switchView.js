@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 function viewSwitcher(view) {
   const appViews = document.querySelector('#views').childNodes;
   appViews.forEach((node) => {

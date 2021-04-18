@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* global DBS, formatDates, Model, Logger, stonksApp */
 /*
 
 Schema will be a child class of Map (examples below), right now is a simple array

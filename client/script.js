@@ -1,57 +1,25 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-undef */
-const today = new Date();
-// const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-const dayNum = today.getDate();
-const month = today.getMonth() + 1;
-const year = today.getFullYear();
-
-const formattedDayNum = (dayNum < 10) ? `0${dayNum}` : `${dayNum}`;
-const formattedMonth = (month < 10) ? `0${month}` : `${month}`;
-const formattedDate = `${formattedDayNum}/${formattedMonth}/${year}`;
-
-// datepicker settings
-document.addEventListener('DOMContentLoaded', () => {
-  const allDatePickers = Array.from(document.querySelectorAll('input[date]'));
-  const options = {
-    format: 'dd/mm/yyyy',
-    i18n: {
-      cancel: 'cancelar',
-      done: 'Aceptar',
-      months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-      monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-      weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-      weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-      weekdaysAbbrev: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-      setDefaultDate: true,
-      defaultDate: today,
-    },
-  };
-  allDatePickers.forEach((datepicker) => {
-    datepicker.value = formattedDate;
-    M.Datepicker.init(datepicker, options);
-  });
-});
-/* eslint-disable no-unused-vars */
 function getTimestamp() {
   const now = new Date();
   const month = now.getMonth() + 1;
   const timestamp = `${now.getDate()}/${month}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
   return timestamp;
 }
-/* eslint-disable no-unused-vars */
-function viewSwitcher(view) {
-  const appViews = document.querySelector('#views').childNodes;
-  appViews.forEach((node) => {
-    if (node.nodeName.toLowerCase() === 'div') {
-      node.style.display = 'none';
-    }
-  });
-  const activeView = document.getElementById(view);
-  activeView.style.display = 'block';
-  return false; // Avoid reloading the page
+
+function toDate(ddmmyyyy) {
+  let date = ddmmyyyy.toString();
+
+  // Check if the format is a valid date string
+  // This is a temporary checker
+  if (date.length >= 6) {
+    const dateArr = date.split('/');
+    const month = (dateArr[1].length === 1 ? `0${dateArr[1]}` : dateArr[1]);
+    const day = (dateArr[0].length === 1 ? `0${dateArr[0]}` : dateArr[0]);
+
+    date = `${dateArr[2]}-${month}-${day}`;
+  }
+
+  return date;
 }
-/* eslint-disable no-unused-vars */
 /**
 * Class representing a table the user can interact with
 */
@@ -188,8 +156,6 @@ class SmartTable {
     return ids;
   }
 }
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 const stockTable = new SmartTable('stock-table-container');
 const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');
 const suppliersTable = new SmartTable('suppliers-table-container');
@@ -197,6 +163,107 @@ const suppliersTable = new SmartTable('suppliers-table-container');
 const stockPreloader = document.getElementById('stock-preloader');
 const receiptsAndIssuesPreloader = document.getElementById('receipts-and-issues-preloader');
 const suppliersPreloader = document.getElementById('suppliers-preloader');
+function viewSwitcher(view) {
+  const appViews = document.querySelector('#views').childNodes;
+  appViews.forEach((node) => {
+    if (node.nodeName.toLowerCase() === 'div') {
+      node.style.display = 'none';
+    }
+  });
+  const activeView = document.getElementById(view);
+  activeView.style.display = 'block';
+  return false; // Avoid reloading the page
+}
+function loadStock(values) {
+  stockTable.load(values);
+  stockTable.addClickEventToCheckboxes(toggleItemsVisibility);
+  document.getElementById('stock-preloader').style.display = 'none';
+  M.AutoInit();
+}
+
+function loadReceiptAndIssue(values) {
+  receiptAndIssueTable.load(values);
+  receiptAndIssueTable.addClickEventToCheckboxes(toggleItemsVisibility);
+  document.getElementById('receipt-and-issue-preloader').style.display = 'none';
+  M.AutoInit();
+}
+
+function reloadStock(values) {
+  stockTable.removeClickEventToCheckboxes(toggleItemsVisibility);
+  stockTable.load(values);
+  stockTable.addClickEventToCheckboxes(toggleItemsVisibility);
+}
+
+function stockUpdateSuccess(values) {
+  viewSwitcher('stock-view');
+  reloadStock(values);
+  document.getElementById('new-product-form').reset();
+  toggleItemsVisibility(stockTable);
+}
+
+function removedSuccess(values) {
+  reloadStock(values);
+  toggleItemsVisibility(stockTable);
+}
+
+function newProductSubmitted(values) {
+  viewSwitcher('stock-view');
+  reloadStock(values);
+  document.getElementById('new-product-form').reset();
+  toggleItemsVisibility(stockTable);
+}
+function removeEntries() {
+  google
+    .script
+    .run
+    .withSuccessHandler(removedSuccess)
+    .cashflowRemove(stockTable.selectedIds);
+}
+
+function stockFetch() {
+  google
+    .script
+    .run
+    .withSuccessHandler(loadStock)
+    .stockFetch();
+}
+
+function fetchReceiptAndIssue() {
+  google
+    .script
+    .run
+    .withSuccessHandler(loadReceiptAndIssue)
+    .getReceiptAndIssueData();
+}
+
+function submitNewProduct(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(newProductSubmitted)
+    .stockInsert(formData);
+}
+
+function updateStock(formData) {
+  const packet = {
+    meta: 'stock',
+    data: { ...formData },
+  };
+  google
+    .script
+    .run
+    .withSuccessHandler(stockUpdateSuccess)
+    .update(packet);
+}
+
+// Fetch all necesary data
+function fetchAll() {
+  google
+    .script
+    .run
+    .withSuccessHandler(loadInitValues)
+    .fetchAllInventoryValues();
+}
 /**
 * Hide/Show items according to the number of selected entries
 */
@@ -218,105 +285,6 @@ function toggleItemsVisibility(smartTable) {
   }
 }
 
-function loadStock(values) {
-  stockTable.load(values);
-  stockTable.addClickEventToCheckboxes(toggleItemsVisibility);
-  document.getElementById('stock-preloader').style.display = 'none';
-  M.AutoInit();
-}
-
-function loadReceiptAndIssue(values) {
-  receiptAndIssueTable.load(values);
-  receiptAndIssueTable.addClickEventToCheckboxes(toggleItemsVisibility);
-  document.getElementById('receipt-and-issue-preloader').style.display = 'none';
-  M.AutoInit();
-}
-
-function reloadStock(values) {
-  stockTable.removeClickEventToCheckboxes(toggleItemsVisibility);
-  stockTable.load(values);
-  stockTable.addClickEventToCheckboxes(toggleItemsVisibility);
-}
-
-// ---
-function stockFetch() {
-  google
-    .script
-    .run
-    .withSuccessHandler(loadStock)
-    .stockFetch();
-}
-
-function fetchReceiptAndIssue() {
-  google
-    .script
-    .run
-    .withSuccessHandler(loadReceiptAndIssue)
-    .getReceiptAndIssueData();
-}
-
-function sentSuccess(values) {
-  viewSwitcher('dashboard-view');
-  reloadStock(values);
-  document.getElementById('new-product-form').reset();
-  toggleItemsVisibility(stockTable);
-}
-
-function removedSuccess(values) {
-  reloadStock(values);
-  toggleItemsVisibility(stockTable);
-}
-
-function newProductSubmitted(values) {
-  viewSwitcher('stock-view');
-  reloadStock(values);
-  document.getElementById('new-product-form').reset();
-  toggleItemsVisibility(stockTable);
-}
-
-function submitNewProduct(formData) {
-  google
-    .script
-    .run
-    .withSuccessHandler(newProductSubmitted)
-    .stockInsert(formData);
-}
-
-function update(formData) {
-  google
-    .script
-    .run
-    .withSuccessHandler(sentSuccess)
-    .cashflowUpdate(formData);
-}
-
-function removeEntries() {
-  google
-    .script
-    .run
-    .withSuccessHandler(removedSuccess)
-    .cashflowRemove(stockTable.selectedIds);
-}
-
-const editBtn = document.getElementById('editBtn');
-editBtn.addEventListener('click', editEntry);
-
-function toDate(ddmmyyyy) {
-  let date = ddmmyyyy.toString();
-
-  // Check if the format is a valid date string
-  // This is a temporary checker
-  if (date.length >= 6) {
-    const dateArr = date.split('/');
-    const month = (dateArr[1].length === 1 ? `0${dateArr[1]}` : dateArr[1]);
-    const day = (dateArr[0].length === 1 ? `0${dateArr[0]}` : dateArr[0]);
-
-    date = `${dateArr[2]}-${month}-${day}`;
-  }
-
-  return date;
-}
-
 function editEntry() {
   const id = stockTable.selectedCheckboxes[0].id.toString();
 
@@ -330,6 +298,10 @@ function editEntry() {
   viewSwitcher('edit-product-view');
 }
 
+const editBtn = document.getElementById('editBtn');
+editBtn.addEventListener('click', editEntry);
+
+
 document.getElementById('deleteBtn').addEventListener('click', () => {
   removeEntries();
 });
@@ -337,7 +309,6 @@ document.getElementById('deleteBtn').addEventListener('click', () => {
 document.getElementById('addBtn').addEventListener('click', () => {
   viewSwitcher('submit-new-product-view');
 });
-/* eslint-disable no-undef */
 // Prevent forms from reloading on submitting.
 function preventFormSubmit() {
   const forms = document.querySelectorAll('form');
@@ -359,18 +330,41 @@ function loadInitValues({ stock, suppliers, receiptsAndIssues }) {
   suppliersPreloader.style.display = 'none';
 }
 
-// Fetch all necesary data
-function fetchAll() {
-  google
-    .script
-    .run
-    .withSuccessHandler(loadInitValues)
-    .fetchAllInventoryValues();
-}
-
 window.addEventListener('load', () => {
   preventFormSubmit();
   fetchAll();
   M.AutoInit();
   viewSwitcher('dashboard-view'); //  <----------------- switch to the last view, by default it is dashboard-view
+});
+const today = new Date();
+// const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const dayNum = today.getDate();
+const month = today.getMonth() + 1;
+const year = today.getFullYear();
+
+const formattedDayNum = (dayNum < 10) ? `0${dayNum}` : `${dayNum}`;
+const formattedMonth = (month < 10) ? `0${month}` : `${month}`;
+const formattedDate = `${formattedDayNum}/${formattedMonth}/${year}`;
+
+// datepicker settings
+document.addEventListener('DOMContentLoaded', () => {
+  const allDatePickers = Array.from(document.querySelectorAll('input[date]'));
+  const options = {
+    format: 'dd/mm/yyyy',
+    i18n: {
+      cancel: 'cancelar',
+      done: 'Aceptar',
+      months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+      weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+      weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+      weekdaysAbbrev: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+      setDefaultDate: true,
+      defaultDate: today,
+    },
+  };
+  allDatePickers.forEach((datepicker) => {
+    datepicker.value = formattedDate;
+    M.Datepicker.init(datepicker, options);
+  });
 });
