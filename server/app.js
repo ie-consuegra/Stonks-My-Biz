@@ -32,9 +32,9 @@ const stockModel = DBS.createModelFrom('stock', stockSchema);
 const stockDBS = new DBS(stockModel, stonksApp.getFolder);
 
 // RECEIPTS AND ISSUES database "creation/connection"
-const receiptsIssuesSchema = ['DATE', 'CODE', 'PRODUCT', 'CATEGORY', 'DESCRIPTION', 'MOVEMENT'];
-const receiptsIssuesModel = DBS.createModelFrom('receiptsnissues', receiptsIssuesSchema);
-const receiptsIssuesDBS = new DBS(receiptsIssuesModel, stonksApp.getFolder);
+const receiptsAndIssuesSchema = ['DATE', 'CODE', 'PRODUCT', 'CATEGORY', 'DESCRIPTION', 'MOVEMENT'];
+const receiptsAndIssuesModel = DBS.createModelFrom('receiptsnissues', receiptsAndIssuesSchema);
+const receiptsAndIssuesDBS = new DBS(receiptsAndIssuesModel, stonksApp.getFolder);
 
 // SUPPLIERS database "creation/connection"
 const suppliersSchema = ['NAME', 'IDENTIFICATION', 'TELEPHONE', 'CELLPHONE', 'EMAIL', 'ADDRESS', 'CITY', 'OTHER'];
@@ -45,7 +45,7 @@ const suppliersDBS = new DBS(suppliersModel, stonksApp.getFolder);
 function fetchAllInventoryValues() {
   const data = {
     stock: stockDBS.use().fetch(),
-    receiptsAndIssues: receiptsIssuesDBS.use().fetch(),
+    receiptsAndIssues: receiptsAndIssuesDBS.use().fetch(),
     suppliers: suppliersDBS.use().fetch(),
   };
 
@@ -62,7 +62,25 @@ function fetchFrom({ meta }) {
       values = suppliersDBS.use().fetch();
       break;
     case 'receiptsandissues':
-      values = receiptsIssuesDBS.use().fetch();
+      values = receiptsAndIssuesDBS.use().fetch();
+      break;
+    default:
+      throw new Error('Wrong or null meta property');
+  }
+  return values;
+}
+
+function update({ data, meta }) {
+  let values;
+  switch (meta) {
+    case 'stock':
+      values = stockDBS.use().update(data);
+      break;
+    case 'receiptsandissues':
+      values = receiptsAndIssuesDBS.use().update(data);
+      break;
+    case 'suppliers':
+      values = suppliersDBS.use().update(data);
       break;
     default:
       throw new Error('Wrong or null meta property');

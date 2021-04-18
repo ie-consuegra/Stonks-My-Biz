@@ -65,8 +65,8 @@ function fetchReceiptAndIssue() {
     .getReceiptAndIssueData();
 }
 
-function sentSuccess(values) {
-  viewSwitcher('dashboard-view');
+function stockUpdateSuccess(values) {
+  viewSwitcher('stock-view');
   reloadStock(values);
   document.getElementById('new-product-form').reset();
   toggleItemsVisibility(stockTable);
@@ -92,12 +92,16 @@ function submitNewProduct(formData) {
     .stockInsert(formData);
 }
 
-function update(formData) {
+function updateStock(formData) {
+  const packet = {
+    meta: 'stock',
+    data: { ...formData },
+  };
   google
     .script
     .run
-    .withSuccessHandler(sentSuccess)
-    .cashflowUpdate(formData);
+    .withSuccessHandler(stockUpdateSuccess)
+    .update(packet);
 }
 
 function removeEntries() {
