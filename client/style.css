@@ -67,7 +67,7 @@ nav form {
   }
 }
 
-@media only screen and (max-width : 992px) {
+@media only screen and (min-width : 601px) {
   nav .input-field {
     height: 62px;
     line-height: 62px;
@@ -83,6 +83,7 @@ nav form {
     line-height: 46px;
     margin-left: 2%;
     width: 96%;
+    max-width: 720px;
   }
 }
 
