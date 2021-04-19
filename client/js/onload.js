@@ -21,7 +21,7 @@ function loadInitValues({ stock, suppliers, receiptsAndIssues }) {
 
 window.addEventListener('load', () => {
   preventFormSubmit();
+  switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   fetchAll();
   M.AutoInit();
-  viewSwitcher('dashboard-view'); //  <----------------- switch to the last view, by default it is dashboard-view
 });

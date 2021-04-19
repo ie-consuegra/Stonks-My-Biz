@@ -156,6 +156,21 @@ class SmartTable {
     return ids;
   }
 }
+const appConfig = {
+  currentView: '',
+  set view(viewName) {
+    if (viewName !== undefined) {
+      this.currentView = viewName;
+    }
+  },
+  get view() {
+    return this.currentView;
+  },
+};
+// Action button container
+const actionButton = document.getElementById('action-button');
+
+// "Smart tables"
 const stockTable = new SmartTable('stock-table-container');
 const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');
 const suppliersTable = new SmartTable('suppliers-table-container');
@@ -163,7 +178,10 @@ const suppliersTable = new SmartTable('suppliers-table-container');
 const stockPreloader = document.getElementById('stock-preloader');
 const receiptsAndIssuesPreloader = document.getElementById('receipts-and-issues-preloader');
 const suppliersPreloader = document.getElementById('suppliers-preloader');
-function viewSwitcher(view) {
+
+const classesForActiveLink = ['indigo', 'lighten-5', 'indigo-text', 'text-darken-4'];
+const classesForActiveIcon = ['indigo-text', 'text-darken-4'];
+function setActiveView(view) {
   const appViews = document.querySelector('#views').childNodes;
   appViews.forEach((node) => {
     if (node.nodeName.toLowerCase() === 'div') {
@@ -173,6 +191,35 @@ function viewSwitcher(view) {
   const activeView = document.getElementById(view);
   activeView.style.display = 'block';
   return false; // Avoid reloading the page
+}
+
+function setActiveLink(linkId) {
+  const link = document.getElementById(linkId);
+  const [icon] = link.children;
+  link.classList.add(...classesForActiveLink);
+  icon.classList.add(...classesForActiveIcon);
+}
+
+function setInactiveLink(linkId) {
+  const link = document.getElementById(linkId);
+  const [icon] = link.children;
+  link.classList.remove(...classesForActiveLink);
+  icon.classList.remove(...classesForActiveIcon);
+}
+
+function switchView(view) {
+  const viewDivId = `${view}-view`;
+  const viewLinkId = `${view}-link`;
+
+  setActiveView(viewDivId);
+
+  if (appConfig.view) {
+    const lastViewLinkId = `${appConfig.view}-link`;
+    setInactiveLink(lastViewLinkId);
+  }
+  setActiveLink(viewLinkId);
+
+  appConfig.view = view;
 }
 function loadStock(values) {
   stockTable.load(values);
@@ -332,9 +379,9 @@ function loadInitValues({ stock, suppliers, receiptsAndIssues }) {
 
 window.addEventListener('load', () => {
   preventFormSubmit();
+  switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   fetchAll();
   M.AutoInit();
-  viewSwitcher('dashboard-view'); //  <----------------- switch to the last view, by default it is dashboard-view
 });
 const today = new Date();
 // const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
