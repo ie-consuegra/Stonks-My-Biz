@@ -7,7 +7,6 @@ function setActiveView(view) {
   });
   const activeView = document.getElementById(view);
   activeView.style.display = 'block';
-  return false; // Avoid reloading the page
 }
 
 function setActiveLink(linkId) {
@@ -37,6 +36,7 @@ function switchView(view) {
   setActiveLink(viewLinkId);
 
   appConfig.view = view;
+  return false; // Avoid reloading the page
 }
 
 function switchSubView(subView) {
