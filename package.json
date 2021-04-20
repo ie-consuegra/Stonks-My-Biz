@@ -1,0 +1,22 @@
+{
+  "name": "stonks-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/backend.js",
+  "scripts": {
+    "build-frontend": "html-build -c html-build-config.js client/index.html dist/frontend.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ie-consuegra/Stonks-My-Biz.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ie-consuegra/Stonks-My-Biz/issues"
+  },
+  "homepage": "https://github.com/ie-consuegra/Stonks-My-Biz#readme",
+  "devDependencies": {
+    "html-build": "^1.0.1"
+  }
+}
