@@ -109,7 +109,7 @@
       </li>
       <li><a href="javascript:void(0)" onclick="switchView('settings')" id="settings-link">Configuration<i
             class="material-icons">settings</i></a></li>
-      <li><a href="#" id="help-link">Help and comments<i class="material-icons">help_outline</i></a></li>
+      <li><a href="javascript:void(0)" onclick="switchView('help')" id="help-link">Help and comments<i class="material-icons">help_outline</i></a></li>
       <li>
         <div class="divider"></div>
       </li>
@@ -310,38 +310,117 @@
           <div id="suppliers-table-container"></div>
         </div>
       </div>
-      <div id="submit-new-product-view">
+      <div id="settings-view">
+        <div class="container container-large">
+          <h5>Configuration</h5>
+        </div>
+      </div>
+      <div id="help-view">
+        <div class="container container-large">
+          <h5>Help</h5>
+        </div>
+      </div>
+      <!-- SubViews-->
+      <div id="add-stock-view">
         <div class="container">
           <h5>New product</h5>
-          <form id="new-product-form" onsubmit="submitNewProduct(this)">
+          <form id="add-stock-form" onsubmit="submitNew(this)">
             <input type="text" name="CODE" placeholder="Code" />
             <input type="text" name="PRODUCT" placeholder="Product" />
             <input type="text" name="CATEGORY" placeholder="Category" />
-            <input type="text" name="WAREHOUSE" placeholder="Warehouse" />
             <input type="text" name="UNIT" placeholder="Unit of measurement" />
+            <input type="text" name="PRICE" placeholder="Price" />
             <input type="text" name="MINIMUM" placeholder="Minimum stock" />
             <input type="text" name="STOCK" placeholder="Stock" />
-            <input type="submit" value="Submit" />
+            <input type="text" name="SUPPLIER" placeholder="Supplier" />
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
           </form>
         </div>
       </div>
-      <div id="edit-product-view">
+      <div id="update-stock-view">
         <div class="container">
           <h5>Edit product information</h5>
-          <form id="update-values-form" onsubmit="update(this)">
+          <form id="update-stock-form" onsubmit="submitUpdate(this)">
             <input type="text" name="_ID" id="UPDID" readonly />
             <input type="text" name="CODE" placeholder="Code" />
             <input type="text" name="PRODUCT" placeholder="Product" />
             <input type="text" name="CATEGORY" placeholder="Category" />
-            <input type="text" name="WAREHOUSE" placeholder="Warehouse" />
             <input type="text" name="UNIT" placeholder="Unit of measurement" />
+            <input type="text" name="PRICE" placeholder="Price" />
             <input type="text" name="MINIMUM" placeholder="Minimum stock" />
             <input type="text" name="STOCK" placeholder="Stock" />
-            <input type="submit" value="Submit" />
+            <input type="text" name="SUPPLIER" placeholder="Supplier" />
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
           </form>
         </div>
       </div>
-      <div id="settings-view">
+      <div id="add-receipts-and-issues-view">
+        <div class="container">
+          <h5>New inventory receipt or issue</h5>
+          <form id="add-receipt-and-issues-form" onsubmit="submitNew(this)">
+            <input type="text" name="DATE" placeholder="Date" />
+            <input type="text" name="CODE" placeholder="Code" />
+            <input type="text" name="PRODUCT" placeholder="Product" />
+            <input type="text" name="CATEGORY" placeholder="Category" />
+            <input type="text" name="DESCRIPTION" placeholder="Description" />
+            <input type="text" name="MOVEMENT" placeholder="Movement" />
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
+          </form>
+        </div>
+      </div>
+      <div id="update-receipts-and-issues-view">
+        <div class="container">
+          <h5>Edit inventory receipt or issue</h5>
+          <form id="update-receipts-and-issues-form" onsubmit="submitUpdate(this)">
+            <input type="text" name="_ID" id="UPDID" readonly />
+            <input type="text" name="DATE" placeholder="Date" />
+            <input type="text" name="CODE" placeholder="Code" />
+            <input type="text" name="PRODUCT" placeholder="Product" />
+            <input type="text" name="CATEGORY" placeholder="Category" />
+            <input type="text" name="DESCRIPTION" placeholder="Description" />
+            <input type="text" name="MOVEMENT" placeholder="Movement" />
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
+          </form>
+        </div>
+      </div>
+      <div id="add-suppliers-view">
+        <div class="container">
+          <h5>New supplier</h5>
+          <form id="add-suppliers-form" onsubmit="submitNew(this)">
+            <input type="text" name="NAME" placeholder="Name" />
+            <input type="text" name="IDENTIFICATION" placeholder="Identification" />
+            <input type="text" name="TELEPHONE" placeholder="Telephone" />
+            <input type="text" name="CELLPHONE" placeholder="Cellphone" />
+            <input type="text" name="EMAIL" placeholder="Email" />
+            <input type="text" name="ADDRESS" placeholder="Address" />
+            <input type="text" name="CITY" placeholder="City" />
+            <input type="text" name="OTHER" placeholder="Other details" />
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
+          </form>
+        </div>
+      </div>
+      <div id="update-suppliers-view">
+        <div class="container">
+          <h5>Edit supplier information</h5>
+          <form id="update-suppliers-form" onsubmit="submitUpdate(this)">
+            <input type="text" name="_ID" id="UPDID" readonly />
+            <input type="text" name="NAME" placeholder="Name" />
+            <input type="text" name="IDENTIFICATION" placeholder="Identification" />
+            <input type="text" name="TELEPHONE" placeholder="Telephone" />
+            <input type="text" name="CELLPHONE" placeholder="Cellphone" />
+            <input type="text" name="EMAIL" placeholder="Email" />
+            <input type="text" name="ADDRESS" placeholder="Address" />
+            <input type="text" name="CITY" placeholder="City" />
+            <input type="text" name="OTHER" placeholder="Other details" />
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
+          </form>
+        </div>
       </div>
     </div>
   </main>

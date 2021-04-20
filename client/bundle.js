@@ -221,6 +221,12 @@ function switchView(view) {
 
   appConfig.view = view;
 }
+
+function switchSubView(subView) {
+  const { view } = appConfig;
+  const viewDivId = `${subView}-${view}-view`;
+  setActiveView(viewDivId);
+}
 function loadStock(values) {
   stockTable.load(values);
   stockTable.addClickEventToCheckboxes(toggleItemsVisibility);
