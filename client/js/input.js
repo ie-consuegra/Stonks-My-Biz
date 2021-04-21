@@ -32,14 +32,19 @@ function editEntry() {
   viewSwitcher('edit-product-view');
 }
 
-const editBtn = document.getElementById('editBtn');
-editBtn.addEventListener('click', editEntry);
+function actionAdd() {
+  switchSubView('add');
+}
 
+function actionUpdate() {
+  switchSubView('update');
+}
 
-document.getElementById('deleteBtn').addEventListener('click', () => {
-  removeEntries();
-});
+function actionDelete() {
+  // Show dialog asking if sure to delete
+  M.Modal.getInstance(deleteModal).open();
+}
 
-document.getElementById('addBtn').addEventListener('click', () => {
-  viewSwitcher('submit-new-product-view');
-});
+function actionDeleteContinue() {
+  // Delete selected stuff
+}

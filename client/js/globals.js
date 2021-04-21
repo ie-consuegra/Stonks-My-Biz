@@ -2,9 +2,13 @@
 const searchForm = document.getElementById('search-form');
 // Sidenav
 const mobileNav = document.getElementById('nav-mobile');
-// Action button container
+// Action button container and items
 const actionButton = document.getElementById('action-button');
-
+const actionAddBtn = document.getElementById('add-btn');
+const actionUpdateBtn = document.getElementById('update-btn');
+const actionDeleteBtn = document.getElementById('delete-btn');
+// Modals
+const deleteModal = document.getElementById('delete-modal');
 // "Smart tables"
 const stockTable = new SmartTable('stock-table-container');
 const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');

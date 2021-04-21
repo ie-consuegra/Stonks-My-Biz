@@ -30,7 +30,7 @@ function toggleElementsVisibility(viewName) {
     case 'settings':
     case 'help':
     case 'add':
-    case 'edit':
+    case 'update':
       actionButton.style.display = 'none';
       searchForm.style.display = 'none';
       break;
