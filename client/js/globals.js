@@ -1,3 +1,7 @@
+// Search
+const searchForm = document.getElementById('search-form');
+// Sidenav
+const mobileNav = document.getElementById('nav-mobile');
 // Action button container
 const actionButton = document.getElementById('action-button');
 

@@ -23,6 +23,24 @@ function setInactiveLink(linkId) {
   icon.classList.remove(...classesForActiveIcon);
 }
 
+function toggleElementsVisibility(viewName) {
+  const view = viewName || appConfig.view;
+  switch (view) {
+    case 'dashboard':
+    case 'settings':
+    case 'help':
+    case 'add':
+    case 'edit':
+      actionButton.style.display = 'none';
+      searchForm.style.display = 'none';
+      break;
+    default:
+      actionButton.style.display = 'inline-block';
+      searchForm.style.display = 'block';
+      break;
+  }
+}
+
 function switchView(view) {
   const viewDivId = `${view}-view`;
   const viewLinkId = `${view}-link`;
@@ -35,7 +53,8 @@ function switchView(view) {
   }
   setActiveLink(viewLinkId);
 
-  appConfig.view = view;
+  appConfig.view = view; // Register new view
+  toggleElementsVisibility();
   return false; // Avoid reloading the page
 }
 
@@ -43,4 +62,5 @@ function switchSubView(subView) {
   const { view } = appConfig;
   const viewDivId = `${subView}-${view}-view`;
   setActiveView(viewDivId);
+  toggleElementsVisibility(subView);
 }
