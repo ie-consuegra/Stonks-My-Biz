@@ -1,21 +1,20 @@
 /**
 * Hide/Show items according to the number of selected entries
 */
-function toggleItemsVisibility(smartTable) {
-  const editBtn = document.getElementById('editBtn');
-  const deleteBtn = document.getElementById('deleteBtn');
-
+function toggleToolButtons(smartTable) {
   const numChecked = smartTable.selectedCheckboxes.length;
 
   if (numChecked === 1) {
-    editBtn.style.display = 'inline-block';
-    deleteBtn.style.display = 'inline-block';
+    actionAddBtn.style.display = 'none';
+    actionUpdateBtn.style.display = 'inline-block';
+    actionDeleteBtn.style.display = 'inline-block';
   } else if (numChecked > 1) {
-    editBtn.style.display = 'none';
-    deleteBtn.style.display = 'inline-block';
+    actionUpdateBtn.style.display = 'none';
+    actionDeleteBtn.style.display = 'inline-block';
   } else {
-    editBtn.style.display = 'none';
-    deleteBtn.style.display = 'none';
+    actionAddBtn.style.display = 'inline-block';
+    actionUpdateBtn.style.display = 'none';
+    actionDeleteBtn.style.display = 'none';
   }
 }
 

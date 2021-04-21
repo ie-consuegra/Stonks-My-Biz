@@ -1,38 +1,72 @@
 function loadStock(values) {
   stockTable.load(values);
-  stockTable.addClickEventToCheckboxes(toggleItemsVisibility);
+  stockTable.addClickEventToCheckboxes(toggleToolButtons);
   document.getElementById('stock-preloader').style.display = 'none';
   M.AutoInit();
 }
 
 function loadReceiptAndIssue(values) {
   receiptAndIssueTable.load(values);
-  receiptAndIssueTable.addClickEventToCheckboxes(toggleItemsVisibility);
+  receiptAndIssueTable.addClickEventToCheckboxes(toggleToolButtons);
   document.getElementById('receipt-and-issue-preloader').style.display = 'none';
   M.AutoInit();
 }
 
-function reloadStock(values) {
-  stockTable.removeClickEventToCheckboxes(toggleItemsVisibility);
-  stockTable.load(values);
-  stockTable.addClickEventToCheckboxes(toggleItemsVisibility);
+function reloadOnTable(values) {
+  switch (appConfig.view) {
+    case 'stock':
+      stockTable.removeClickEventToCheckboxes(toggleToolButtons);
+      stockTable.load(values);
+      stockTable.addClickEventToCheckboxes(toggleToolButtons);
+      break;
+    case 'receipts-and-issues':
+      receiptsAndIssuesTable.removeClickEventToCheckboxes(toggleToolButtons);
+      receiptsAndIssuesTable.load(values);
+      receiptsAndIssuesTable.addClickEventToCheckboxes(toggleToolButtons);
+      break;
+    case 'suppliers':
+      suppliersTable.removeClickEventToCheckboxes(toggleToolButtons);
+      suppliersTable.load(values);
+      suppliersTable.addClickEventToCheckboxes(toggleToolButtons);
+      break;
+    default:
+      break;
+  }
 }
 
 function stockUpdateSuccess(values) {
   viewSwitcher('stock-view');
   reloadStock(values);
   document.getElementById('new-product-form').reset();
-  toggleItemsVisibility(stockTable);
+  toggleToolButtons(stockTable);
 }
 
 function removedSuccess(values) {
   reloadStock(values);
-  toggleItemsVisibility(stockTable);
+  toggleToolButtons(stockTable);
 }
 
-function newProductSubmitted(values) {
-  viewSwitcher('stock-view');
-  reloadStock(values);
-  document.getElementById('new-product-form').reset();
-  toggleItemsVisibility(stockTable);
+function resetForm(formType) {
+  const formId = `${formType}-${appConfig.view}-form`;
+  document.getElementById(formId).reset();
+}
+
+function newSubmitted(values) {
+  const { view } = appConfig;
+  switchView(view);
+  reloadOnTable(values);
+  resetForm('add');
+  switch (view) {
+    case 'stock':
+      toggleToolButtons(stockTable);
+      break;
+    case 'receipts-and-issues':
+      toggleToolButtons(receiptsAndIssuesTable);
+      break;
+    case 'suppliers':
+      toggleToolButtons(suppliersTable);
+      break;
+    default:
+      break;
+  }
 }

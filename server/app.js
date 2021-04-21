@@ -59,7 +59,7 @@ function fetchFrom({ meta }) {
     case 'suppliers':
       values = suppliersDBS.use().fetch();
       break;
-    case 'receiptsandissues':
+    case 'receipts-and-issues':
       values = receiptsAndIssuesDBS.use().fetch();
       break;
     default:
@@ -86,6 +86,20 @@ function update({ data, meta }) {
   return values;
 }
 
+function insertStock(data) {
+  const values = stockDBS.use().insert(data);
+  return values;
+}
+
+function insertReceiptAndIssue(data) {
+  const values = receiptsAndIssuesDBS.use().insert(data);
+  return values;
+}
+
+function insertSupplier(data) {
+  const values = suppliersDBS.use().insert(data);
+  return values;
+}
 /*
 const dateFields = ['DAY'];
 const dateFormat = 'dd/MM/yyyy';

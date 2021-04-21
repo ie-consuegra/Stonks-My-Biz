@@ -22,12 +22,28 @@ function fetchReceiptAndIssue() {
     .getReceiptAndIssueData();
 }
 
-function submitNewProduct(formData) {
+function submitNewStock(formData) {
   google
     .script
     .run
-    .withSuccessHandler(newProductSubmitted)
-    .stockInsert(formData);
+    .withSuccessHandler(newSubmitted)
+    .insertStock(formData);
+}
+
+function submitNewReceiptAndIssue(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(newSubmitted)
+    .insertReceiptAndIssue(formData);
+}
+
+function submitNewSupplier(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(newSubmitted)
+    .insertSupplier(formData);
 }
 
 function updateStock(formData) {
