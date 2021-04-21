@@ -68,24 +68,6 @@ function fetchFrom({ meta }) {
   return values;
 }
 
-function update({ data, meta }) {
-  let values;
-  switch (meta) {
-    case 'stock':
-      values = stockDBS.use().update(data);
-      break;
-    case 'receiptsandissues':
-      values = receiptsAndIssuesDBS.use().update(data);
-      break;
-    case 'suppliers':
-      values = suppliersDBS.use().update(data);
-      break;
-    default:
-      throw new Error('Wrong or null meta property');
-  }
-  return values;
-}
-
 function insertStock(data) {
   const values = stockDBS.use().insert(data);
   return values;
@@ -100,6 +82,22 @@ function insertSupplier(data) {
   const values = suppliersDBS.use().insert(data);
   return values;
 }
+
+function updateStock(data) {
+  const values = stockDBS.use().update(data);
+  return values;
+}
+
+function updateReceiptAndIssue(data) {
+  const values = receiptsAndIssuesDBS.use().update(data);
+  return values;
+}
+
+function updateSupplier(data) {
+  const values = suppliersDBS.use().update(data);
+  return values;
+}
+
 /*
 const dateFields = ['DAY'];
 const dateFormat = 'dd/MM/yyyy';

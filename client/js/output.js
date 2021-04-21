@@ -34,13 +34,6 @@ function reloadOnTable(values) {
   }
 }
 
-function stockUpdateSuccess(values) {
-  viewSwitcher('stock-view');
-  reloadStock(values);
-  document.getElementById('new-product-form').reset();
-  toggleToolButtons(stockTable);
-}
-
 function removedSuccess(values) {
   reloadStock(values);
   toggleToolButtons(stockTable);
@@ -56,6 +49,26 @@ function newSubmitted(values) {
   switchView(view);
   reloadOnTable(values);
   resetForm('add');
+  switch (view) {
+    case 'stock':
+      toggleToolButtons(stockTable);
+      break;
+    case 'receipts-and-issues':
+      toggleToolButtons(receiptsAndIssuesTable);
+      break;
+    case 'suppliers':
+      toggleToolButtons(suppliersTable);
+      break;
+    default:
+      break;
+  }
+}
+
+function updateSubmitted(values) {
+  const { view } = appConfig;
+  switchView(view);
+  reloadOnTable(values);
+  resetForm('update');
   switch (view) {
     case 'stock':
       toggleToolButtons(stockTable);

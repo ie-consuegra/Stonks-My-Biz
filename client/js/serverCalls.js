@@ -46,16 +46,28 @@ function submitNewSupplier(formData) {
     .insertSupplier(formData);
 }
 
-function updateStock(formData) {
-  const packet = {
-    meta: 'stock',
-    data: { ...formData },
-  };
+function submitUpdateStock(formData) {
   google
     .script
     .run
-    .withSuccessHandler(stockUpdateSuccess)
-    .update(packet);
+    .withSuccessHandler(updateSubmitted)
+    .updateStock(formData);
+}
+
+function submitUpdateReceiptAndIssue(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(updateSubmitted)
+    .updateReceiptAndIssue(formData);
+}
+
+function submitUpdateSupplier(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(updateSubmitted)
+    .updateSupplier(formData);
 }
 
 // Fetch all necesary data

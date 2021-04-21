@@ -354,8 +354,8 @@
       <div id="update-stock-view">
         <div class="container">
           <h5>Edit product information</h5>
-          <form id="update-stock-form" onsubmit="submitUpdate(this)">
-            <input type="text" name="_ID" id="UPDID" readonly />
+          <form id="update-stock-form" onsubmit="submitUpdateStock(this)">
+            <input type="text" name="_ID" readonly />
             <input type="text" name="CODE" placeholder="Code" />
             <input type="text" name="PRODUCT" placeholder="Product" />
             <input type="text" name="CATEGORY" placeholder="Category" />
@@ -387,8 +387,8 @@
       <div id="update-receipts-and-issues-view">
         <div class="container">
           <h5>Edit inventory receipt or issue</h5>
-          <form id="update-receipts-and-issues-form" onsubmit="submitUpdate(this)">
-            <input type="text" name="_ID" id="UPDID" readonly />
+          <form id="update-receipts-and-issues-form" onsubmit="submitUpdateReceiptAndIssue(this)">
+            <input type="text" name="_ID" readonly />
             <input type="text" name="DATE" placeholder="Date" />
             <input type="text" name="CODE" placeholder="Code" />
             <input type="text" name="PRODUCT" placeholder="Product" />
@@ -420,8 +420,8 @@
       <div id="update-suppliers-view">
         <div class="container">
           <h5>Edit supplier information</h5>
-          <form id="update-suppliers-form" onsubmit="submitUpdate(this)">
-            <input type="text" name="_ID" id="UPDID" readonly />
+          <form id="update-suppliers-form" onsubmit="submitUpdateSupplier(this)">
+            <input type="text" name="_ID" readonly />
             <input type="text" name="NAME" placeholder="Name" />
             <input type="text" name="IDENTIFICATION" placeholder="Identification" />
             <input type="text" name="TELEPHONE" placeholder="Telephone" />

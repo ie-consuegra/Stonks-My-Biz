@@ -18,17 +18,34 @@ function toggleToolButtons(smartTable) {
   }
 }
 
-function editEntry() {
-  const id = stockTable.selectedCheckboxes[0].id.toString();
+function loadInForm() {
+  const { view } = appConfig;
+  let table;
+  const formId = `update-${view}-form`;
+  const formElem = document.getElementById(formId);
+  const formInputs = formElem.children;
 
-  const selectedEntry = stockTable.values.find((entry) => entry[0].toString() === id);
+  switch (view) {
+    case 'stock':
+      table = stockTable;
+      break;
+    case 'receipts-and-issues':
+      table = receiptsAndIssuesTable;
+      break;
+    case 'suppliers':
+      table = suppliersTable;
+      break;
+    default:
+      break;
+  }
 
-  document.getElementById('UPDID').value = id;
-  document.getElementById('UPDDAY').value = selectedEntry[1];
-  document.getElementById('UPDINCOME').value = selectedEntry[2];
-  document.getElementById('UPDOUTCOME').value = selectedEntry[3];
+  const entryId = table.selectedCheckboxes[0].id.toString();
 
-  viewSwitcher('edit-product-view');
+  const selectedEntry = table.values.find((entry) => entry[0].toString() === entryId);
+
+  selectedEntry.forEach((field, index) => {
+    formInputs[index].value = field;
+  });
 }
 
 function actionAdd() {
@@ -36,6 +53,7 @@ function actionAdd() {
 }
 
 function actionUpdate() {
+  loadInForm();
   switchSubView('update');
 }
 
