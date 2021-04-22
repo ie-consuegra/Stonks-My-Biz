@@ -98,6 +98,20 @@ function updateSupplier(data) {
   return values;
 }
 
+function removeStock(entryIds) {
+  const values = stockDBS.use().remove(entryIds);
+  return values;
+}
+
+function removeReceiptsAndIssues(entryIds) {
+  const values = receiptsAndIssuesDBS.use().remove(entryIds);
+  return values;
+}
+
+function removeSuppliers(entryIds) {
+  const values = suppliersDBS.use().remove(entryIds);
+  return values;
+}
 /*
 const dateFields = ['DAY'];
 const dateFormat = 'dd/MM/yyyy';

@@ -64,5 +64,17 @@ function actionDelete() {
 }
 
 function actionDeleteContinue() {
-  // Delete selected stuff
+  switch (appConfig.view) {
+    case 'stock':
+      deleteStock();
+      break;
+    case 'receipts-and-issues':
+      deleteReceiptsAndIssues();
+      break;
+    case 'suppliers':
+      deleteSuppliers();
+      break;
+    default:
+      break;
+  }
 }

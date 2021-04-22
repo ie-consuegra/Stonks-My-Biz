@@ -15,28 +15,21 @@ function loadReceiptAndIssue(values) {
 function reloadOnTable(values) {
   switch (appConfig.view) {
     case 'stock':
-      stockTable.removeClickEventToCheckboxes(toggleToolButtons);
-      stockTable.load(values);
-      stockTable.addClickEventToCheckboxes(toggleToolButtons);
+      stockTable.reload(values);
       break;
     case 'receipts-and-issues':
-      receiptsAndIssuesTable.removeClickEventToCheckboxes(toggleToolButtons);
-      receiptsAndIssuesTable.load(values);
-      receiptsAndIssuesTable.addClickEventToCheckboxes(toggleToolButtons);
+      receiptsAndIssuesTable.reload(values);
       break;
     case 'suppliers':
-      suppliersTable.removeClickEventToCheckboxes(toggleToolButtons);
-      suppliersTable.load(values);
-      suppliersTable.addClickEventToCheckboxes(toggleToolButtons);
+      suppliersTable.reload(values);
       break;
     default:
       break;
   }
 }
 
-function removedSuccess(values) {
-  reloadStock(values);
-  toggleToolButtons(stockTable);
+function removeSuccess(values) {
+  reloadOnTable(values);
 }
 
 function resetForm(formType) {
@@ -49,19 +42,6 @@ function newSubmitted(values) {
   switchView(view);
   reloadOnTable(values);
   resetForm('add');
-  switch (view) {
-    case 'stock':
-      toggleToolButtons(stockTable);
-      break;
-    case 'receipts-and-issues':
-      toggleToolButtons(receiptsAndIssuesTable);
-      break;
-    case 'suppliers':
-      toggleToolButtons(suppliersTable);
-      break;
-    default:
-      break;
-  }
 }
 
 function updateSubmitted(values) {
@@ -69,17 +49,4 @@ function updateSubmitted(values) {
   switchView(view);
   reloadOnTable(values);
   resetForm('update');
-  switch (view) {
-    case 'stock':
-      toggleToolButtons(stockTable);
-      break;
-    case 'receipts-and-issues':
-      toggleToolButtons(receiptsAndIssuesTable);
-      break;
-    case 'suppliers':
-      toggleToolButtons(suppliersTable);
-      break;
-    default:
-      break;
-  }
 }

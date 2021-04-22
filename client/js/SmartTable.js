@@ -28,6 +28,8 @@ class SmartTable {
    * @returns void
    */
   load(values) {
+    // Initialize this.checkboxes
+    this.checkboxes = [];
     // Copy values
     this.values = [...values];
     this.thead = document.createElement('thead');
@@ -81,6 +83,11 @@ class SmartTable {
       this.addClickEventToCheckboxes();
       this.toggleToolButtons(this);
     }
+  }
+
+  reload(values) {
+    this.removeClickEventToCheckboxes();
+    this.load(values);
   }
 
   /**

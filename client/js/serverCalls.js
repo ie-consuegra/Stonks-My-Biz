@@ -1,11 +1,3 @@
-function removeEntries() {
-  google
-    .script
-    .run
-    .withSuccessHandler(removedSuccess)
-    .cashflowRemove(stockTable.selectedIds);
-}
-
 function stockFetch() {
   google
     .script
@@ -77,4 +69,28 @@ function fetchAll() {
     .run
     .withSuccessHandler(loadInitValues)
     .fetchAllInventoryValues();
+}
+
+function deleteStock() {
+  google
+    .script
+    .run
+    .withSuccessHandler(removeSuccess)
+    .removeStock(stockTable.selectedIds);
+}
+
+function deleteReceiptsAndIssues() {
+  google
+    .script
+    .run
+    .withSuccessHandler(removeSuccess)
+    .removeReceiptsAndIssues(receiptsAndIssuesTable.selectedIds);
+}
+
+function deleteSuppliers() {
+  google
+    .script
+    .run
+    .withSuccessHandler(removeSuccess)
+    .removeSuppliers(suppliersTable.selectedIds);
 }
