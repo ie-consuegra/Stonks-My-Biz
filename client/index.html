@@ -15,7 +15,7 @@
 
 <body>
   <header>
-    <nav>
+    <nav id="main-nav">
       <div class="nav-wrapper">
 
         <a href="#" class="sidenav-trigger hide-on-med-and-large" data-target="nav-mobile"><i
@@ -235,7 +235,7 @@
       </div>
       <div id="stock-view">
         <div class="container container-large">
-          <h5>Stock</h5>
+          <h5>Stock</h5> 
           <div id="stock-preloader">
             <!-- The spinning colorful circle -->
             <div class="section">
@@ -335,6 +335,13 @@
       </div>
       <!-- SubViews-->
       <div id="add-stock-view">
+        <nav>
+          <div class="nav-wrapper">
+            <ul class="left">
+              <li><a onclick="switchView('stock')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+            </ul>
+          </div>
+        </nav>
         <div class="container">
           <h5>New product</h5>
           <form id="add-stock-form" onsubmit="submitNewStock(this)">
@@ -352,6 +359,13 @@
         </div>
       </div>
       <div id="update-stock-view">
+        <nav>
+          <div class="nav-wrapper">
+            <ul class="left">
+              <li><a onclick="switchView('stock')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+            </ul>
+          </div>
+        </nav>
         <div class="container">
           <h5>Edit product information</h5>
           <form id="update-stock-form" onsubmit="submitUpdateStock(this)">
@@ -370,6 +384,13 @@
         </div>
       </div>
       <div id="add-receipts-and-issues-view">
+        <nav>
+          <div class="nav-wrapper">
+            <ul class="left">
+              <li><a onclick="switchView('receipts-and-issues')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+            </ul>
+          </div>
+        </nav>
         <div class="container">
           <h5>New inventory receipt or issue</h5>
           <form id="add-receipt-and-issues-form" onsubmit="submitNewReceiptAndIssue(this)">
@@ -385,6 +406,13 @@
         </div>
       </div>
       <div id="update-receipts-and-issues-view">
+        <nav>
+          <div class="nav-wrapper">
+            <ul class="left">
+              <li><a onclick="switchView('receipts-and-issues')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+            </ul>
+          </div>
+        </nav>
         <div class="container">
           <h5>Edit inventory receipt or issue</h5>
           <form id="update-receipts-and-issues-form" onsubmit="submitUpdateReceiptAndIssue(this)">
@@ -401,6 +429,13 @@
         </div>
       </div>
       <div id="add-suppliers-view">
+        <nav>
+          <div class="nav-wrapper">
+            <ul class="left">
+              <li><a onclick="switchView('suppliers')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+            </ul>
+          </div>
+        </nav>
         <div class="container">
           <h5>New supplier</h5>
           <form id="add-suppliers-form" onsubmit="submitNewSupplier(this)">
@@ -418,6 +453,13 @@
         </div>
       </div>
       <div id="update-suppliers-view">
+        <nav>
+          <div class="nav-wrapper">
+            <ul class="left">
+              <li><a onclick="switchView('suppliers')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+            </ul>
+          </div>
+        </nav>
         <div class="container">
           <h5>Edit supplier information</h5>
           <form id="update-suppliers-form" onsubmit="submitUpdateSupplier(this)">

@@ -1,3 +1,5 @@
+// Main nav
+const mainNav = document.getElementById('main-nav');
 // Search
 const searchForm = document.getElementById('search-form');
 // Sidenav

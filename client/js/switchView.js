@@ -29,13 +29,18 @@ function toggleElementsVisibility(viewName) {
     case 'dashboard':
     case 'settings':
     case 'help':
+      actionButton.style.display = 'none';
+      mainNav.style.display = 'block';
+      searchForm.style.display = 'none';
+      break;
     case 'add':
     case 'update':
       actionButton.style.display = 'none';
-      searchForm.style.display = 'none';
+      mainNav.style.display = 'none';
       break;
     default:
       actionButton.style.display = 'inline-block';
+      mainNav.style.display = 'block';
       searchForm.style.display = 'block';
       break;
   }
