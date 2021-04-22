@@ -15,6 +15,11 @@ class SmartTable {
     // this.addClickEventToTableRows = this.addClickEventToTableRows.bind(this);
     // Initialize the values the table will contain
     this.values = [];
+    this.checkboxes = [];
+  }
+
+  setToggleToolButtonsFunction(callback) {
+    this.toggleToolButtons = callback;
   }
 
   /**
@@ -27,9 +32,6 @@ class SmartTable {
     this.values = [...values];
     this.thead = document.createElement('thead');
     this.tbody = document.createElement('tbody');
-
-    // Initialize the array of checkboxes
-    this.checkboxes = [];
 
     for (let i = 0; i < values.length; i += 1) {
       if (i === 0) {
@@ -74,6 +76,11 @@ class SmartTable {
     this.table.appendChild(this.tbody);
     // Add classes to the table
     this.table.classList.add('striped');
+    // If there are values, not only the column titles, add clickEventListeners to checkboxes
+    if (values.length > 1) {
+      this.addClickEventToCheckboxes();
+      this.toggleToolButtons(this);
+    }
   }
 
   /**
@@ -86,10 +93,10 @@ class SmartTable {
    * Add an onclick event listener to each checkbox
    * @param {action} action
    */
-  addClickEventToCheckboxes(action) {
+  addClickEventToCheckboxes() {
     this.checkboxes.forEach((checkbox) => {
       checkbox.addEventListener('click', () => {
-        action(this);
+        this.toggleToolButtons(this);
       });
     });
   }
@@ -98,10 +105,10 @@ class SmartTable {
    * Remove onclick event listener to each checkbox
    * @param {action} action
    */
-  removeClickEventToCheckboxes(action) {
+  removeClickEventToCheckboxes() {
     this.checkboxes.forEach((checkbox) => {
       checkbox.removeEventListener('click', () => {
-        action(this);
+        this.toggleToolButtons(this);
       });
     });
   }

@@ -41,6 +41,23 @@ function toggleElementsVisibility(viewName) {
   }
 }
 
+function toggleToolButtonsVisibility(viewName) {
+  const view = viewName || appConfig.view;
+  switch (view) {
+    case 'stock':
+      toggleToolButtons(stockTable);
+      break;
+    case 'receipts-and-issues':
+      toggleToolButtons(receiptsAndIssuesTable);
+      break;
+    case 'suppliers':
+      toggleToolButtons(suppliersTable);
+      break;
+    default:
+      break;
+  }
+}
+
 function switchView(view) {
   const viewDivId = `${view}-view`;
   const viewLinkId = `${view}-link`;
@@ -55,6 +72,7 @@ function switchView(view) {
 
   appConfig.view = view; // Register new view
   toggleElementsVisibility();
+  toggleToolButtonsVisibility();
   return false; // Avoid reloading the page
 }
 

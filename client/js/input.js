@@ -9,6 +9,7 @@ function toggleToolButtons(smartTable) {
     actionUpdateBtn.style.display = 'inline-block';
     actionDeleteBtn.style.display = 'inline-block';
   } else if (numChecked > 1) {
+    actionAddBtn.style.display = 'none';
     actionUpdateBtn.style.display = 'none';
     actionDeleteBtn.style.display = 'inline-block';
   } else {

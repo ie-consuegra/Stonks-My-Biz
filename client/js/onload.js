@@ -9,12 +9,15 @@ function preventFormSubmit() {
 }
 
 function loadInitValues({ stock, suppliers, receiptsAndIssues }) {
+  stockTable.setToggleToolButtonsFunction(toggleToolButtons);
   stockTable.load(stock);
   stockPreloader.style.display = 'none';
 
+  receiptsAndIssuesTable.setToggleToolButtonsFunction(toggleToolButtons);
   receiptsAndIssuesTable.load(receiptsAndIssues);
   receiptsAndIssuesPreloader.style.display = 'none';
 
+  suppliersTable.setToggleToolButtonsFunction(toggleToolButtons);
   suppliersTable.load(suppliers);
   suppliersPreloader.style.display = 'none';
 }
