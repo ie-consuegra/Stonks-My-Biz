@@ -97,13 +97,20 @@
       </li>
       <li><a onclick="switchView('dashboard')" id="dashboard-link">Dashboard<i
             class="material-icons">dashboard</i></a></li>
+      <li><a class="subheader">MOVEMENTS</a></li>
+      <li><a onclick="switchView('sales')" id="sales-link">Sales<i
+            class="material-icons">shopping_cart</i></a></li>
+      <li><a onclick="switchView('purchases')" id="purchases-link">Purchases<i
+            class="material-icons">work</i></a></li>
+      <li><a onclick="switchView('cashflow')" id="cashflow-link">Cashflow<i
+            class="material-icons">attach_money</i></a></li>
       <li><a class="subheader">INVENTORY</a></li>
       <li><a onclick="switchView('stock')" id="stock-link">Stock<i
             class="material-icons">format_list_bulleted</i></a></li>
       <li><a onclick="switchView('receipts-and-issues')" id="receipts-and-issues-link">Receipts and issues<i
             class="material-icons">import_export</i></a></li>
       <li><a onclick="switchView('suppliers')" id="suppliers-link">Suppliers<i
-            class="material-icons">shopping_basket</i></a></li>
+            class="material-icons">business</i></a></li>
       <li>
         <div class="divider"></div>
       </li>
@@ -231,6 +238,21 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div id="sales-view">
+        <div class="container container-large">
+          <h5>Sales</h5>
+        </div>
+      </div>
+      <div id="purchases-view">
+        <div class="container container-large">
+          <h5>Purchases</h5>
+        </div>
+      </div>
+      <div id="cashflow-view">
+        <div class="container container-large">
+          <h5>Cashflow</h5>
         </div>
       </div>
       <div id="stock-view">

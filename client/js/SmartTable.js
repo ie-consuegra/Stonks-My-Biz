@@ -5,14 +5,17 @@ class SmartTable {
   /**
    * Create a table element where specified
    * @param {String} parentContainerId Id of the element where the table will be
+   * @param {Array} type Type of table defined by an array of classes
    */
-  constructor(parentContainerId) {
+  constructor(parentContainerId, type) {
     const container = document.getElementById(parentContainerId);
     this.table = document.createElement('table');
     container.appendChild(this.table);
     this.addClickEventToCheckboxes = this.addClickEventToCheckboxes.bind(this);
     this.removeClickEventToCheckboxes = this.removeClickEventToCheckboxes.bind(this);
     // this.addClickEventToTableRows = this.addClickEventToTableRows.bind(this);
+    // striped table is default
+    this.type = type || ['striped'];
     // Initialize the values the table will contain
     this.values = [];
     this.checkboxes = [];
@@ -77,7 +80,7 @@ class SmartTable {
     this.table.appendChild(this.thead);
     this.table.appendChild(this.tbody);
     // Add classes to the table
-    this.table.classList.add('striped');
+    this.table.classList.add(this.type);
     // If there are values, not only the column titles, add clickEventListeners to checkboxes
     if (values.length > 1) {
       this.addClickEventToCheckboxes();
