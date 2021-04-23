@@ -137,6 +137,24 @@ class SmartTable {
   }
 
   /**
+ * Find several entries in this.values
+ * @param {Object} query Object with the field and keyword
+ * @returns {Array[]} Values that match the query
+ */
+  find(query) {
+    const { values } = this;
+    const fields = values[0];
+    const index = fields.indexOf(query.field);
+
+    const { keyword } = query;
+
+    const isEqual = (entry) => entry[index].toString() === keyword.toString();
+
+    const results = values.filter(isEqual);
+    return results;
+  }
+
+  /**
    * Return an array of checked checkboxes
    */
   get selectedCheckboxes() {

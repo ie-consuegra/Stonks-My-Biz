@@ -13,11 +13,15 @@ const actionDeleteBtn = document.getElementById('delete-btn');
 const deleteModal = document.getElementById('delete-modal');
 // "Smart tables"
 const cashflowTable = new SmartTable('cashflow-table-container');
+const salesTable = new SmartTable('sales-table-container');
+const purchasesTable = new SmartTable('purchases-table-container');
 const stockTable = new SmartTable('stock-table-container');
 const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');
 const suppliersTable = new SmartTable('suppliers-table-container');
 
 const cashflowPreloader = document.getElementById('cashflow-preloader');
+const salesPreloader = document.getElementById('sales-preloader');
+const purchasesPreloader = document.getElementById('purchases-preloader');
 const stockPreloader = document.getElementById('stock-preloader');
 const receiptsAndIssuesPreloader = document.getElementById('receipts-and-issues-preloader');
 const suppliersPreloader = document.getElementById('suppliers-preloader');

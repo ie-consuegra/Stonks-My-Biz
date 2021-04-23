@@ -16,10 +16,23 @@ function loadInitValues(data) {
     receiptsAndIssues,
   } = data;
 
+  // Cashflow section
   cashflowTable.setToggleToolButtonsFunction(toggleToolButtons);
   cashflowTable.load(cashflow);
   cashflowPreloader.style.display = 'none';
 
+  const sales = cashflowTable.find({ field: 'CONCEPT', keyword: 'sale' });
+  const purchases = cashflowTable.find({ field: 'CONCEPT', keyword: 'purchase' });
+
+  salesTable.setToggleToolButtonsFunction(toggleToolButtons);
+  salesTable.load(sales);
+  salesPreloader.style.display = 'none';
+
+  purchasesTable.setToggleToolButtonsFunction(toggleToolButtons);
+  purchasesTable.load(purchases);
+  purchasesPreloader.style.display = 'none';
+
+  // Inventory section
   stockTable.setToggleToolButtonsFunction(toggleToolButtons);
   stockTable.load(stock);
   stockPreloader.style.display = 'none';
