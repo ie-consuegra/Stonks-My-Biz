@@ -12,10 +12,12 @@ const actionDeleteBtn = document.getElementById('delete-btn');
 // Modals
 const deleteModal = document.getElementById('delete-modal');
 // "Smart tables"
+const cashflowTable = new SmartTable('cashflow-table-container');
 const stockTable = new SmartTable('stock-table-container');
 const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');
 const suppliersTable = new SmartTable('suppliers-table-container');
 
+const cashflowPreloader = document.getElementById('cashflow-preloader');
 const stockPreloader = document.getElementById('stock-preloader');
 const receiptsAndIssuesPreloader = document.getElementById('receipts-and-issues-preloader');
 const suppliersPreloader = document.getElementById('suppliers-preloader');

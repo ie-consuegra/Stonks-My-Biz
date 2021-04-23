@@ -253,6 +253,31 @@
       <div id="cashflow-view">
         <div class="container container-large">
           <h5>Cashflow</h5>
+          <div id="cashflow-preloader">
+            <!-- The spinning colorful circle -->
+            <div class="section">
+              <div class="container">
+                <div class="row">
+                  <div class="col s2 offset-s5">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="cashflow-table-container"></div>
         </div>
       </div>
       <div id="stock-view">
@@ -356,6 +381,30 @@
         </div>
       </div>
       <!-- SubViews-->
+      <div id="add-cashflow-view">
+        <nav>
+          <div class="nav-wrapper">
+            <ul class="left">
+              <li><a onclick="switchView('cashflow')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container">
+          <h5>New movement</h5>
+          <form id="add-cashflow-form" onsubmit="submitNewCashflow(this)">
+            <input type="text" name="DATE" placeholder="Date" />
+            <select name="CONCEPT" id="add-cashflow-concept-select">
+              <option value="income">Income</option>
+              <option value="outcome">Outcome</option>
+              <option value="expense">Expense</option>
+            </select>
+            <input type="text" name="DETAILS" placeholder="Details" />
+            <input type="text" name="AMOUNT" placeholder="amount" />
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
+          </form>
+        </div>
+      </div>
       <div id="add-stock-view">
         <nav>
           <div class="nav-wrapper">

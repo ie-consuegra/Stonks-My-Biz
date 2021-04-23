@@ -24,6 +24,11 @@ stonksApp.setName = 'My Biz';
 stonksApp.setVersion = '0.0.0';
 stonksApp.init();
 
+// CASHFLOW database "creation/connection"
+const cashflowSchema = ['DATE', 'CONCEPT', 'DETAILS', 'INCOME', 'OUTCOME', 'BALANCE'];
+const cashflowModel = DBS.createModelFrom('cashflow', cashflowSchema);
+const cashflowDBS = new DBS(cashflowModel, stonksApp.getFolder);
+
 // STOCK database "creation/connection"
 const stockSchema = ['CODE', 'PRODUCT', 'CATEGORY', 'UNIT', 'PRICE', 'MINIMUM', 'STOCK', 'SUPPLIER'];
 const stockModel = DBS.createModelFrom('stock', stockSchema);
@@ -42,6 +47,7 @@ const suppliersDBS = new DBS(suppliersModel, stonksApp.getFolder);
 // database functions
 function fetchAllInventoryValues() {
   const data = {
+    cashflow: cashflowDBS.use().fetch(),
     stock: stockDBS.use().fetch(),
     receiptsAndIssues: receiptsAndIssuesDBS.use().fetch(),
     suppliers: suppliersDBS.use().fetch(),
@@ -53,6 +59,9 @@ function fetchAllInventoryValues() {
 function fetchFrom({ meta }) {
   let values;
   switch (meta) {
+    case 'cashflow':
+      values = cashflowDBS.use().fetch();
+      break;
     case 'stock':
       values = stockDBS.use().fetch();
       break;
@@ -65,6 +74,11 @@ function fetchFrom({ meta }) {
     default:
       throw new Error('Wrong or null meta property');
   }
+  return values;
+}
+
+function insertCashflow(data) {
+  const values = cashflowDBS.use().insert(data);
   return values;
 }
 

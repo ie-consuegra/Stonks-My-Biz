@@ -14,6 +14,15 @@ function fetchReceiptAndIssue() {
     .getReceiptAndIssueData();
 }
 
+function submitNewCashflow(formData) {
+  const data = arrangeCashflowData(formData);
+  google
+    .script
+    .run
+    .withSuccessHandler(newSubmitted)
+    .insertCashflow(data);
+}
+
 function submitNewStock(formData) {
   google
     .script

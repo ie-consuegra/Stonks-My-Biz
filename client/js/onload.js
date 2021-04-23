@@ -8,7 +8,18 @@ function preventFormSubmit() {
   }
 }
 
-function loadInitValues({ stock, suppliers, receiptsAndIssues }) {
+function loadInitValues(data) {
+  const {
+    cashflow,
+    stock,
+    suppliers,
+    receiptsAndIssues,
+  } = data;
+
+  cashflowTable.setToggleToolButtonsFunction(toggleToolButtons);
+  cashflowTable.load(cashflow);
+  cashflowPreloader.style.display = 'none';
+
   stockTable.setToggleToolButtonsFunction(toggleToolButtons);
   stockTable.load(stock);
   stockPreloader.style.display = 'none';

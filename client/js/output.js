@@ -14,6 +14,9 @@ function loadReceiptAndIssue(values) {
 
 function reloadOnTable(values) {
   switch (appConfig.view) {
+    case 'cashflow':
+      cashflowTable.reload(values);
+      break;
     case 'stock':
       stockTable.reload(values);
       break;
