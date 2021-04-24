@@ -45,6 +45,10 @@ class SmartTable {
           if (j === 0) {
             // Leave the first th blank, this is a column of checkboxes
             theadRow.innerHTML = '<th></th>';
+            j += 1;
+          }
+          if (this.titles) { // If set the titles use them, otherwise use those in values
+            theadRow.innerHTML = `${theadRow.innerHTML}<th>${this.titles[j]}</th>`;
           } else {
             theadRow.innerHTML = `${theadRow.innerHTML}<th>${values[i][j]}</th>`;
           }
@@ -154,6 +158,19 @@ class SmartTable {
     return results;
   }
 
+  /** Find several entries in this.values
+ * and returns the values that match and the titles of the columns at index 0
+ * @param {Object} query Object with the field and keyword
+ * @returns {Array[]} Values that match the query
+ */
+  getFilteredValuesBy(query) {
+    const [fields] = this.values;
+    const values = this.find(query);
+
+    values.unshift(fields);
+    return values;
+  }
+
   /**
    * Return an array of checked checkboxes
    */
@@ -167,5 +184,13 @@ class SmartTable {
   get selectedIds() {
     const ids = this.selectedCheckboxes.map((checkbox) => checkbox.id.toString());
     return ids;
+  }
+
+  /** Set the titles the columns of the table will have
+   * these titles will replace those received from the db when loading values
+   * @param {Array} titlesArr Set of titles the columns will have
+   */
+  setTitles(titlesArr) {
+    this.titles = titlesArr;
   }
 }

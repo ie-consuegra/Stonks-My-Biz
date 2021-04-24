@@ -21,8 +21,8 @@ function loadInitValues(data) {
   cashflowTable.load(cashflow);
   cashflowPreloader.style.display = 'none';
 
-  const sales = cashflowTable.find({ field: 'CONCEPT', keyword: 'sale' });
-  const purchases = cashflowTable.find({ field: 'CONCEPT', keyword: 'purchase' });
+  const sales = cashflowTable.getFilteredValuesBy({ field: 'CONCEPT', keyword: 'sale' });
+  const purchases = cashflowTable.getFilteredValuesBy({ field: 'CONCEPT', keyword: 'purchase' });
 
   salesTable.setToggleToolButtonsFunction(toggleToolButtons);
   salesTable.load(sales);
