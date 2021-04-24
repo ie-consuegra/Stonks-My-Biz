@@ -35,6 +35,10 @@ function formatDates(values, dateFields, format) {
   return newValues;
 }
 
+function createDatesFormatter(formatterFn, dateField, format) {
+  return (values) => formatterFn(values, dateField, format);
+}
+
 // Useful during development not for production ------
 function deleteProperties() {
   PropertiesService.getScriptProperties().deleteAllProperties();

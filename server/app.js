@@ -44,12 +44,23 @@ const suppliersSchema = ['NAME', 'IDENTIFICATION', 'TELEPHONE', 'CELLPHONE', 'EM
 const suppliersModel = DBS.createModelFrom('suppliers', suppliersSchema);
 const suppliersDBS = new DBS(suppliersModel, stonksApp.getFolder);
 
+// Variables for format dates function
+const dateField = ['DATE'];
+const format = 'dd/MM/yyyy';
+const datesFormatter = createDatesFormatter(formatDates, dateField, format);
+
 // database functions
 function fetchAllInventoryValues() {
+  const cashflowValues = cashflowDBS.use().fetch();
+  const cashflow = datesFormatter(cashflowValues);
+
+  const receiptsAndIssuesValues = receiptsAndIssuesDBS.use().fetch();
+  const receiptsAndIssues = datesFormatter(receiptsAndIssuesValues);
+
   const data = {
-    cashflow: cashflowDBS.use().fetch(),
+    cashflow,
     stock: stockDBS.use().fetch(),
-    receiptsAndIssues: receiptsAndIssuesDBS.use().fetch(),
+    receiptsAndIssues,
     suppliers: suppliersDBS.use().fetch(),
   };
 
@@ -60,7 +71,7 @@ function fetchFrom({ meta }) {
   let values;
   switch (meta) {
     case 'cashflow':
-      values = cashflowDBS.use().fetch();
+      values = datesFormatter(cashflowDBS.use().fetch());
       break;
     case 'stock':
       values = stockDBS.use().fetch();
@@ -69,7 +80,7 @@ function fetchFrom({ meta }) {
       values = suppliersDBS.use().fetch();
       break;
     case 'receipts-and-issues':
-      values = receiptsAndIssuesDBS.use().fetch();
+      values = datesFormatter(receiptsAndIssuesDBS.use().fetch());
       break;
     default:
       throw new Error('Wrong or null meta property');
@@ -79,7 +90,8 @@ function fetchFrom({ meta }) {
 
 function insertCashflow(data) {
   const values = cashflowDBS.use().insert(data);
-  return values;
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
 }
 
 function insertStock(data) {
@@ -89,7 +101,8 @@ function insertStock(data) {
 
 function insertReceiptAndIssue(data) {
   const values = receiptsAndIssuesDBS.use().insert(data);
-  return values;
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
 }
 
 function insertSupplier(data) {
@@ -104,7 +117,8 @@ function updateStock(data) {
 
 function updateReceiptAndIssue(data) {
   const values = receiptsAndIssuesDBS.use().update(data);
-  return values;
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
 }
 
 function updateSupplier(data) {
@@ -119,14 +133,11 @@ function removeStock(entryIds) {
 
 function removeReceiptsAndIssues(entryIds) {
   const values = receiptsAndIssuesDBS.use().remove(entryIds);
-  return values;
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
 }
 
 function removeSuppliers(entryIds) {
   const values = suppliersDBS.use().remove(entryIds);
   return values;
 }
-/*
-const dateFields = ['DAY'];
-const dateFormat = 'dd/MM/yyyy';
- */
