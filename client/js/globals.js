@@ -34,3 +34,10 @@ const suppliersPreloader = document.getElementById('suppliers-preloader');
 
 const classesForActiveLink = ['indigo', 'lighten-5', 'indigo-text', 'text-darken-4'];
 const classesForActiveIcon = ['indigo-text', 'text-darken-4'];
+
+/*
+Global object that contains all data fetched from the database
+to make it available to any process requires it without asking
+for the values of any smarttable.
+*/
+const dbData = {};

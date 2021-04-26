@@ -8,6 +8,13 @@ function preventFormSubmit() {
   }
 }
 
+function copyObjectEntries(objReceives, objGives) {
+  const entries = Object.entries(objGives);
+  entries.forEach(([key, value]) => {
+    objReceives[key] = value;
+  });
+}
+
 function loadInitValues(data) {
   const {
     cashflow,
@@ -44,6 +51,9 @@ function loadInitValues(data) {
   suppliersTable.setToggleToolButtonsFunction(toggleToolButtons);
   suppliersTable.load(suppliers);
   suppliersPreloader.style.display = 'none';
+
+  // Update dbData
+  copyObjectEntries(dbData, data);
 }
 
 window.addEventListener('load', () => {
