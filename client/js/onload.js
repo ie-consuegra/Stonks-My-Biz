@@ -28,17 +28,6 @@ function loadInitValues(data) {
   cashflowTable.load(cashflow);
   cashflowPreloader.style.display = 'none';
 
-  const sales = cashflowTable.getFilteredValuesBy({ field: 'CONCEPT', keyword: 'sale' });
-  const purchases = cashflowTable.getFilteredValuesBy({ field: 'CONCEPT', keyword: 'purchase' });
-
-  salesTable.setToggleToolButtonsFunction(toggleToolButtons);
-  salesTable.load(sales);
-  salesPreloader.style.display = 'none';
-
-  purchasesTable.setToggleToolButtonsFunction(toggleToolButtons);
-  purchasesTable.load(purchases);
-  purchasesPreloader.style.display = 'none';
-
   // Inventory section
   stockTable.setToggleToolButtonsFunction(toggleToolButtons);
   stockTable.load(stock);

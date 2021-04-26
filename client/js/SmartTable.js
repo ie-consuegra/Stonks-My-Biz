@@ -141,37 +141,6 @@ class SmartTable {
   }
 
   /**
- * Find several entries in this.values
- * @param {Object} query Object with the field and keyword
- * @returns {Array[]} Values that match the query
- */
-  find(query) {
-    const { values } = this;
-    const fields = values[0];
-    const index = fields.indexOf(query.field);
-
-    const { keyword } = query;
-
-    const isEqual = (entry) => entry[index].toString() === keyword.toString();
-
-    const results = values.filter(isEqual);
-    return results;
-  }
-
-  /** Find several entries in this.values
- * and returns the values that match and the titles of the columns at index 0
- * @param {Object} query Object with the field and keyword
- * @returns {Array[]} Values that match the query
- */
-  getFilteredValuesBy(query) {
-    const [fields] = this.values;
-    const values = this.find(query);
-
-    values.unshift(fields);
-    return values;
-  }
-
-  /**
    * Return an array of checked checkboxes
    */
   get selectedCheckboxes() {
