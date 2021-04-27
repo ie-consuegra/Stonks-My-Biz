@@ -198,3 +198,9 @@ table.narrow td,
 table.narrow th {
   padding: 4px 10px;
 }
+
+/* Especific to the stonks app */
+.small-input {
+  min-width: 30px;
+  max-width: 60px;
+}

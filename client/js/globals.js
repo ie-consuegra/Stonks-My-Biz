@@ -15,12 +15,16 @@ const deleteModal = document.getElementById('delete-modal');
 const cashflowTable = new SmartTable('cashflow-table-container');
 cashflowTable.setTitles(['', 'Date', 'Concept', 'Details', 'Income', 'Outcome', 'Balance']);
 
+const portfolioTable = new SmartTable('portfolio-table-container');
+portfolioTable.setTitles(['', 'Code', 'Item', 'Category', 'Description', 'Price']);
 const stockTable = new SmartTable('stock-table-container');
 stockTable.setTitles(['', 'Code', 'Product', 'Category', 'Unit', 'Price', 'Minimum stock', 'Current stock', 'Supplier']);
 const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');
 receiptsAndIssuesTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
 const suppliersTable = new SmartTable('suppliers-table-container');
 suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone', 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
+const stockTableInAddPortfolio = new SmartTable('stock-table-in-add-portfolio');
+stockTableInAddPortfolio.setTitles(['', 'Code', 'Product']);
 
 const cashflowPreloader = document.getElementById('cashflow-preloader');
 const salesPreloader = document.getElementById('sales-preloader');

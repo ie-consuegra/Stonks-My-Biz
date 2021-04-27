@@ -50,3 +50,13 @@ function filter(values, query) {
   filteredValues.unshift(fields);
   return filteredValues;
 }
+
+function getValuesByFields(values, fieldsArray) {
+  const [fields] = values;
+  const fieldsIndexes = fieldsArray.map((field) => fields.indexOf(field));
+  const approvedFieldsIndexes = fieldsIndexes.filter((item) => item !== -1);
+  const getApprovedValues = (entry) => approvedFieldsIndexes.map((fieldIndex) => entry[fieldIndex]);
+
+  const valuesByFields = values.map(getApprovedValues);
+  return valuesByFields;
+}

@@ -41,6 +41,12 @@ function loadInitValues(data) {
   suppliersTable.load(suppliers);
   suppliersPreloader.style.display = 'none';
 
+  // Stock tables in other views
+  const simpleStockValues = getValuesByFields(stock, ['_ID', 'CODE', 'PRODUCT']);
+
+  // stockTableInAddPortfolio.setToggleToolButtonsFunction();
+  stockTableInAddPortfolio.load(simpleStockValues);
+
   // Update dbData
   copyObjectEntries(dbData, data);
 }
