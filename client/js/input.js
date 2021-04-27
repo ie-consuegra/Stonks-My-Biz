@@ -2,6 +2,7 @@
 * Hide/Show items according to the number of selected entries
 */
 function toggleToolButtons(smartTable) {
+  actionAddToPortfolioItemBtn.style.display = 'none';
   const numChecked = smartTable.selectedCheckboxes.length;
 
   if (numChecked === 1) {
@@ -19,6 +20,26 @@ function toggleToolButtons(smartTable) {
   }
 }
 
+function toggleToolButtonsForStock(smartTable) {
+  const numChecked = smartTable.selectedCheckboxes.length;
+
+  if (numChecked === 1) {
+    actionAddToPortfolioItemBtn.style.display = 'inline-block';
+    actionAddBtn.style.display = 'none';
+    actionUpdateBtn.style.display = 'inline-block';
+    actionDeleteBtn.style.display = 'inline-block';
+  } else if (numChecked > 1) {
+    actionAddToPortfolioItemBtn.style.display = 'inline-block';
+    actionAddBtn.style.display = 'none';
+    actionUpdateBtn.style.display = 'none';
+    actionDeleteBtn.style.display = 'inline-block';
+  } else {
+    actionAddToPortfolioItemBtn.style.display = 'none';
+    actionAddBtn.style.display = 'inline-block';
+    actionUpdateBtn.style.display = 'none';
+    actionDeleteBtn.style.display = 'none';
+  }
+}
 function loadInForm() {
   const { view } = appConfig;
   let table;

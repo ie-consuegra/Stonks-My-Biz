@@ -131,6 +131,7 @@
         <i class="large material-icons white-text">more_vert</i>
       </a>
       <ul>
+        <li id="add-stock-to-portfolio-item-btn"><a class="btn-floating indigo" onclick="actionAddToPortfolioItem()"><i class="material-icons">local_offer</i></a></li>
         <li id="add-btn"><a class="btn-floating green" onclick="actionAdd()"><i class="material-icons">add</i></a></li>
         <li id="update-btn"><a class="btn-floating yellow" onclick="actionUpdate()"><i class="material-icons">edit</i></a></li>
         <li id="delete-btn"><a class="btn-floating red" onclick="actionDelete()"><i class="material-icons">delete</i></a></li>
@@ -496,7 +497,7 @@
         <div class="container">
           <div class="row">
             <h5>New item</h5>
-            <form id="add-portfolio-form" class="col s12 m6" onsubmit="submitNewPortfolio(this)">
+            <form id="add-portfolio-form" class="col s12" onsubmit="submitNewPortfolio(this)">
               <div class="row">
                 <div class="input-field col s12 m4">
                   <input type="text" name="CODE" id="portfolio-new-item-code" placeholder="Code" />
@@ -559,11 +560,6 @@
               <button type="submit" class="btn waves-effect waves-light right">
                 Submit<i class="material-icons right">send</i></button>
             </form>
-            <div class="col s12 m6">
-              <p>Choose the products you will include in your new portfolio item</p>
-              <div id="stock-table-in-add-portfolio">
-              </div>
-            </div>
           </div>
         </div>
       </div>

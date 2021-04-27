@@ -29,7 +29,7 @@ function loadInitValues(data) {
   cashflowPreloader.style.display = 'none';
 
   // Inventory section
-  stockTable.setToggleToolButtonsFunction(toggleToolButtons);
+  stockTable.setToggleToolButtonsFunction(toggleToolButtonsForStock);
   stockTable.load(stock);
   stockPreloader.style.display = 'none';
 
@@ -40,12 +40,6 @@ function loadInitValues(data) {
   suppliersTable.setToggleToolButtonsFunction(toggleToolButtons);
   suppliersTable.load(suppliers);
   suppliersPreloader.style.display = 'none';
-
-  // Stock tables in other views
-  const simpleStockValues = getValuesByFields(stock, ['_ID', 'CODE', 'PRODUCT']);
-
-  // stockTableInAddPortfolio.setToggleToolButtonsFunction();
-  stockTableInAddPortfolio.load(simpleStockValues);
 
   // Update dbData
   copyObjectEntries(dbData, data);

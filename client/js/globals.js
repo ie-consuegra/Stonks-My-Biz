@@ -6,6 +6,7 @@ const searchForm = document.getElementById('search-form');
 const mobileNav = document.getElementById('nav-mobile');
 // Action button container and items
 const actionButton = document.getElementById('action-button');
+const actionAddToPortfolioItemBtn = document.getElementById('add-stock-to-portfolio-item-btn');
 const actionAddBtn = document.getElementById('add-btn');
 const actionUpdateBtn = document.getElementById('update-btn');
 const actionDeleteBtn = document.getElementById('delete-btn');
@@ -23,8 +24,6 @@ const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-contain
 receiptsAndIssuesTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
 const suppliersTable = new SmartTable('suppliers-table-container');
 suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone', 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
-const stockTableInAddPortfolio = new SmartTable('stock-table-in-add-portfolio');
-stockTableInAddPortfolio.setTitles(['', 'Code', 'Product']);
 
 const cashflowPreloader = document.getElementById('cashflow-preloader');
 const salesPreloader = document.getElementById('sales-preloader');
