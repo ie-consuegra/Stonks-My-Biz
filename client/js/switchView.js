@@ -48,18 +48,25 @@ function toggleElementsVisibility(viewName) {
 
 function toggleToolButtonsVisibility(viewName) {
   const view = viewName || appConfig.view;
-  switch (view) {
-    case 'stock':
-      toggleToolButtons(stockTable);
-      break;
-    case 'receipts-and-issues':
-      toggleToolButtons(receiptsAndIssuesTable);
-      break;
-    case 'suppliers':
-      toggleToolButtons(suppliersTable);
-      break;
-    default:
-      break;
+  if (dbData.loaded) {
+    switch (view) {
+      case 'stock':
+        toggleToolButtonsForStock(stockTable);
+        break;
+      case 'receipts-and-issues':
+        toggleToolButtons(receiptsAndIssuesTable);
+        break;
+      case 'suppliers':
+        toggleToolButtons(suppliersTable);
+        break;
+      default:
+        break;
+    }
+  } else {
+    actionAddToPortfolioItemBtn.style.display = 'none';
+    actionAddBtn.style.display = 'none';
+    actionUpdateBtn.style.display = 'none';
+    actionDeleteBtn.style.display = 'none';
   }
 }
 

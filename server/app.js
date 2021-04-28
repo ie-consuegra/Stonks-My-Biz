@@ -29,6 +29,11 @@ const cashflowSchema = ['DATE', 'CONCEPT', 'DETAILS', 'INCOME', 'OUTCOME', 'BALA
 const cashflowModel = DBS.createModelFrom('cashflow', cashflowSchema);
 const cashflowDBS = new DBS(cashflowModel, stonksApp.getFolder);
 
+// PORTFOLIO database "creation/connection"
+const portfolioSchema = ['CODE', 'NAME', 'CATEGORY', 'UNIT', 'DESCRIPTION', 'STOCKREFS', 'COST', 'PRICE'];
+const portfolioModel = DBS.createModelFrom('portfolio', portfolioSchema);
+const portfolioDBS = new DBS(portfolioModel, stonksApp.getFolder);
+
 // STOCK database "creation/connection"
 const stockSchema = ['CODE', 'PRODUCT', 'CATEGORY', 'UNIT', 'PRICE', 'MINIMUM', 'STOCK', 'SUPPLIER'];
 const stockModel = DBS.createModelFrom('stock', stockSchema);
@@ -50,7 +55,7 @@ const format = 'dd/MM/yyyy';
 const datesFormatter = createDatesFormatter(formatDates, dateField, format);
 
 // database functions
-function fetchAllInventoryValues() {
+function fetchAllDBValues() {
   const cashflowValues = cashflowDBS.use().fetch();
   const cashflow = datesFormatter(cashflowValues);
 
@@ -59,6 +64,7 @@ function fetchAllInventoryValues() {
 
   const data = {
     cashflow,
+    portfolio: portfolioDBS.use().fetch(),
     stock: stockDBS.use().fetch(),
     receiptsAndIssues,
     suppliers: suppliersDBS.use().fetch(),
@@ -72,6 +78,9 @@ function fetchFrom({ meta }) {
   switch (meta) {
     case 'cashflow':
       values = datesFormatter(cashflowDBS.use().fetch());
+      break;
+    case 'portfolio':
+      values = portfolioDBS.use().fetch();
       break;
     case 'stock':
       values = stockDBS.use().fetch();

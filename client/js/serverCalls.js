@@ -77,7 +77,7 @@ function fetchAll() {
     .script
     .run
     .withSuccessHandler(loadInitValues)
-    .fetchAllInventoryValues();
+    .fetchAllDBValues();
 }
 
 function deleteStock() {

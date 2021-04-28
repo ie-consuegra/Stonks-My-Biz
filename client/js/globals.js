@@ -17,7 +17,7 @@ const cashflowTable = new SmartTable('cashflow-table-container');
 cashflowTable.setTitles(['', 'Date', 'Concept', 'Details', 'Income', 'Outcome', 'Balance']);
 
 const portfolioTable = new SmartTable('portfolio-table-container');
-portfolioTable.setTitles(['', 'Code', 'Item', 'Category', 'Description', 'Price']);
+portfolioTable.setTitles(['', 'Code', 'Name', 'Category', 'Unit', 'Description', 'Stockrefs', 'Cost', 'Price']);
 const stockTable = new SmartTable('stock-table-container');
 stockTable.setTitles(['', 'Code', 'Product', 'Category', 'Unit', 'Price', 'Minimum stock', 'Current stock', 'Supplier']);
 const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');
@@ -26,6 +26,7 @@ const suppliersTable = new SmartTable('suppliers-table-container');
 suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone', 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
 
 const cashflowPreloader = document.getElementById('cashflow-preloader');
+const portfolioPreloader = document.getElementById('portfolio-preloader');
 const salesPreloader = document.getElementById('sales-preloader');
 const purchasesPreloader = document.getElementById('purchases-preloader');
 const stockPreloader = document.getElementById('stock-preloader');
@@ -40,4 +41,4 @@ Global object that contains all data fetched from the database
 to make it available to any process requires it without asking
 for the values of any smarttable.
 */
-const dbData = {};
+const dbData = { loaded: false };

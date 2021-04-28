@@ -18,6 +18,7 @@ function copyObjectEntries(objReceives, objGives) {
 function loadInitValues(data) {
   const {
     cashflow,
+    portfolio,
     stock,
     suppliers,
     receiptsAndIssues,
@@ -27,6 +28,11 @@ function loadInitValues(data) {
   cashflowTable.setToggleToolButtonsFunction(toggleToolButtons);
   cashflowTable.load(cashflow);
   cashflowPreloader.style.display = 'none';
+
+  // Cashflow section
+  portfolioTable.setToggleToolButtonsFunction(toggleToolButtons);
+  portfolioTable.load(portfolio);
+  portfolioPreloader.style.display = 'none';
 
   // Inventory section
   stockTable.setToggleToolButtonsFunction(toggleToolButtonsForStock);
@@ -43,6 +49,7 @@ function loadInitValues(data) {
 
   // Update dbData
   copyObjectEntries(dbData, data);
+  dbData.loaded = true;
 }
 
 window.addEventListener('load', () => {
