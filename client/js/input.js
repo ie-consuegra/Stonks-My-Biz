@@ -79,6 +79,8 @@ function addToPortfolioItem() {
     const query = { field: '_ID', keyword: ref };
     return findOne(dbData.stock, query);
   });
+  values.unshift([]); // The equivalent to the title row
+  portfolioStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 6, 7, 8] });
 }
 
 function actionAddToPortfolioItem() {

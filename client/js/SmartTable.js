@@ -19,6 +19,7 @@ class SmartTable {
     // Initialize the values the table will contain
     this.values = [];
     this.checkboxes = [];
+    this.numberInputs = [];
   }
 
   setToggleToolButtonsFunction(callback) {
@@ -28,51 +29,79 @@ class SmartTable {
   /**
    * Get a 2d array of data and arrange it on the table
    * @param {Array<Array>} values A 2d array of all the values the table will display/contain
+   * @param {Object} options { inputType: 'checkbox or number', avoidColumns: [index, index] }
    * @returns void
    */
-  load(values) {
+  load(values, options = { inputType: 'checkbox' }) {
     // Initialize this.checkboxes
     this.checkboxes = [];
     // Copy values
+    this.options = { ...options };
     this.values = [...values];
     this.thead = document.createElement('thead');
     this.tbody = document.createElement('tbody');
 
     for (let i = 0; i < values.length; i += 1) {
-      if (i === 0) {
+      if (i === 0) { // If it's the first row create the thead
         const theadRow = this.thead.insertRow();
-        for (let j = 0; j < values[i].length; j += 1) {
-          if (j === 0) {
-            // Leave the first th blank, this is a column of checkboxes
-            theadRow.innerHTML = '<th></th>';
-            j += 1;
-          }
-          if (this.titles) { // If set the titles use them, otherwise use those in values
-            theadRow.innerHTML = `${theadRow.innerHTML}<th>${this.titles[j]}</th>`;
-          } else {
-            theadRow.innerHTML = `${theadRow.innerHTML}<th>${values[i][j]}</th>`;
-          }
+        if (this.titles) {
+          this.titles.forEach((title) => {
+            theadRow.innerHTML = `${theadRow.innerHTML}<th>${title}</th>`;
+          });
+        } else {
+          values[i].forEach((title, colIndex) => {
+            if (colIndex === 0) {
+              // Leave the first th blank to avoid showing the _ID column title
+              theadRow.innerHTML = '<th></th>';
+            }
+            theadRow.innerHTML = `${theadRow.innerHTML}<th>${title}</th>`;
+          });
         }
       } else {
         const tbodyRow = this.tbody.insertRow();
+        let tableColumnIndex = 0;
         for (let j = 0; j < values[i].length; j += 1) {
-          const cell = tbodyRow.insertCell(j);
-          if (j === 0) {
-            // Insert a checkbox in the first cell of each row
-            // Add row id value to each checkbox as its own id
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            const span = document.createElement('span');
-
-            checkbox.setAttribute('type', 'checkbox');
-            checkbox.id = values[i][j];
-            label.appendChild(checkbox);
-            label.appendChild(span);
-            cell.appendChild(label);
-            // Store each checkbox into an array
-            this.checkboxes.push(checkbox);
+          if (this.options.avoidColumns) {
+            if (this.options.avoidColumns.indexOf(j) === -1) {
+              const cell = tbodyRow.insertCell(tableColumnIndex);
+              if (j === 0) {
+                let element;
+                switch (this.options.inputType) {
+                  case 'checkbox':
+                    element = this.createCheckbox(values[i][j]);
+                    break;
+                  case 'number':
+                    element = this.createNumberInput(values[i][j]);
+                    break;
+                  default:
+                    element = this.createCheckbox(values[i][j]);
+                    break;
+                }
+                cell.appendChild(element);
+              } else {
+                cell.innerHTML = values[i][j];
+              }
+              tableColumnIndex += 1;
+            }
           } else {
-            cell.innerHTML = values[i][j];
+            const cell = tbodyRow.insertCell(j);
+            if (j === 0) {
+              let element;
+              switch (this.options.inputType) {
+                case 'checkbox':
+                  element = this.createCheckbox(values[i][j]);
+                  break;
+                case 'number':
+                  element = this.createNumberInput(values[i][j]);
+                  break;
+                default:
+                  element = this.createCheckbox(values[i][j]);
+                  break;
+              }
+              cell.appendChild(element);
+            } else {
+              cell.innerHTML = values[i][j];
+            }
           }
         }
       }
@@ -87,14 +116,52 @@ class SmartTable {
     this.table.classList.add(this.type);
     // If there are values, not only the column titles, add clickEventListeners to checkboxes
     if (values.length > 1) {
-      this.addClickEventToCheckboxes();
-      this.toggleToolButtons(this);
+      if (this.options.inputType === 'checkbox') {
+        this.addClickEventToCheckboxes();
+        this.toggleToolButtons(this);
+      }
     }
   }
 
   reload(values) {
     this.removeClickEventToCheckboxes();
     this.load(values);
+  }
+
+  /**
+   * Generate a checkbox element
+   * @param {String} id The id the element will have
+   * @returns {Object} Checkbox element as required by materialize to work
+   */
+  createCheckbox(id) {
+    // Insert a checkbox in the first cell of each row
+    // Add row id value to each checkbox as its own id
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    const span = document.createElement('span');
+
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.id = id;
+    label.appendChild(checkbox);
+    label.appendChild(span);
+    // Store each checkbox into an array
+    this.checkboxes.push(checkbox);
+    return label;
+  }
+
+  /**
+   * Generate an input[number] element
+   * @param {String} id The id the element will have
+   * @return {Object} A number input element
+   */
+  createNumberInput(id) {
+    const numberInput = document.createElement('input');
+    numberInput.setAttribute('type', 'number');
+    numberInput.setAttribute('class', 'small-input');
+    numberInput.id = id;
+
+    this.numberInputs.push(numberInput);
+    return numberInput;
   }
 
   /**
