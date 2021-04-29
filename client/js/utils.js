@@ -21,9 +21,9 @@ function toDate(ddmmyyyy) {
   return date;
 }
 
-/**
- * Find several entries in values
- * @param {Object} query Object with the field and keyword
+/** Find several entries in values
+ * and returns only the values that match
+ * @param {Object} query Object with the field and keyword { field: '', keyword: '' }
  * @returns {Array[]} Values that match the query
  */
 function find(values, query) {
@@ -40,7 +40,7 @@ function find(values, query) {
 
 /** Find several entries in values
  * and returns the values that match and the titles of the columns at index 0
- * @param {Object} query Object with the field and keyword
+ * @param {Object} query Object with the field and keyword { field: '', keyword: '' }
  * @returns {Array[]} Values that match the query
  */
 function filter(values, query) {
@@ -59,4 +59,20 @@ function getValuesByFields(values, fieldsArray) {
 
   const valuesByFields = values.map(getApprovedValues);
   return valuesByFields;
+}
+
+/**
+ * Find one entry and returns it
+ * @param {Object} query: Object with two properties: field and keyword { field: '', keyword: '' }
+ * @returns {Array}
+ */
+function findOne(values, query) {
+  const [fields] = values;
+  const index = fields.indexOf(query.field);
+  const { keyword } = query;
+
+  const isEqual = (entry) => entry[index].toString() === keyword.toString();
+
+  const foundIndex = values.findIndex(isEqual);
+  return values[foundIndex];
 }
