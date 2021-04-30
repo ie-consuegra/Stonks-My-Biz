@@ -14,6 +14,14 @@ function fetchReceiptAndIssue() {
     .getReceiptAndIssueData();
 }
 
+function submitNewPortfolio(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(newSubmitted)
+    .insertPortfolio(formData);
+}
+
 function submitNewCashflow(formData) {
   const data = arrangeCashflowData(formData);
   google

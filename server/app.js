@@ -97,6 +97,11 @@ function fetchFrom({ meta }) {
   return values;
 }
 
+function insertPortfolio(data) {
+  const values = portfolioDBS.use().insert(data);
+  return values;
+}
+
 function insertCashflow(data) {
   const values = cashflowDBS.use().insert(data);
   const formattedValues = datesFormatter(values);

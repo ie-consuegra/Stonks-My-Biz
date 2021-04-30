@@ -22,8 +22,8 @@ class SmartTable {
     this.numberInputs = [];
   }
 
-  setToggleToolButtonsFunction(callback) {
-    this.toggleToolButtons = callback;
+  setInputCallback(callback) {
+    this.inputCallback = callback;
   }
 
   /**
@@ -108,17 +108,22 @@ class SmartTable {
     }
 
     // Remove any content the table could contain before loading new data
-    this.table.innerHTML = '';
+    this.reset();
     // Append thead and tbody
     this.table.appendChild(this.thead);
     this.table.appendChild(this.tbody);
     // Add classes to the table
     this.table.classList.add(this.type);
-    // If there are values, not only the column titles, add clickEventListeners to checkboxes
+    // If there are values, not only the column titles
+    // add clickEventListeners to checkboxes or number inputs
     if (values.length > 1) {
       if (this.options.inputType === 'checkbox') {
         this.addClickEventToCheckboxes();
-        this.toggleToolButtons(this);
+        this.inputCallback(this);
+      }
+      if (this.options.inputType === 'number') {
+        this.addInputEventToNumberInputs();
+        // this.inputCallback(this);
       }
     }
   }
@@ -177,7 +182,7 @@ class SmartTable {
   addClickEventToCheckboxes() {
     this.checkboxes.forEach((checkbox) => {
       checkbox.addEventListener('click', () => {
-        this.toggleToolButtons(this);
+        this.inputCallback(this);
       });
     });
   }
@@ -189,7 +194,19 @@ class SmartTable {
   removeClickEventToCheckboxes() {
     this.checkboxes.forEach((checkbox) => {
       checkbox.removeEventListener('click', () => {
-        this.toggleToolButtons(this);
+        this.inputCallback(this);
+      });
+    });
+  }
+
+  /**
+   * Add an onclick event listener to each checkbox
+   * @param {action} action
+   */
+  addInputEventToNumberInputs() {
+    this.numberInputs.forEach((numberInput) => {
+      numberInput.addEventListener('input', () => {
+        this.inputCallback(numberInput);
       });
     });
   }
@@ -228,5 +245,9 @@ class SmartTable {
    */
   setTitles(titlesArr) {
     this.titles = titlesArr;
+  }
+
+  reset() {
+    this.table.innerHTML = '';
   }
 }

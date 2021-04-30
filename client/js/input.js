@@ -72,9 +72,7 @@ function loadInForm() {
 
 function addToPortfolioItem() {
   const selectedStockCheckboxes = stockTable.selectedCheckboxes;
-  const stockRefs = document.getElementById('portfolio-new-item-stockrefs');
   const selectedStockIds = selectedStockCheckboxes.map((checkbox) => checkbox.id.toString());
-  stockRefs.value = selectedStockIds;
   const values = selectedStockIds.map((ref) => {
     const query = { field: '_ID', keyword: ref };
     return findOne(dbData.stock, query);
@@ -153,4 +151,19 @@ function arrangeCashflowData(formElement) {
 
 function goToStock() {
   switchView('stock');
+}
+
+function inputToRefs(inputElem) {
+  if (inputElem.value !== '') {
+    const inputText = document.getElementById('portfolio-new-item-stockrefs');
+    let valuesObj = {};
+
+    if (inputText.value) {
+      valuesObj = { ...JSON.parse(inputText.value) };
+      valuesObj[inputElem.id] = inputElem.value;
+    } else {
+      valuesObj[inputElem.id] = inputElem.value;
+    }
+    inputText.value = JSON.stringify(valuesObj);
+  }
 }

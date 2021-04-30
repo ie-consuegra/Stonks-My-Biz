@@ -14,17 +14,26 @@ function loadReceiptAndIssue(values) {
 
 function reloadOnTable(values) {
   switch (appConfig.view) {
+    case 'portfolio':
+      portfolioTable.reload(values);
+      portfolioStockTable.reset();
+      dbData.portfolio = values;
+      break;
     case 'cashflow':
       cashflowTable.reload(values);
+      dbData.cashflow = values;
       break;
     case 'stock':
       stockTable.reload(values);
+      dbData.stock = values;
       break;
     case 'receipts-and-issues':
       receiptsAndIssuesTable.reload(values);
+      dbData.receiptsAndIssues = values;
       break;
     case 'suppliers':
       suppliersTable.reload(values);
+      dbData.receiptsAndIssues = values;
       break;
     default:
       break;

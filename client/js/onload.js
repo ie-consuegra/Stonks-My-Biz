@@ -25,25 +25,27 @@ function loadInitValues(data) {
   } = data;
 
   // Cashflow section
-  cashflowTable.setToggleToolButtonsFunction(toggleToolButtons);
+  cashflowTable.setInputCallback(toggleToolButtons);
   cashflowTable.load(cashflow);
   cashflowPreloader.style.display = 'none';
 
-  // Cashflow section
-  portfolioTable.setToggleToolButtonsFunction(toggleToolButtons);
+  // Portfolio section
+  portfolioTable.setInputCallback(toggleToolButtons);
   portfolioTable.load(portfolio);
   portfolioPreloader.style.display = 'none';
 
+  portfolioStockTable.setInputCallback(inputToRefs);
+
   // Inventory section
-  stockTable.setToggleToolButtonsFunction(toggleToolButtonsForStock);
+  stockTable.setInputCallback(toggleToolButtonsForStock);
   stockTable.load(stock);
   stockPreloader.style.display = 'none';
 
-  receiptsAndIssuesTable.setToggleToolButtonsFunction(toggleToolButtons);
+  receiptsAndIssuesTable.setInputCallback(toggleToolButtons);
   receiptsAndIssuesTable.load(receiptsAndIssues);
   receiptsAndIssuesPreloader.style.display = 'none';
 
-  suppliersTable.setToggleToolButtonsFunction(toggleToolButtons);
+  suppliersTable.setInputCallback(toggleToolButtons);
   suppliersTable.load(suppliers);
   suppliersPreloader.style.display = 'none';
 
