@@ -3,6 +3,9 @@
 */
 function toggleToolButtons(smartTable) {
   actionAddToPortfolioItemBtn.style.display = 'none';
+  actionAddToSalesItemBtn.style.display = 'none';
+  actionAddToPurchasesItemBtn.style.display = 'none';
+  actionMenuDivider.style.display = 'none';
   const numChecked = smartTable.selectedCheckboxes.length;
 
   if (numChecked === 1) {
@@ -14,6 +17,32 @@ function toggleToolButtons(smartTable) {
     actionUpdateBtn.style.display = 'none';
     actionDeleteBtn.style.display = 'inline-block';
   } else {
+    actionAddBtn.style.display = 'inline-block';
+    actionUpdateBtn.style.display = 'none';
+    actionDeleteBtn.style.display = 'none';
+  }
+}
+
+function toggleToolButtonsForPortfolio(smartTable) {
+  actionAddToPortfolioItemBtn.style.display = 'none';
+  actionAddToPurchasesItemBtn.style.display = 'none';
+  const numChecked = smartTable.selectedCheckboxes.length;
+
+  if (numChecked === 1) {
+    actionAddToSalesItemBtn.style.display = 'inline-block';
+    actionMenuDivider.style.display = 'block';
+    actionAddBtn.style.display = 'none';
+    actionUpdateBtn.style.display = 'block';
+    actionDeleteBtn.style.display = 'inline-block';
+  } else if (numChecked > 1) {
+    actionAddToSalesItemBtn.style.display = 'inline-block';
+    actionMenuDivider.style.display = 'block';
+    actionAddBtn.style.display = 'none';
+    actionUpdateBtn.style.display = 'none';
+    actionDeleteBtn.style.display = 'inline-block';
+  } else {
+    actionAddToSalesItemBtn.style.display = 'none';
+    actionMenuDivider.style.display = 'none';
     actionAddBtn.style.display = 'inline-block';
     actionUpdateBtn.style.display = 'none';
     actionDeleteBtn.style.display = 'none';
@@ -21,25 +50,33 @@ function toggleToolButtons(smartTable) {
 }
 
 function toggleToolButtonsForStock(smartTable) {
+  actionAddToSalesItemBtn.style.display = 'none';
   const numChecked = smartTable.selectedCheckboxes.length;
 
   if (numChecked === 1) {
+    actionAddToPurchasesItemBtn.style.display = 'inline-block';
     actionAddToPortfolioItemBtn.style.display = 'inline-block';
+    actionMenuDivider.style.display = 'block';
     actionAddBtn.style.display = 'none';
     actionUpdateBtn.style.display = 'inline-block';
     actionDeleteBtn.style.display = 'inline-block';
   } else if (numChecked > 1) {
+    actionAddToPurchasesItemBtn.style.display = 'inline-block';
     actionAddToPortfolioItemBtn.style.display = 'inline-block';
+    actionMenuDivider.style.display = 'block';
     actionAddBtn.style.display = 'none';
     actionUpdateBtn.style.display = 'none';
     actionDeleteBtn.style.display = 'inline-block';
   } else {
+    actionAddToPurchasesItemBtn.style.display = 'none';
     actionAddToPortfolioItemBtn.style.display = 'none';
+    actionMenuDivider.style.display = 'none';
     actionAddBtn.style.display = 'inline-block';
     actionUpdateBtn.style.display = 'none';
     actionDeleteBtn.style.display = 'none';
   }
 }
+
 function loadInForm() {
   const { view } = appConfig;
   let table;

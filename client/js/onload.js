@@ -30,7 +30,7 @@ function loadInitValues(data) {
   cashflowPreloader.style.display = 'none';
 
   // Portfolio section
-  portfolioTable.setInputCallback(toggleToolButtons);
+  portfolioTable.setInputCallback(toggleToolButtonsForPortfolio);
   portfolioTable.load(portfolio);
   portfolioPreloader.style.display = 'none';
 

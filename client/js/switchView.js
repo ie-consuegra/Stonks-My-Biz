@@ -33,6 +33,12 @@ function toggleElementsVisibility(viewName) {
       mainNav.style.display = 'block';
       searchForm.style.display = 'none';
       break;
+    case 'sales':
+    case 'purchases':
+      actionButton.style.display = 'none';
+      mainNav.style.display = 'block';
+      searchForm.style.display = 'block';
+      break;
     case 'add':
     case 'update':
       actionButton.style.display = 'none';
@@ -50,6 +56,9 @@ function toggleToolButtonsVisibility(viewName) {
   const view = viewName || appConfig.view;
   if (dbData.loaded) {
     switch (view) {
+      case 'portofolio':
+        toggleToolButtonsForPortfolio(portfolioTable);
+        break;
       case 'stock':
         toggleToolButtonsForStock(stockTable);
         break;
@@ -64,6 +73,9 @@ function toggleToolButtonsVisibility(viewName) {
     }
   } else {
     actionAddToPortfolioItemBtn.style.display = 'none';
+    actionAddToSalesItemBtn.style.display = 'none';
+    actionAddToPurchasesItemBtn.style.display = 'none';
+    actionMenuDivider.style.display = 'none';
     actionAddBtn.style.display = 'none';
     actionUpdateBtn.style.display = 'none';
     actionDeleteBtn.style.display = 'none';
