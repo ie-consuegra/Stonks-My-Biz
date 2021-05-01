@@ -153,6 +153,10 @@ function goToStock() {
   switchView('stock');
 }
 
+function goToPortfolio() {
+  switchView('portfolio');
+}
+
 function inputToRefs(inputElem) {
   if (inputElem.value !== '') {
     const inputText = document.getElementById('portfolio-new-item-stockrefs');

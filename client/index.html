@@ -97,6 +97,8 @@
       </li>
       <li><a onclick="switchView('dashboard')" id="dashboard-link">Dashboard<i
             class="material-icons">dashboard</i></a></li>
+      <li><a onclick="switchView('portfolio')" id="portfolio-link">Portfolio<i
+        class="material-icons">local_offer</i></a></li>
       <li><a class="subheader">MOVEMENTS</a></li>
       <li><a onclick="switchView('sales')" id="sales-link">Sales<i
             class="material-icons">shopping_cart</i></a></li>
@@ -105,8 +107,6 @@
       <li><a onclick="switchView('cashflow')" id="cashflow-link">Cashflow<i
             class="material-icons">attach_money</i></a></li>
       <li><a class="subheader">INVENTORY</a></li>
-      <li><a onclick="switchView('portfolio')" id="portfolio-link">Portfolio<i
-        class="material-icons">local_offer</i></a></li>
       <li><a onclick="switchView('stock')" id="stock-link">Stock<i
             class="material-icons">assignment</i></a></li>
       <li><a onclick="switchView('receipts-and-issues')" id="receipts-and-issues-link">Receipts and issues<i
@@ -131,7 +131,10 @@
         <i class="large material-icons white-text">more_vert</i>
       </a>
       <ul>
+        <li id="add-portfolio-to-sales-item-btn"><a class="btn-floating blue darken-3" onclick="actionAddToSalesItem()"><i class="material-icons">shopping_cart</i></a></li>
+        <li id="add-stock-to-purchases-item-btn"><a class="btn-floating cyan darken-2" onclick="actionAddToPurchasesItem()"><i class="material-icons">work</i></a></li>
         <li id="add-stock-to-portfolio-item-btn"><a class="btn-floating indigo" onclick="actionAddToPortfolioItem()"><i class="material-icons">local_offer</i></a></li>
+        <li id="action-menu-divider"><div class="divider"></div></li>
         <li id="add-btn"><a class="btn-floating green" onclick="actionAdd()"><i class="material-icons">add</i></a></li>
         <li id="update-btn"><a class="btn-floating yellow" onclick="actionUpdate()"><i class="material-icons">edit</i></a></li>
         <li id="delete-btn"><a class="btn-floating red" onclick="actionDelete()"><i class="material-icons">delete</i></a></li>
@@ -244,61 +247,103 @@
         </div>
       </div>
       <div id="sales-view">
-        <div class="container container-large">
+        <div class="container">
           <h5>Sales</h5>
-          <div id="sales-preloader">
-            <!-- The spinning colorful circle -->
-            <div class="section">
-              <div class="container">
-                <div class="row">
-                  <div class="col s2 offset-s5">
-                    <div class="preloader-wrapper small active">
-                      <div class="spinner-layer spinner-blue-only">
-                        <div class="circle-clipper left">
-                          <div class="circle"></div>
-                        </div>
-                        <div class="gap-patch">
-                          <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                          <div class="circle"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <form id="add-sales-form" class="col s12" onsubmit="submitNewSale(this)">
+            <div class="row">
+              <div class="input-field col s12 m3">
+                <input type="text" name="DATE" id="sales-new-item-date" placeholder="Date" />
+                <label for="sales-new-item-date">Date</label>
               </div>
             </div>
-          </div>
+            <div class="divider"></div>
+            <div class="row" style="display: none;">
+              <div class="input-field col s12">
+                <input type="text" name="DETAILS" id="portfolio-new-item-details" placeholder="Details" />
+                <label for="portfolio-new-item-details">Details</label>
+              </div>
+            </div>
+            <div class="row" style="display: none;">
+              <div class="input-field col s12">
+                <input type="text" name="CONCEPT" id="sales-new-item-concept" placeholder="Concept" value="sale" />
+                <label for="sales-new-item-concept">Concept</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12" style="display: none;">
+                <input type="text" name="OUTCOME" id="portfolio-new-item-stockrefs" placeholder="" value="0"/>
+                <label for="portfolio-new-item-stockrefs">OUTCOME</label>
+              </div>
+            </div>
+            <div id="sales-portfolio-table-container"></div>
+            <div class="row">
+              <div class="col s12">
+                <a class="btn waves-effect waves-light right" onclick="goToPortfolio()"><i class="material-icons">local_offer</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
+                <input type="text" name="INCOME" id="portfolio-new-item-total" placeholder="" value="0" disabled />
+                <label for="portfolio-new-item-price">Total</label>
+              </div>
+              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
+                <input type="text" name="INCOME" id="portfolio-new-item-paid" placeholder="Amount Paid" />
+                <label for="portfolio-new-item-price">Amt. Paid</label>
+              </div>
+            </div>
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
+          </form>
         </div>
       </div>
       <div id="purchases-view">
-        <div class="container container-large">
+        <div class="container">
           <h5>Purchases</h5>
-          <div id="purchases-preloader">
-            <!-- The spinning colorful circle -->
-            <div class="section">
-              <div class="container">
-                <div class="row">
-                  <div class="col s2 offset-s5">
-                    <div class="preloader-wrapper small active">
-                      <div class="spinner-layer spinner-blue-only">
-                        <div class="circle-clipper left">
-                          <div class="circle"></div>
-                        </div>
-                        <div class="gap-patch">
-                          <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                          <div class="circle"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <form id="add-purchases-form" class="col s12" onsubmit="submitNewPurchase(this)">
+            <div class="row">
+              <div class="input-field col s12 m3">
+                <input type="text" name="DATE" id="purchases-new-item-date" placeholder="Date" />
+                <label for="purchases-new-item-date">Date</label>
               </div>
             </div>
-          </div>
+            <div class="divider"></div>
+            <div class="row" style="display: none;">
+              <div class="input-field col s12">
+                <input type="text" name="DETAILS" id="purchases-new-item-details" placeholder="Details" />
+                <label for="purchases-new-item-details">Details</label>
+              </div>
+            </div>
+            <div class="row" style="display: none;">
+              <div class="input-field col s12">
+                <input type="text" name="CONCEPT" id="purchases-new-item-concept" placeholder="Concept" value="purchase" />
+                <label for="purchases-new-item-concept">Concept</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12" style="display: none;">
+                <input type="text" name="INCOME" id="purchases-new-item-income" placeholder="" value="0"/>
+                <label for="purchases-new-item-income">Income</label>
+              </div>
+            </div>
+            <div id="purchases-stock-table-container"></div>
+            <div class="row">
+              <div class="col s12">
+                <a class="btn waves-effect waves-light right" onclick="goToStock()"><i class="material-icons">assignment</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
+                <input type="text" name="INCOME" id="portfolio-new-item-total" placeholder="" value="0" disabled />
+                <label for="portfolio-new-item-price">Total</label>
+              </div>
+              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
+                <input type="text" name="INCOME" id="stock-new-item-price" placeholder="Amount Paid" />
+                <label for="stock-new-item-price">Amt. Paid</label>
+              </div>
+            </div>
+            <button type="submit" class="btn waves-effect waves-light right">
+              Submit<i class="material-icons right">send</i></button>
+          </form>
         </div>
       </div>
       <div id="cashflow-view">
