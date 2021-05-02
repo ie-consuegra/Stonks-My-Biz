@@ -259,8 +259,8 @@
             <div class="divider"></div>
             <div class="row" style="display: none;">
               <div class="input-field col s12">
-                <input type="text" name="DETAILS" id="portfolio-new-item-details" placeholder="Details" />
-                <label for="portfolio-new-item-details">Details</label>
+                <input type="text" name="DETAILS" id="sales-new-item-details" placeholder="Details" />
+                <label for="sales-new-item-details">Details</label>
               </div>
             </div>
             <div class="row" style="display: none;">
@@ -271,8 +271,8 @@
             </div>
             <div class="row">
               <div class="input-field col s12" style="display: none;">
-                <input type="text" name="OUTCOME" id="portfolio-new-item-stockrefs" placeholder="" value="0"/>
-                <label for="portfolio-new-item-stockrefs">OUTCOME</label>
+                <input type="text" name="OUTCOME" id="sales-new-item-outcome" placeholder="" value="0"/>
+                <label for="sales-new-item-outcome">Outcome</label>
               </div>
             </div>
             <div id="sales-portfolio-table-container"></div>
@@ -283,12 +283,13 @@
             </div>
             <div class="row">
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="INCOME" id="portfolio-new-item-total" placeholder="" value="0" disabled />
-                <label for="portfolio-new-item-price">Total</label>
+                <input type="text" name="INCOME" id="sales-new-item-total" placeholder="" value="0" disabled />
+                <label for="sales-new-item-total">Total</label>
               </div>
+              <!-- The amout paid is not saved in the db but the total as INCOME -->
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="INCOME" id="portfolio-new-item-paid" placeholder="Amount Paid" />
-                <label for="portfolio-new-item-price">Amt. Paid</label>
+                <input type="text" id="sales-new-item-paid" placeholder="Amount Paid" />
+                <label for="sales-new-item-paid">Amt. Paid</label>
               </div>
             </div>
             <button type="submit" class="btn waves-effect waves-light right">
@@ -333,12 +334,8 @@
             </div>
             <div class="row">
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="INCOME" id="portfolio-new-item-total" placeholder="" value="0" disabled />
-                <label for="portfolio-new-item-price">Total</label>
-              </div>
-              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="INCOME" id="stock-new-item-price" placeholder="Amount Paid" />
-                <label for="stock-new-item-price">Amt. Paid</label>
+                <input type="text" name="OUTCOME" id="purchases-new-item-total" placeholder="" value="0" disabled />
+                <label for="purchases-new-item-total">Total</label>
               </div>
             </div>
             <button type="submit" class="btn waves-effect waves-light right">

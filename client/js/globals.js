@@ -19,8 +19,8 @@ const deleteModal = document.getElementById('delete-modal');
 const salesPortfolioTable = new SmartTable('sales-portfolio-table-container');
 salesPortfolioTable.setTitles(['Qty', 'Product', 'Price']);
 
-const purchasesPortfolioTable = new SmartTable('purchases-stock-table-container');
-salesPortfolioTable.setTitles(['Qty', 'Product', 'Price']);
+const purchasesStockTable = new SmartTable('purchases-stock-table-container');
+purchasesStockTable.setTitles(['Qty', 'Product', 'Price']);
 
 const cashflowTable = new SmartTable('cashflow-table-container');
 cashflowTable.setTitles(['', 'Date', 'Concept', 'Details', 'Income', 'Outcome', 'Balance']);

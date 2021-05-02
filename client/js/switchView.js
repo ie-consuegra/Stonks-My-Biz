@@ -56,8 +56,11 @@ function toggleToolButtonsVisibility(viewName) {
   const view = viewName || appConfig.view;
   if (dbData.loaded) {
     switch (view) {
-      case 'portofolio':
+      case 'portfolio':
         toggleToolButtonsForPortfolio(portfolioTable);
+        break;
+      case 'cashflow':
+        toggleToolButtonsForStock(cashflowTable);
         break;
       case 'stock':
         toggleToolButtonsForStock(stockTable);

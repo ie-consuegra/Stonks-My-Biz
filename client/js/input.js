@@ -124,6 +124,38 @@ function actionAddToPortfolioItem() {
   switchSubView('add');
 }
 
+function addToSalesItem() {
+  const selectedPortfolioCheckboxes = portfolioTable.selectedCheckboxes;
+  const selectedIds = selectedPortfolioCheckboxes.map((checkbox) => checkbox.id.toString());
+  const values = selectedIds.map((ref) => {
+    const query = { field: '_ID', keyword: ref };
+    return findOne(dbData.portfolio, query);
+  });
+  values.unshift([]); // The equivalent to the title row
+  salesPortfolioTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 7] });
+}
+
+function actionAddToSalesItem() {
+  addToSalesItem();
+  switchView('sales');
+}
+
+function addToPurchasesItem() {
+  const selectedStockCheckboxes = stockTable.selectedCheckboxes;
+  const selectedStockIds = selectedStockCheckboxes.map((checkbox) => checkbox.id.toString());
+  const values = selectedStockIds.map((ref) => {
+    const query = { field: '_ID', keyword: ref };
+    return findOne(dbData.stock, query);
+  });
+  values.unshift([]); // The equivalent to the title row
+  purchasesStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 6, 7, 8] });
+}
+
+function actionAddToPurchasesItem() {
+  addToPurchasesItem();
+  switchView('purchases');
+}
+
 function actionAdd() {
   switchSubView('add');
 }
