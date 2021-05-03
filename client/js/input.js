@@ -77,14 +77,29 @@ function toggleToolButtonsForStock(smartTable) {
   }
 }
 
+function loadInUpdateForm(data) {
+  const { view } = appConfig;
+  const dataKeysArr = Object.entries(data);
+  dataKeysArr.forEach(([key, value]) => {
+    const field = key === '_ID' ? 'id' : key.toLowerCase();
+    const elemId = `${view}-update-item-${field}`;
+    if (document.getElementById(elemId)) {
+      document.getElementById(elemId).value = value;
+    }
+  });
+}
+
 function loadInForm() {
   const { view } = appConfig;
   let table;
-  const formId = `update-${view}-form`;
-  const formElem = document.getElementById(formId);
-  const formInputs = formElem.children;
 
   switch (view) {
+    case 'portfolio':
+      table = portfolioTable;
+      break;
+    case 'cashflow':
+      table = cashflowTable;
+      break;
     case 'stock':
       table = stockTable;
       break;
@@ -102,9 +117,14 @@ function loadInForm() {
 
   const selectedEntry = table.values.find((entry) => entry[0].toString() === entryId);
 
-  selectedEntry.forEach((field, index) => {
-    formInputs[index].value = field;
+  const fields = dbData[view][0];
+  const data = {};
+  selectedEntry.forEach((value, index) => {
+    const field = fields[index];
+    data[field] = value;
   });
+
+  loadInUpdateForm(data);
 }
 
 function addToPortfolioItem() {
@@ -161,7 +181,7 @@ function actionAdd() {
 }
 
 function actionUpdate() {
-  // loadInForm();
+  loadInForm();
   switchSubView('update');
 }
 
