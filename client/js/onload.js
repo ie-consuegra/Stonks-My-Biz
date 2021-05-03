@@ -31,7 +31,7 @@ function loadInitValues(data) {
 
   // Portfolio section
   portfolioTable.setInputCallback(toggleToolButtonsForPortfolio);
-  portfolioTable.load(portfolio);
+  portfolioTable.load(portfolio, { avoidColumns: [9, 11] });
   portfolioPreloader.style.display = 'none';
 
   portfolioStockTable.setInputCallback(inputToRefs);
