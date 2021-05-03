@@ -538,20 +538,24 @@
         </nav>
         <div class="container">
           <div class="row">
-            <h5>New item</h5>
+            <h5>New portfolio item</h5>
             <form id="add-portfolio-form" class="col s12" onsubmit="submitNewPortfolio(this)">
               <div class="row">
-                <div class="input-field col s12 m4">
+                <div class="input-field col s12 m2">
+                  <select name="TYPE" id="add-portfolio-type-select">
+                    <option value="product">Product</option>
+                    <option value="service">Service</option>
+                  </select>
+                </div>
+                <div class="input-field col s12 m2">
                   <input type="text" name="CODE" id="portfolio-new-item-code" placeholder="Code" />
                   <label for="portfolio-new-item-code">Code</label>
                 </div>
-                <div class="input-field col s12 m8">
-                  <input type="text" name="NAME" id="portfolio-new-item-name" placeholder="Product name" />
+                <div class="input-field col s12 m6">
+                  <input type="text" name="ITEM" id="portfolio-new-item-name" placeholder="Product name" />
                   <label for="portfolio-new-item-name">Product name</label>
                 </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12 m2">
                   <input type="text" name="CATEGORY" id="portfolio-new-item-category" placeholder="Category" />
                   <label for="portfolio-new-item-category">Category</label>
                 </div>
@@ -575,7 +579,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="input-field col s6 offset-s6">
+                <div class="input-field col s6 offset-s6 m4 offset-m8">
                   <input type="text" name="PRICE" id="portfolio-new-item-price" placeholder="Price" />
                   <label for="portfolio-new-item-price">Price</label>
                 </div>
@@ -597,10 +601,16 @@
         <div class="container">
           <h5>New product</h5>
           <form id="add-stock-form" onsubmit="submitNewStock(this)">
+            <select name="TYPE" id="add-stock-type-select">
+              <option value="product">Product</option>
+              <option value="service">Service</option>
+            </select>
             <input type="text" name="CODE" placeholder="Code" />
-            <input type="text" name="PRODUCT" placeholder="Product" />
-            <input type="text" name="CATEGORY" placeholder="Category" />
+            <input type="text" name="ITEM" placeholder="Item" />
+            <input type="text" name="DESCRIPTION" placeholder="Description" />
             <input type="text" name="UNIT" placeholder="Unit of measurement" />
+            <input type="text" name="CATEGORY" placeholder="Category" />
+            <input type="text" name="COST" placeholder="Cost" />
             <input type="text" name="PRICE" placeholder="Price" />
             <input type="text" name="MINIMUM" placeholder="Minimum stock" />
             <input type="text" name="STOCK" placeholder="Stock" />

@@ -130,7 +130,7 @@ class SmartTable {
 
   reload(values) {
     this.removeClickEventToCheckboxes();
-    this.load(values);
+    this.load(values, this.options);
   }
 
   /**

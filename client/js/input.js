@@ -115,7 +115,7 @@ function addToPortfolioItem() {
     return findOne(dbData.stock, query);
   });
   values.unshift([]); // The equivalent to the title row
-  portfolioStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 6, 7, 8] });
+  portfolioStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 5, 6, 8, 9, 10, 11] });
 }
 
 function actionAddToPortfolioItem() {

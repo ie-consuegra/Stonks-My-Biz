@@ -30,12 +30,12 @@ const cashflowModel = DBS.createModelFrom('cashflow', cashflowSchema);
 const cashflowDBS = new DBS(cashflowModel, stonksApp.getFolder);
 
 // PORTFOLIO database "creation/connection"
-const portfolioSchema = ['CODE', 'NAME', 'CATEGORY', 'UNIT', 'DESCRIPTION', 'STOCKREFS', 'COST', 'PRICE'];
+const portfolioSchema = ['CODE', 'ITEM', 'DESCRIPTION', 'UNIT', 'TYPE', 'CATEGORY', 'COST', 'PRICE', 'MINIMUM', 'STOCK', 'STOCKREFS'];
 const portfolioModel = DBS.createModelFrom('portfolio', portfolioSchema);
 const portfolioDBS = new DBS(portfolioModel, stonksApp.getFolder);
 
 // STOCK database "creation/connection"
-const stockSchema = ['CODE', 'PRODUCT', 'CATEGORY', 'UNIT', 'PRICE', 'MINIMUM', 'STOCK', 'SUPPLIER'];
+const stockSchema = ['CODE', 'ITEM', 'DESCRIPTION', 'UNIT', 'TYPE', 'CATEGORY', 'COST', 'PRICE', 'MINIMUM', 'STOCK', 'SUPPLIER'];
 const stockModel = DBS.createModelFrom('stock', stockSchema);
 const stockDBS = new DBS(stockModel, stonksApp.getFolder);
 
