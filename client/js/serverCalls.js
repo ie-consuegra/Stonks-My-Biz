@@ -22,6 +22,22 @@ function submitNewPortfolio(formData) {
     .insertPortfolio(formData);
 }
 
+function submitNewSale(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(saleSubmitted)
+    .insertSale(formData);
+}
+
+function submitNewPurchase(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(purchaseSubmitted)
+    .insertPurchase(formData);
+}
+
 function submitNewCashflow(formData) {
   const data = arrangeCashflowData(formData);
   google

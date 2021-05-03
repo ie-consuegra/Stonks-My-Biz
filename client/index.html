@@ -269,12 +269,6 @@
                 <label for="sales-new-item-concept">Concept</label>
               </div>
             </div>
-            <div class="row">
-              <div class="input-field col s12" style="display: none;">
-                <input type="text" name="OUTCOME" id="sales-new-item-outcome" placeholder="" value="0"/>
-                <label for="sales-new-item-outcome">Outcome</label>
-              </div>
-            </div>
             <div id="sales-portfolio-table-container"></div>
             <div class="row">
               <div class="col s12">
@@ -290,6 +284,10 @@
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
                 <input type="text" id="sales-new-item-paid" placeholder="Amount Paid" />
                 <label for="sales-new-item-paid">Amt. Paid</label>
+              </div>
+              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
+                <input type="text" id="sales-new-item-change" placeholder="Change" value="0" disabled />
+                <label for="sales-new-item-change">Change</label>
               </div>
             </div>
             <button type="submit" class="btn waves-effect waves-light right">
@@ -318,12 +316,6 @@
               <div class="input-field col s12">
                 <input type="text" name="CONCEPT" id="purchases-new-item-concept" placeholder="Concept" value="purchase" />
                 <label for="purchases-new-item-concept">Concept</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12" style="display: none;">
-                <input type="text" name="INCOME" id="purchases-new-item-income" placeholder="" value="0"/>
-                <label for="purchases-new-item-income">Income</label>
               </div>
             </div>
             <div id="purchases-stock-table-container"></div>

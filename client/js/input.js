@@ -132,7 +132,7 @@ function addToSalesItem() {
     return findOne(dbData.portfolio, query);
   });
   values.unshift([]); // The equivalent to the title row
-  salesPortfolioTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 7] });
+  salesPortfolioTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 7, 9, 10, 11] });
 }
 
 function actionAddToSalesItem() {
@@ -148,7 +148,7 @@ function addToPurchasesItem() {
     return findOne(dbData.stock, query);
   });
   values.unshift([]); // The equivalent to the title row
-  purchasesStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 6, 7, 8] });
+  purchasesStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 8, 9, 10, 11] });
 }
 
 function actionAddToPurchasesItem() {

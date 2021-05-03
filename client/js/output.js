@@ -62,3 +62,13 @@ function updateSubmitted(values) {
   reloadOnTable(values);
   resetForm('update');
 }
+
+function saleSubmitted(values) {
+  dbData.cashflow = values;
+  cashflowTable.reload(values);
+}
+
+function purchaseSubmitted(values) {
+  dbData.cashflow = values;
+  cashflowTable.reload(values);
+}

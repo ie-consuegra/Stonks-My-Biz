@@ -102,6 +102,18 @@ function insertPortfolio(data) {
   return values;
 }
 
+function insertSale(data) {
+  const values = cashflowDBS.use().insert(data);
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
+}
+
+function insertPurchase(data) {
+  const values = cashflowDBS.use().insert(data);
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
+}
+
 function insertCashflow(data) {
   const values = cashflowDBS.use().insert(data);
   const formattedValues = datesFormatter(values);

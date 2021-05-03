@@ -32,11 +32,16 @@ class SmartTable {
    * @param {Object} options { inputType: 'checkbox or number', avoidColumns: [index, index] }
    * @returns void
    */
-  load(values, options = { inputType: 'checkbox' }) {
+  load(values, options) {
+    // Set default inputType in case
+    // has not been set by argument
+    this.options = { ...options };
+    if (!this.options.inputType) {
+      this.options.inputType = 'checkbox';
+    }
     // Initialize this.checkboxes
     this.checkboxes = [];
     // Copy values
-    this.options = { ...options };
     this.values = [...values];
     this.thead = document.createElement('thead');
     this.tbody = document.createElement('tbody');
