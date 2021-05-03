@@ -55,7 +55,7 @@ class DB {
     if (DB.isValid(data)) {
       this.model.fields.forEach((item) => {
         if (item === '_ID') {
-          if ('_ID' in data) {
+          if ('_ID' in data || data._ID) {
             entry.push(data[item]);
           } else {
             entry.push(DB.generateId());

@@ -161,7 +161,7 @@ function actionAdd() {
 }
 
 function actionUpdate() {
-  loadInForm();
+  // loadInForm();
   switchSubView('update');
 }
 
