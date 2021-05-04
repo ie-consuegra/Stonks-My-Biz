@@ -1,14 +1,12 @@
 function loadStock(values) {
   stockTable.load(values);
   stockTable.addClickEventToCheckboxes(toggleToolButtons);
-  document.getElementById('stock-preloader').style.display = 'none';
   M.AutoInit();
 }
 
 function loadMovement(values) {
   movementTable.load(values);
   movementTable.addClickEventToCheckboxes(toggleToolButtons);
-  document.getElementById('movement-preloader').style.display = 'none';
   M.AutoInit();
 }
 
@@ -42,6 +40,7 @@ function reloadOnTable(values) {
 
 function removeSuccess(values) {
   reloadOnTable(values);
+  hidePreloader();
 }
 
 function resetForm(formType) {
@@ -54,6 +53,7 @@ function newSubmitted(values) {
   switchView(view);
   reloadOnTable(values);
   resetForm('add');
+  hidePreloader();
 }
 
 function updateSubmitted(values) {
@@ -61,14 +61,17 @@ function updateSubmitted(values) {
   switchView(view);
   reloadOnTable(values);
   resetForm('update');
+  hidePreloader();
 }
 
 function saleSubmitted(values) {
   dbData.cashflow = values;
   cashflowTable.reload(values);
+  hidePreloader();
 }
 
 function purchaseSubmitted(values) {
   dbData.cashflow = values;
   cashflowTable.reload(values);
+  hidePreloader();
 }

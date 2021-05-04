@@ -36,7 +36,6 @@ function setLoadedDB() {
 function loadCashflowValues(values) {
   cashflowTable.setInputCallback(toggleToolButtons);
   cashflowTable.load(values);
-  cashflowPreloader.style.display = 'none';
 
   dbData.cashflow = values;
   setLoadedDB();
@@ -45,7 +44,6 @@ function loadCashflowValues(values) {
 function loadPortfolioValues(values) {
   portfolioTable.setInputCallback(toggleToolButtonsForPortfolio);
   portfolioTable.load(values, { avoidColumns: [9, 11] });
-  portfolioPreloader.style.display = 'none';
 
   portfolioStockTable.setInputCallback(inputToRefs);
 
@@ -56,7 +54,6 @@ function loadPortfolioValues(values) {
 function loadStockValues(values) {
   stockTable.setInputCallback(toggleToolButtonsForStock);
   stockTable.load(values);
-  stockPreloader.style.display = 'none';
 
   dbData.stock = values;
   setLoadedDB();
@@ -65,7 +62,6 @@ function loadStockValues(values) {
 function loadMovementsValues(values) {
   movementsTable.setInputCallback(toggleToolButtons);
   movementsTable.load(values);
-  movementsPreloader.style.display = 'none';
 
   dbData.movements = values;
   setLoadedDB();
@@ -74,7 +70,6 @@ function loadMovementsValues(values) {
 function loadSuppliersValues(values) {
   suppliersTable.setInputCallback(toggleToolButtons);
   suppliersTable.load(values);
-  suppliersPreloader.style.display = 'none';
 
   dbData.movements = values;
   setLoadedDB();

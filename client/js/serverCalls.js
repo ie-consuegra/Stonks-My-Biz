@@ -39,6 +39,7 @@ function fetchSuppliers() {
 }
 
 function submitNewPortfolio(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -47,6 +48,7 @@ function submitNewPortfolio(formData) {
 }
 
 function submitNewSale(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -55,6 +57,7 @@ function submitNewSale(formData) {
 }
 
 function submitNewPurchase(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -63,6 +66,7 @@ function submitNewPurchase(formData) {
 }
 
 function submitNewCashflow(formData) {
+  showPreloader();
   const data = arrangeCashflowData(formData);
   google
     .script
@@ -72,6 +76,7 @@ function submitNewCashflow(formData) {
 }
 
 function submitNewStock(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -80,6 +85,7 @@ function submitNewStock(formData) {
 }
 
 function submitNewMovement(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -88,6 +94,7 @@ function submitNewMovement(formData) {
 }
 
 function submitNewSupplier(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -96,6 +103,7 @@ function submitNewSupplier(formData) {
 }
 
 function submitUpdatePortfolio(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -104,6 +112,7 @@ function submitUpdatePortfolio(formData) {
 }
 
 function submitUpdateCashflow(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -112,6 +121,7 @@ function submitUpdateCashflow(formData) {
 }
 
 function submitUpdateStock(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -120,6 +130,7 @@ function submitUpdateStock(formData) {
 }
 
 function submitUpdateMovement(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -128,6 +139,7 @@ function submitUpdateMovement(formData) {
 }
 
 function submitUpdateSupplier(formData) {
+  showPreloader();
   google
     .script
     .run
@@ -145,6 +157,7 @@ function fetchAll() {
 }
 
 function deletePortfolio() {
+  showPreloader();
   google
     .script
     .run
@@ -153,6 +166,7 @@ function deletePortfolio() {
 }
 
 function deleteCashflow() {
+  showPreloader();
   google
     .script
     .run
@@ -161,6 +175,7 @@ function deleteCashflow() {
 }
 
 function deleteStock() {
+  showPreloader();
   google
     .script
     .run
@@ -169,6 +184,7 @@ function deleteStock() {
 }
 
 function deleteMovement() {
+  showPreloader();
   google
     .script
     .run
@@ -177,6 +193,7 @@ function deleteMovement() {
 }
 
 function deleteSuppliers() {
+  showPreloader();
   google
     .script
     .run

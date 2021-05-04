@@ -36,14 +36,6 @@ movementsTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Descriptio
 const suppliersTable = new SmartTable('suppliers-table-container');
 suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone', 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
 
-const cashflowPreloader = document.getElementById('cashflow-preloader');
-const portfolioPreloader = document.getElementById('portfolio-preloader');
-const salesPreloader = document.getElementById('sales-preloader');
-const purchasesPreloader = document.getElementById('purchases-preloader');
-const stockPreloader = document.getElementById('stock-preloader');
-const movementsPreloader = document.getElementById('movements-preloader');
-const suppliersPreloader = document.getElementById('suppliers-preloader');
-
 const preloader = document.getElementById('loadingPopup');
 
 const classesForActiveLink = ['indigo', 'lighten-5', 'indigo-text', 'text-darken-4'];
