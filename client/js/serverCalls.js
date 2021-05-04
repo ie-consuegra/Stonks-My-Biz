@@ -120,6 +120,22 @@ function fetchAll() {
     .fetchAllDBValues();
 }
 
+function deletePortfolio() {
+  google
+    .script
+    .run
+    .withSuccessHandler(removeSuccess)
+    .removePortfolio(portfolioTable.selectedIds);
+}
+
+function deleteCashflow() {
+  google
+    .script
+    .run
+    .withSuccessHandler(removeSuccess)
+    .removeCashflow(cashflowTable.selectedIds);
+}
+
 function deleteStock() {
   google
     .script

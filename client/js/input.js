@@ -192,6 +192,12 @@ function actionDelete() {
 
 function actionDeleteContinue() {
   switch (appConfig.view) {
+    case 'portfolio':
+      deletePortfolio();
+      break;
+    case 'cashflow':
+      deleteCashflow();
+      break;
     case 'stock':
       deleteStock();
       break;

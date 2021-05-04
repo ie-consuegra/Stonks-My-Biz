@@ -163,6 +163,17 @@ function updateSupplier(data) {
   return values;
 }
 
+function removePortfolio(entryIds) {
+  const values = portfolioDBS.use().remove(entryIds);
+  return values;
+}
+
+function removeCashflow(entryIds) {
+  const values = cashflowDBS.use().remove(entryIds);
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
+}
+
 function removeStock(entryIds) {
   const values = stockDBS.use().remove(entryIds);
   return values;
