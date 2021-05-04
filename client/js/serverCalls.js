@@ -1,17 +1,41 @@
-function stockFetch() {
+function fetchPortfolio() {
   google
     .script
     .run
-    .withSuccessHandler(loadStock)
-    .stockFetch();
+    .withSuccessHandler(loadPortfolioValues)
+    .fetchPortfolio();
 }
 
-function fetchMovement() {
+function fetchCashflow() {
   google
     .script
     .run
-    .withSuccessHandler(loadMovement)
-    .getMovementData();
+    .withSuccessHandler(loadCashflowValues)
+    .fetchCashflow();
+}
+
+function fetchStock() {
+  google
+    .script
+    .run
+    .withSuccessHandler(loadStockValues)
+    .fetchStock();
+}
+
+function fetchMovements() {
+  google
+    .script
+    .run
+    .withSuccessHandler(loadMovementsValues)
+    .fetchMovements();
+}
+
+function fetchSuppliers() {
+  google
+    .script
+    .run
+    .withSuccessHandler(loadSuppliersValues)
+    .fetchSuppliers();
 }
 
 function submitNewPortfolio(formData) {
@@ -113,11 +137,11 @@ function submitUpdateSupplier(formData) {
 
 // Fetch all necesary data
 function fetchAll() {
-  google
-    .script
-    .run
-    .withSuccessHandler(loadInitValues)
-    .fetchAllDBValues();
+  fetchPortfolio();
+  fetchCashflow();
+  fetchStock();
+  fetchMovements();
+  fetchSuppliers();
 }
 
 function deletePortfolio() {

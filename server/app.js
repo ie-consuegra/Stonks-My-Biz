@@ -55,22 +55,31 @@ const format = 'dd/MM/yyyy';
 const datesFormatter = createDatesFormatter(formatDates, dateField, format);
 
 // database functions
-function fetchAllDBValues() {
-  const cashflowValues = cashflowDBS.use().fetch();
-  const cashflow = datesFormatter(cashflowValues);
+function fetchPortfolio() {
+  const values = portfolioDBS.use().fetch();
+  return values;
+}
 
-  const movementsValues = movementsDBS.use().fetch();
-  const movements = datesFormatter(movementsValues);
+function fetchCashflow() {
+  const values = cashflowDBS.use().fetch();
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
+}
 
-  const data = {
-    cashflow,
-    portfolio: portfolioDBS.use().fetch(),
-    stock: stockDBS.use().fetch(),
-    movements,
-    suppliers: suppliersDBS.use().fetch(),
-  };
+function fetchStock() {
+  const values = stockDBS.use().fetch();
+  return values;
+}
 
-  return data;
+function fetchMovements() {
+  const values = movementsDBS.use().fetch();
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
+}
+
+function fetchSuppliers() {
+  const values = suppliersDBS.use().fetch();
+  return values;
 }
 
 function fetchFrom({ meta }) {

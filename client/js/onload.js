@@ -8,6 +8,14 @@ function preventFormSubmit() {
   }
 }
 
+function showInitLoad() {
+  // console.log('Loading...');
+}
+
+function hideInitLoad() {
+  // console.log('Loaded');
+}
+
 function copyObjectEntries(objReceives, objGives) {
   const entries = Object.entries(objGives);
   entries.forEach(([key, value]) => {
@@ -15,48 +23,66 @@ function copyObjectEntries(objReceives, objGives) {
   });
 }
 
-function loadInitValues(data) {
-  const {
-    cashflow,
-    portfolio,
-    stock,
-    suppliers,
-    movements,
-  } = data;
+function setLoadedDB() {
+  appConfig.dbsLoaded += 1;
+  // Check if there are enough databases
+  // loaded to let use the app
+  if (appConfig.dbsLoaded >= 5) {
+    hideInitLoad();
+    M.AutoInit(); // Initialize Materialize when everything's loaded
+  }
+}
 
-  // Cashflow section
+function loadCashflowValues(values) {
   cashflowTable.setInputCallback(toggleToolButtons);
-  cashflowTable.load(cashflow);
+  cashflowTable.load(values);
   cashflowPreloader.style.display = 'none';
 
-  // Portfolio section
+  dbData.cashflow = values;
+  setLoadedDB();
+}
+
+function loadPortfolioValues(values) {
   portfolioTable.setInputCallback(toggleToolButtonsForPortfolio);
-  portfolioTable.load(portfolio, { avoidColumns: [9, 11] });
+  portfolioTable.load(values, { avoidColumns: [9, 11] });
   portfolioPreloader.style.display = 'none';
 
   portfolioStockTable.setInputCallback(inputToRefs);
 
-  // Inventory section
+  dbData.portfolio = values;
+  setLoadedDB();
+}
+
+function loadStockValues(values) {
   stockTable.setInputCallback(toggleToolButtonsForStock);
-  stockTable.load(stock);
+  stockTable.load(values);
   stockPreloader.style.display = 'none';
 
+  dbData.stock = values;
+  setLoadedDB();
+}
+
+function loadMovementsValues(values) {
   movementsTable.setInputCallback(toggleToolButtons);
-  movementsTable.load(movements);
+  movementsTable.load(values);
   movementsPreloader.style.display = 'none';
 
+  dbData.movements = values;
+  setLoadedDB();
+}
+
+function loadSuppliersValues(values) {
   suppliersTable.setInputCallback(toggleToolButtons);
-  suppliersTable.load(suppliers);
+  suppliersTable.load(values);
   suppliersPreloader.style.display = 'none';
 
-  // Update dbData
-  copyObjectEntries(dbData, data);
-  dbData.loaded = true;
+  dbData.movements = values;
+  setLoadedDB();
 }
 
 window.addEventListener('load', () => {
   preventFormSubmit();
+  showInitLoad();
   switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   fetchAll();
-  M.AutoInit();
 });
