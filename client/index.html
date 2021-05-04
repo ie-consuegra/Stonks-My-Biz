@@ -686,9 +686,10 @@
         </nav>
         <div class="container">
           <h5>Update movement</h5>
-          <form id="add-cashflow-form" onsubmit="submitUpdateCashflow(this)">
+          <form id="update-cashflow-form" onsubmit="submitUpdateCashflow(this)">
+            <input type="text" name="_ID" id="cashflow-update-item-id" style="display: none;" />
             <input type="text" name="DATE" id="cashflow-update-item-date" placeholder="Date" />
-            <input type="text" name="CONCEPT" id="cashflow-update-item-concept" disabled />
+            <input type="text" name="CONCEPT" id="cashflow-update-item-concept" readonly />
             <input type="text" name="DETAILS" id="cashflow-update-item-details" placeholder="Details" />
             <input type="text" name="INCOME" id="cashflow-update-item-income" placeholder="Income" />
             <input type="text" name="OUTCOME" id="cashflow-update-item-outcome" placeholder="Outcome" />

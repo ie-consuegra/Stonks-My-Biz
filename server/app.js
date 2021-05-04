@@ -136,6 +136,17 @@ function insertSupplier(data) {
   return values;
 }
 
+function updatePortfolio(data) {
+  const values = portfolioDBS.use().update(data);
+  return values;
+}
+
+function updateCashflow(data) {
+  const values = cashflowDBS.use().update(data);
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
+}
+
 function updateStock(data) {
   const values = stockDBS.use().update(data);
   return values;

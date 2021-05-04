@@ -71,6 +71,22 @@ function submitNewSupplier(formData) {
     .insertSupplier(formData);
 }
 
+function submitUpdatePortfolio(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(updateSubmitted)
+    .updatePortfolio(formData);
+}
+
+function submitUpdateCashflow(formData) {
+  google
+    .script
+    .run
+    .withSuccessHandler(updateSubmitted)
+    .updateCashflow(formData);
+}
+
 function submitUpdateStock(formData) {
   google
     .script
