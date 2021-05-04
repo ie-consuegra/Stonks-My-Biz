@@ -6,12 +6,12 @@ function stockFetch() {
     .stockFetch();
 }
 
-function fetchReceiptAndIssue() {
+function fetchMovement() {
   google
     .script
     .run
-    .withSuccessHandler(loadReceiptAndIssue)
-    .getReceiptAndIssueData();
+    .withSuccessHandler(loadMovement)
+    .getMovementData();
 }
 
 function submitNewPortfolio(formData) {
@@ -55,12 +55,12 @@ function submitNewStock(formData) {
     .insertStock(formData);
 }
 
-function submitNewReceiptAndIssue(formData) {
+function submitNewMovement(formData) {
   google
     .script
     .run
     .withSuccessHandler(newSubmitted)
-    .insertReceiptAndIssue(formData);
+    .insertMovement(formData);
 }
 
 function submitNewSupplier(formData) {
@@ -79,12 +79,12 @@ function submitUpdateStock(formData) {
     .updateStock(formData);
 }
 
-function submitUpdateReceiptAndIssue(formData) {
+function submitUpdateMovement(formData) {
   google
     .script
     .run
     .withSuccessHandler(updateSubmitted)
-    .updateReceiptAndIssue(formData);
+    .updateMovement(formData);
 }
 
 function submitUpdateSupplier(formData) {
@@ -112,12 +112,12 @@ function deleteStock() {
     .removeStock(stockTable.selectedIds);
 }
 
-function deleteReceiptsAndIssues() {
+function deleteMovement() {
   google
     .script
     .run
     .withSuccessHandler(removeSuccess)
-    .removeReceiptsAndIssues(receiptsAndIssuesTable.selectedIds);
+    .removeMovement(movementsTable.selectedIds);
 }
 
 function deleteSuppliers() {

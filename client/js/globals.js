@@ -31,8 +31,8 @@ const portfolioStockTable = new SmartTable('portfolio-stock-table-container');
 portfolioStockTable.setTitles(['Qty', 'Product', 'Unit', 'Cost']);
 const stockTable = new SmartTable('stock-table-container');
 stockTable.setTitles(['', 'Code', 'Item', 'Description', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Min.', 'Stock', 'Supplier']);
-const receiptsAndIssuesTable = new SmartTable('receipts-and-issues-table-container');
-receiptsAndIssuesTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
+const movementsTable = new SmartTable('movements-table-container');
+movementsTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
 const suppliersTable = new SmartTable('suppliers-table-container');
 suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone', 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
 
@@ -41,7 +41,7 @@ const portfolioPreloader = document.getElementById('portfolio-preloader');
 const salesPreloader = document.getElementById('sales-preloader');
 const purchasesPreloader = document.getElementById('purchases-preloader');
 const stockPreloader = document.getElementById('stock-preloader');
-const receiptsAndIssuesPreloader = document.getElementById('receipts-and-issues-preloader');
+const movementsPreloader = document.getElementById('movements-preloader');
 const suppliersPreloader = document.getElementById('suppliers-preloader');
 
 const classesForActiveLink = ['indigo', 'lighten-5', 'indigo-text', 'text-darken-4'];

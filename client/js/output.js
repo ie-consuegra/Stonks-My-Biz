@@ -5,10 +5,10 @@ function loadStock(values) {
   M.AutoInit();
 }
 
-function loadReceiptAndIssue(values) {
-  receiptAndIssueTable.load(values);
-  receiptAndIssueTable.addClickEventToCheckboxes(toggleToolButtons);
-  document.getElementById('receipt-and-issue-preloader').style.display = 'none';
+function loadMovement(values) {
+  movementTable.load(values);
+  movementTable.addClickEventToCheckboxes(toggleToolButtons);
+  document.getElementById('movement-preloader').style.display = 'none';
   M.AutoInit();
 }
 
@@ -27,13 +27,13 @@ function reloadOnTable(values) {
       stockTable.reload(values);
       dbData.stock = values;
       break;
-    case 'receipts-and-issues':
-      receiptsAndIssuesTable.reload(values);
-      dbData.receiptsAndIssues = values;
+    case 'movements':
+      movementsTable.reload(values);
+      dbData.movements = values;
       break;
     case 'suppliers':
       suppliersTable.reload(values);
-      dbData.receiptsAndIssues = values;
+      dbData.movements = values;
       break;
     default:
       break;

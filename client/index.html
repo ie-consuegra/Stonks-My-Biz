@@ -109,7 +109,7 @@
       <li><a class="subheader">INVENTORY</a></li>
       <li><a onclick="switchView('stock')" id="stock-link">Stock<i
             class="material-icons">assignment</i></a></li>
-      <li><a onclick="switchView('receipts-and-issues')" id="receipts-and-issues-link">Receipts and issues<i
+      <li><a onclick="switchView('movements')" id="movements-link">Receipts and issues<i
             class="material-icons">import_export</i></a></li>
       <li><a onclick="switchView('suppliers')" id="suppliers-link">Suppliers<i
             class="material-icons">business</i></a></li>
@@ -425,10 +425,10 @@
           <div id="stock-table-container"></div>
         </div>
       </div>
-      <div id="receipts-and-issues-view">
+      <div id="movements-view">
         <div class="container container-large">
           <h5>Inventory receipts and issues</h5>
-          <div id="receipts-and-issues-preloader">
+          <div id="movements-preloader">
             <!-- The spinning colorful circle -->
             <div class="section">
               <div class="container">
@@ -452,7 +452,7 @@
               </div>
             </div>
           </div>
-          <div id="receipts-and-issues-table-container"></div>
+          <div id="movements-table-container"></div>
         </div>
       </div>
       <div id="suppliers-view">
@@ -722,17 +722,17 @@
           </form>
         </div>
       </div>
-      <div id="add-receipts-and-issues-view">
+      <div id="add-movements-view">
         <nav>
           <div class="nav-wrapper">
             <ul class="left">
-              <li><a onclick="switchView('receipts-and-issues')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+              <li><a onclick="switchView('movements')"><i class="material-icons indigo-text">arrow_back</i></a></li>
             </ul>
           </div>
         </nav>
         <div class="container">
-          <h5>New inventory receipt or issue</h5>
-          <form id="add-receipt-and-issues-form" onsubmit="submitNewReceiptAndIssue(this)">
+          <h5>New inventory movement</h5>
+          <form id="add-movements-form" onsubmit="submitNewMovement(this)">
             <input type="text" name="DATE" placeholder="Date" />
             <input type="text" name="CODE" placeholder="Code" />
             <input type="text" name="PRODUCT" placeholder="Product" />
@@ -744,24 +744,24 @@
           </form>
         </div>
       </div>
-      <div id="update-receipts-and-issues-view">
+      <div id="update-movements-view">
         <nav>
           <div class="nav-wrapper">
             <ul class="left">
-              <li><a onclick="switchView('receipts-and-issues')"><i class="material-icons indigo-text">arrow_back</i></a></li>
+              <li><a onclick="switchView('movements')"><i class="material-icons indigo-text">arrow_back</i></a></li>
             </ul>
           </div>
         </nav>
         <div class="container">
-          <h5>Edit inventory receipt or issue</h5>
-          <form id="update-receipts-and-issues-form" onsubmit="submitUpdateReceiptAndIssue(this)">
-            <input type="text" name="_ID" id="receipts-and-issues-update-item-id" readonly />
-            <input type="text" name="DATE" id="receipts-and-issues-update-item-date" placeholder="Date" />
-            <input type="text" name="CODE" id="receipts-and-issues-update-item-code" placeholder="Code" />
-            <input type="text" name="PRODUCT" id="receipts-and-issues-update-item-product" placeholder="Product" />
-            <input type="text" name="CATEGORY" id="receipts-and-issues-update-item-category" placeholder="Category" />
-            <input type="text" name="DESCRIPTION" id="receipts-and-issues-update-item-description" placeholder="Description" />
-            <input type="text" name="MOVEMENT" id="receipts-and-issues-update-item-movement"  placeholder="Movement" />
+          <h5>Edit inventory movement</h5>
+          <form id="update-movements-form" onsubmit="submitUpdateMovement(this)">
+            <input type="text" name="_ID" id="movements-update-item-id" readonly />
+            <input type="text" name="DATE" id="movements-update-item-date" placeholder="Date" />
+            <input type="text" name="CODE" id="movements-update-item-code" placeholder="Code" />
+            <input type="text" name="PRODUCT" id="movements-update-item-product" placeholder="Product" />
+            <input type="text" name="CATEGORY" id="movements-update-item-category" placeholder="Category" />
+            <input type="text" name="DESCRIPTION" id="movements-update-item-description" placeholder="Description" />
+            <input type="text" name="MOVEMENT" id="movements-update-item-movement"  placeholder="Movement" />
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>

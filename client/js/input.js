@@ -103,8 +103,8 @@ function loadInForm() {
     case 'stock':
       table = stockTable;
       break;
-    case 'receipts-and-issues':
-      table = receiptsAndIssuesTable;
+    case 'movements':
+      table = movementsTable;
       break;
     case 'suppliers':
       table = suppliersTable;
@@ -195,8 +195,8 @@ function actionDeleteContinue() {
     case 'stock':
       deleteStock();
       break;
-    case 'receipts-and-issues':
-      deleteReceiptsAndIssues();
+    case 'movements':
+      deleteMovement();
       break;
     case 'suppliers':
       deleteSuppliers();

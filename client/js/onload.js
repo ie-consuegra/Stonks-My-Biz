@@ -21,7 +21,7 @@ function loadInitValues(data) {
     portfolio,
     stock,
     suppliers,
-    receiptsAndIssues,
+    movements,
   } = data;
 
   // Cashflow section
@@ -41,9 +41,9 @@ function loadInitValues(data) {
   stockTable.load(stock);
   stockPreloader.style.display = 'none';
 
-  receiptsAndIssuesTable.setInputCallback(toggleToolButtons);
-  receiptsAndIssuesTable.load(receiptsAndIssues);
-  receiptsAndIssuesPreloader.style.display = 'none';
+  movementsTable.setInputCallback(toggleToolButtons);
+  movementsTable.load(movements);
+  movementsPreloader.style.display = 'none';
 
   suppliersTable.setInputCallback(toggleToolButtons);
   suppliersTable.load(suppliers);

@@ -40,9 +40,9 @@ const stockModel = DBS.createModelFrom('stock', stockSchema);
 const stockDBS = new DBS(stockModel, stonksApp.getFolder);
 
 // RECEIPTS AND ISSUES database "creation/connection"
-const receiptsAndIssuesSchema = ['DATE', 'CODE', 'PRODUCT', 'CATEGORY', 'DESCRIPTION', 'MOVEMENT'];
-const receiptsAndIssuesModel = DBS.createModelFrom('receiptsnissues', receiptsAndIssuesSchema);
-const receiptsAndIssuesDBS = new DBS(receiptsAndIssuesModel, stonksApp.getFolder);
+const movementsSchema = ['DATE', 'CODE', 'PRODUCT', 'CATEGORY', 'DESCRIPTION', 'MOVEMENT'];
+const movementsModel = DBS.createModelFrom('receiptsnissues', movementsSchema);
+const movementsDBS = new DBS(movementsModel, stonksApp.getFolder);
 
 // SUPPLIERS database "creation/connection"
 const suppliersSchema = ['NAME', 'IDENTIFICATION', 'TELEPHONE', 'CELLPHONE', 'EMAIL', 'ADDRESS', 'CITY', 'OTHER'];
@@ -59,14 +59,14 @@ function fetchAllDBValues() {
   const cashflowValues = cashflowDBS.use().fetch();
   const cashflow = datesFormatter(cashflowValues);
 
-  const receiptsAndIssuesValues = receiptsAndIssuesDBS.use().fetch();
-  const receiptsAndIssues = datesFormatter(receiptsAndIssuesValues);
+  const movementsValues = movementsDBS.use().fetch();
+  const movements = datesFormatter(movementsValues);
 
   const data = {
     cashflow,
     portfolio: portfolioDBS.use().fetch(),
     stock: stockDBS.use().fetch(),
-    receiptsAndIssues,
+    movements,
     suppliers: suppliersDBS.use().fetch(),
   };
 
@@ -88,8 +88,8 @@ function fetchFrom({ meta }) {
     case 'suppliers':
       values = suppliersDBS.use().fetch();
       break;
-    case 'receipts-and-issues':
-      values = datesFormatter(receiptsAndIssuesDBS.use().fetch());
+    case 'movements':
+      values = datesFormatter(movementsDBS.use().fetch());
       break;
     default:
       throw new Error('Wrong or null meta property');
@@ -125,8 +125,8 @@ function insertStock(data) {
   return values;
 }
 
-function insertReceiptAndIssue(data) {
-  const values = receiptsAndIssuesDBS.use().insert(data);
+function insertMovement(data) {
+  const values = movementsDBS.use().insert(data);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
@@ -141,8 +141,8 @@ function updateStock(data) {
   return values;
 }
 
-function updateReceiptAndIssue(data) {
-  const values = receiptsAndIssuesDBS.use().update(data);
+function updateMovement(data) {
+  const values = movementsDBS.use().update(data);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
@@ -157,8 +157,8 @@ function removeStock(entryIds) {
   return values;
 }
 
-function removeReceiptsAndIssues(entryIds) {
-  const values = receiptsAndIssuesDBS.use().remove(entryIds);
+function removeMovement(entryIds) {
+  const values = movementsDBS.use().remove(entryIds);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }

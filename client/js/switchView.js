@@ -65,8 +65,8 @@ function toggleToolButtonsVisibility(viewName) {
       case 'stock':
         toggleToolButtonsForStock(stockTable);
         break;
-      case 'receipts-and-issues':
-        toggleToolButtons(receiptsAndIssuesTable);
+      case 'movements':
+        toggleToolButtons(movementsTable);
         break;
       case 'suppliers':
         toggleToolButtons(suppliersTable);
