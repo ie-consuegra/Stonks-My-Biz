@@ -8,12 +8,12 @@ function preventFormSubmit() {
   }
 }
 
-function showInitLoad() {
-  // console.log('Loading...');
+function showPreloader() {
+  preloader.style.display = 'block';
 }
 
-function hideInitLoad() {
-  // console.log('Loaded');
+function hidePreloader() {
+  preloader.style.display = 'none';
 }
 
 function copyObjectEntries(objReceives, objGives) {
@@ -28,7 +28,7 @@ function setLoadedDB() {
   // Check if there are enough databases
   // loaded to let use the app
   if (appConfig.dbsLoaded >= 5) {
-    hideInitLoad();
+    hidePreloader();
     M.AutoInit(); // Initialize Materialize when everything's loaded
   }
 }
@@ -82,7 +82,7 @@ function loadSuppliersValues(values) {
 
 window.addEventListener('load', () => {
   preventFormSubmit();
-  showInitLoad();
+  showPreloader();
   switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   fetchAll();
 });

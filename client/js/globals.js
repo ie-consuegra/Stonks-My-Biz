@@ -44,6 +44,8 @@ const stockPreloader = document.getElementById('stock-preloader');
 const movementsPreloader = document.getElementById('movements-preloader');
 const suppliersPreloader = document.getElementById('suppliers-preloader');
 
+const preloader = document.getElementById('loadingPopup');
+
 const classesForActiveLink = ['indigo', 'lighten-5', 'indigo-text', 'text-darken-4'];
 const classesForActiveIcon = ['indigo-text', 'text-darken-4'];
 
