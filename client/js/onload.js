@@ -31,6 +31,7 @@ function setLoadedDB() {
     dbData.loaded = true;
     hidePreloader();
     M.AutoInit(); // Initialize Materialize when everything's loaded
+    initDatepickers(); // Initialize datepickers
   }
 }
 
