@@ -72,7 +72,7 @@ function loadSuppliersValues(values) {
   suppliersTable.setInputCallback(toggleToolButtons);
   suppliersTable.load(values);
 
-  dbData.movements = values;
+  dbData.suppliers = values;
   setLoadedDB();
 }
 

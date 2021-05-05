@@ -417,14 +417,28 @@
         <div class="container">
           <h5>New movement</h5>
           <form id="add-cashflow-form" onsubmit="submitNewCashflow(this)">
-            <input type="text" name="DATE" placeholder="Date" />
-            <select name="CONCEPT" id="add-cashflow-concept-select">
-              <option value="income">Income</option>
-              <option value="outcome">Outcome</option>
-              <option value="expense">Expense</option>
-            </select>
-            <input type="text" name="DETAILS" placeholder="Details" />
-            <input type="text" name="AMOUNT" placeholder="amount" />
+            <div class="row">
+              <div class="input-field col s12 m2">
+                <input type="text" name="DATE" id="add-cashflow-item-date" />
+                <label for="add-cashflow-item-date">Date</label>
+              </div>
+              <div class="input-field col s12 m3">
+                <select name="CONCEPT" id="add-cashflow-concept-select">
+                  <option value="income">Income</option>
+                  <option value="outcome">Outcome</option>
+                  <option value="expense">Expense</option>
+                </select>
+                <label for="add-cashflow-concept-select">Concept</label>
+              </div>
+              <div class="input-field col s12 m5">
+                <input type="text" name="DETAILS" id="add-cashflow-item-details" />
+                <label for="add-cashflow-item-details">Details</label>
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="AMOUNT" id="add-cashflow-item-amount" />
+                <label for="add-cashflow-item-amount">Amount</label>
+              </div>
+            </div>
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -503,20 +517,48 @@
         <div class="container">
           <h5>New product</h5>
           <form id="add-stock-form" onsubmit="submitNewStock(this)">
-            <select name="TYPE" id="add-stock-type-select">
-              <option value="product">Product</option>
-              <option value="service">Service</option>
-            </select>
-            <input type="text" name="CODE" placeholder="Code" />
-            <input type="text" name="ITEM" placeholder="Item" />
-            <input type="text" name="DESCRIPTION" placeholder="Description" />
-            <input type="text" name="UNIT" placeholder="Unit of measurement" />
-            <input type="text" name="CATEGORY" placeholder="Category" />
-            <input type="text" name="COST" placeholder="Cost" />
-            <input type="text" name="PRICE" placeholder="Price" />
-            <input type="text" name="MINIMUM" placeholder="Minimum stock" />
-            <input type="text" name="STOCK" placeholder="Stock" />
-            <input type="text" name="SUPPLIER" placeholder="Supplier" />
+            <div class="row">
+              <div class="input-field col s12 m3">
+                <select name="TYPE" id="add-stock-type-select">
+                  <option value="product">Product</option>
+                  <option value="service">Service</option>
+                </select>
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CODE" placeholder="Code" />
+              </div>
+              <div class="input-field col s12 m7">
+                <input type="text" name="ITEM" placeholder="Item" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m7">
+                <input type="text" name="DESCRIPTION" placeholder="Description" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="UNIT" placeholder="Unit of measurement" />
+              </div>
+              <div class="input-field col s12 m3">
+                <input type="text" name="CATEGORY" placeholder="Category" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m2">
+                <input type="text" name="COST" placeholder="Cost" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="PRICE" placeholder="Price" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="MINIMUM" placeholder="Minimum stock" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="STOCK" placeholder="Stock" />
+              </div>
+              <div class="input-field col s12 m4">
+                <input type="text" name="SUPPLIER" placeholder="Supplier" />
+              </div>
+            </div>
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -540,7 +582,7 @@
                   <label for="portfolio-update-item-id">Stock Refs</label>
                 </div>
                 <div class="input-field col s12 m2">
-                  <input type="text" name="TYPE" id="portfolio-update-item-type" disabled>
+                  <input type="text" name="TYPE" id="portfolio-update-item-type" readonly>
                   <label for="portfolio-update-item-type"></label>
                 </div>
                 <div class="input-field col s12 m2">
@@ -597,12 +639,27 @@
         <div class="container">
           <h5>Update movement</h5>
           <form id="update-cashflow-form" onsubmit="submitUpdateCashflow(this)">
+            <div class="row">
+              <div class="input-field col s12 m2">
+                <input type="text" name="DATE" id="cashflow-update-item-date" />
+                <label for="cashflow-update-item-date">Date</label>
+              </div>
+              <div class="input-field col s12 m3">
+                <input type="text" name="CONCEPT" id="cashflow-update-item-concept" readonly />
+                <label for="cashflow-update-item-concept">Concept</label>
+              </div>
+              <div class="input-field col s12 m5">
+                <input type="text" name="DETAILS" id="cashflow-update-item-details"/>
+                <label for="cashflow-update-item-details">Details</label>
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="AMOUNT" id="cashflow-update-item-amount"/>
+                <label for="cashflow-update-item-amount">Amount</label>
+              </div>
+            </div>
             <input type="text" name="_ID" id="cashflow-update-item-id" style="display: none;" />
-            <input type="text" name="DATE" id="cashflow-update-item-date" placeholder="Date" />
-            <input type="text" name="CONCEPT" id="cashflow-update-item-concept" readonly />
-            <input type="text" name="DETAILS" id="cashflow-update-item-details" placeholder="Details" />
-            <input type="text" name="INCOME" id="cashflow-update-item-income" placeholder="Income" />
-            <input type="text" name="OUTCOME" id="cashflow-update-item-outcome" placeholder="Outcome" />
+            <input type="text" name="INCOME" id="cashflow-update-item-income" placeholder="Income" style="display: none;" />
+            <input type="text" name="OUTCOME" id="cashflow-update-item-outcome" placeholder="Outcome" style="display: none;" />
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -619,15 +676,46 @@
         <div class="container">
           <h5>Edit product information</h5>
           <form id="update-stock-form" onsubmit="submitUpdateStock(this)">
-            <input type="text" name="_ID" id="stock-update-item-id" readonly />
-            <input type="text" name="CODE" id="stock-update-item-code" placeholder="Code" />
-            <input type="text" name="PRODUCT" id="stock-update-item-product" placeholder="Product" />
-            <input type="text" name="CATEGORY" id="stock-update-item-category" placeholder="Category" />
-            <input type="text" name="UNIT" id="stock-update-item-unit" placeholder="Unit of measurement" />
-            <input type="text" name="PRICE" id="stock-update-item-price" placeholder="Price" />
-            <input type="text" name="MINIMUM" id="stock-update-item-minimum" placeholder="Minimum stock" />
-            <input type="text" name="STOCK" id="stock-update-item-stock" placeholder="Stock" />
-            <input type="text" name="SUPPLIER" id="stock-update-item-supplier" placeholder="Supplier" />
+            <div class="row">
+              <div class="input-field col s12 m3">
+                <input type="text" name="TYPE" id="stock-update-item-type" readonly />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CODE" id="stock-update-item-code" placeholder="Code" />
+              </div>
+              <div class="input-field col s12 m7">
+                <input type="text" name="ITEM" id="stock-update-item-item" placeholder="Item" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m7">
+                <input type="text" name="DESCRIPTION" id="stock-update-item-description" placeholder="Description" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="UNIT" id="stock-update-item-unit" placeholder="Unit of measurement" />
+              </div>
+              <div class="input-field col s12 m3">
+                <input type="text" name="CATEGORY" id="stock-update-item-category" placeholder="Category" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m2">
+                <input type="text" name="COST" id="stock-update-item-cost" placeholder="Cost" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="PRICE" id="stock-update-item-price" placeholder="Price" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="MINIMUM" id="stock-update-item-minimum" placeholder="Minimum stock" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="STOCK" id="stock-update-item-stock" placeholder="Stock" />
+              </div>
+              <div class="input-field col s12 m4">
+                <input type="text" name="SUPPLIER" id="stock-update-item-supplier" placeholder="Supplier" />
+              </div>
+            </div>
+            <input type="text" name="_ID" id="stock-update-item-id" style="display: none;" />
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -644,12 +732,34 @@
         <div class="container">
           <h5>New inventory movement</h5>
           <form id="add-movements-form" onsubmit="submitNewMovement(this)">
-            <input type="text" name="DATE" placeholder="Date" />
-            <input type="text" name="CODE" placeholder="Code" />
-            <input type="text" name="PRODUCT" placeholder="Product" />
-            <input type="text" name="CATEGORY" placeholder="Category" />
-            <input type="text" name="DESCRIPTION" placeholder="Description" />
-            <input type="text" name="MOVEMENT" placeholder="Movement" />
+            <div class="row">
+              <div class="input-field col s12 m2">
+                <input type="text" name="DATE" placeholder="Date" />
+              </div>
+              <div class="input-field col s12 m2">
+                <select name="TYPE" id="add-movements-type-select">
+                  <option value="receipt">Receipt</option>
+                  <option value="issue">Issue</option>
+                </select>
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CODE" placeholder="Code" />
+              </div>
+              <div class="input-field col s12 m4">
+                <input type="text" name="ITEM" placeholder="Item" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CATEGORY" placeholder="Category" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m10">
+                <input type="text" name="DESCRIPTION" placeholder="Description" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="MOVEMENT" placeholder="Movement" />
+              </div>
+            </div>
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -666,13 +776,32 @@
         <div class="container">
           <h5>Edit inventory movement</h5>
           <form id="update-movements-form" onsubmit="submitUpdateMovement(this)">
-            <input type="text" name="_ID" id="movements-update-item-id" readonly />
-            <input type="text" name="DATE" id="movements-update-item-date" placeholder="Date" />
-            <input type="text" name="CODE" id="movements-update-item-code" placeholder="Code" />
-            <input type="text" name="PRODUCT" id="movements-update-item-product" placeholder="Product" />
-            <input type="text" name="CATEGORY" id="movements-update-item-category" placeholder="Category" />
-            <input type="text" name="DESCRIPTION" id="movements-update-item-description" placeholder="Description" />
-            <input type="text" name="MOVEMENT" id="movements-update-item-movement"  placeholder="Movement" />
+            <div class="row">
+              <div class="input-field col s12 m2">
+                <input type="text" name="DATE" id="movements-update-item-date" placeholder="Date" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="TYPE" id="movements-update-item-type" placeholder="Type" readonly />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CODE" id="movements-update-item-code" placeholder="Code" />
+              </div>
+              <div class="input-field col s12 m4">
+                <input type="text" name="PRODUCT" id="movements-update-item-product" placeholder="Product" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CATEGORY" id="movements-update-item-category" placeholder="Category" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m10">
+                <input type="text" name="DESCRIPTION" id="movements-update-item-description" placeholder="Description" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="MOVEMENT" id="movements-update-item-movement"  placeholder="Movement" />
+              </div>
+            </div>
+            <input type="text" name="_ID" id="movements-update-item-id" style="display: none;" />
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -689,14 +818,34 @@
         <div class="container">
           <h5>New supplier</h5>
           <form id="add-suppliers-form" onsubmit="submitNewSupplier(this)">
-            <input type="text" name="NAME" placeholder="Name" />
-            <input type="text" name="IDENTIFICATION" placeholder="Identification" />
-            <input type="text" name="TELEPHONE" placeholder="Telephone" />
-            <input type="text" name="CELLPHONE" placeholder="Cellphone" />
-            <input type="text" name="EMAIL" placeholder="Email" />
-            <input type="text" name="ADDRESS" placeholder="Address" />
-            <input type="text" name="CITY" placeholder="City" />
-            <input type="text" name="OTHER" placeholder="Other details" />
+            <div class="row">
+              <div class="input-field col s12 m4">
+                <input type="text" name="NAME" id="supplier-add-item-name" placeholder="Name" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="IDENTIFICATION" id="supplier-add-item-identification" placeholder="Identification" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="TELEPHONE" id="supplier-add-item-telephone" placeholder="Telephone" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CELLPHONE" id="supplier-add-item-cellphone" placeholder="Cellphone" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="EMAIL" id="supplier-add-item-email" placeholder="Email" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m3">
+                <input type="text" name="ADDRESS" id="supplier-add-item-address" placeholder="Address" />
+              </div>
+              <div class="input-field col s12 m3">
+                <input type="text" name="CITY" id="supplier-add-item-city" placeholder="City" />
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" name="OTHER" id="supplier-add-item-other" placeholder="Other details" />
+              </div>
+            </div>
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -713,15 +862,35 @@
         <div class="container">
           <h5>Edit supplier information</h5>
           <form id="update-suppliers-form" onsubmit="submitUpdateSupplier(this)">
-            <input type="text" name="_ID" id="suppliers-update-item-id" readonly />
-            <input type="text" name="NAME" id="suppliers-update-item-name" placeholder="Name" />
-            <input type="text" name="IDENTIFICATION" id="suppliers-update-item-identification" placeholder="Identification" />
-            <input type="text" name="TELEPHONE" id="suppliers-update-item-telephone" placeholder="Telephone" />
-            <input type="text" name="CELLPHONE" id="suppliers-update-item-cellphone" placeholder="Cellphone" />
-            <input type="text" name="EMAIL" id="suppliers-update-item-email" placeholder="Email" />
-            <input type="text" name="ADDRESS" id="suppliers-update-item-address" placeholder="Address" />
-            <input type="text" name="CITY" id="suppliers-update-item-city" placeholder="City" />
-            <input type="text" name="OTHER" id="suppliers-update-item-other" placeholder="Other details" />
+            <div class="row">
+              <div class="input-field col s12 m4">
+                <input type="text" name="NAME" id="suppliers-update-item-name" placeholder="Name" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="IDENTIFICATION" id="suppliers-update-item-identification" placeholder="Identification" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="TELEPHONE" id="suppliers-update-item-telephone" placeholder="Telephone" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="CELLPHONE" id="suppliers-update-item-cellphone" placeholder="Cellphone" />
+              </div>
+              <div class="input-field col s12 m2">
+                <input type="text" name="EMAIL" id="suppliers-update-item-email" placeholder="Email" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m3">
+                <input type="text" name="ADDRESS" id="suppliers-update-item-address" placeholder="Address" />
+              </div>
+              <div class="input-field col s12 m3">
+                <input type="text" name="CITY" id="suppliers-update-item-city" placeholder="City" />
+              </div>
+              <div class="input-field col s12 m6">
+                <input type="text" name="OTHER" id="suppliers-update-item-other" placeholder="Other details" />
+              </div>
+            </div>
+            <input type="text" name="_ID" id="suppliers-update-item-id" style="display: none;" />
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
