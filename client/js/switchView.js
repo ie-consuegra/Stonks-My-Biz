@@ -108,4 +108,5 @@ function switchSubView(subView) {
   const viewDivId = `${subView}-${view}-view`;
   setActiveView(viewDivId);
   toggleElementsVisibility(subView);
+  M.updateTextFields(); // Reinitialize Materialize labels
 }

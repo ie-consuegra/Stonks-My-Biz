@@ -282,20 +282,20 @@
           <form id="add-sales-form" class="col s12" onsubmit="submitNewSale(this)">
             <div class="row">
               <div class="input-field col s12 m3">
-                <input type="text" name="DATE" id="sales-new-item-date" placeholder="Date" />
+                <input type="text" name="DATE" id="sales-new-item-date" />
                 <label for="sales-new-item-date">Date</label>
               </div>
             </div>
             <div class="divider"></div>
             <div class="row" style="display: none;">
               <div class="input-field col s12">
-                <input type="text" name="DETAILS" id="sales-new-item-details" placeholder="Details" />
+                <input type="text" name="DETAILS" id="sales-new-item-details" />
                 <label for="sales-new-item-details">Details</label>
               </div>
             </div>
             <div class="row" style="display: none;">
               <div class="input-field col s12">
-                <input type="text" name="CONCEPT" id="sales-new-item-concept" placeholder="Concept" value="sale" />
+                <input type="text" name="CONCEPT" id="sales-new-item-concept" value="sale" />
                 <label for="sales-new-item-concept">Concept</label>
               </div>
             </div>
@@ -307,16 +307,16 @@
             </div>
             <div class="row">
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="INCOME" id="sales-new-item-total" placeholder="" value="0" disabled />
+                <input type="text" name="INCOME" id="sales-new-item-total" value="0" disabled />
                 <label for="sales-new-item-total">Total</label>
               </div>
               <!-- The amout paid is not saved in the db but the total as INCOME -->
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" id="sales-new-item-paid" placeholder="Amount Paid" />
+                <input type="text" id="sales-new-item-paid" />
                 <label for="sales-new-item-paid">Amt. Paid</label>
               </div>
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" id="sales-new-item-change" placeholder="Change" value="0" disabled />
+                <input type="text" id="sales-new-item-change" value="0" disabled />
                 <label for="sales-new-item-change">Change</label>
               </div>
             </div>
@@ -331,20 +331,20 @@
           <form id="add-purchases-form" class="col s12" onsubmit="submitNewPurchase(this)">
             <div class="row">
               <div class="input-field col s12 m3">
-                <input type="text" name="DATE" id="purchases-new-item-date" placeholder="Date" />
+                <input type="text" name="DATE" id="purchases-new-item-date" />
                 <label for="purchases-new-item-date">Date</label>
               </div>
             </div>
             <div class="divider"></div>
             <div class="row" style="display: none;">
               <div class="input-field col s12">
-                <input type="text" name="DETAILS" id="purchases-new-item-details" placeholder="Details" />
+                <input type="text" name="DETAILS" id="purchases-new-item-details" />
                 <label for="purchases-new-item-details">Details</label>
               </div>
             </div>
             <div class="row" style="display: none;">
               <div class="input-field col s12">
-                <input type="text" name="CONCEPT" id="purchases-new-item-concept" placeholder="Concept" value="purchase" />
+                <input type="text" name="CONCEPT" id="purchases-new-item-concept" value="purchase" />
                 <label for="purchases-new-item-concept">Concept</label>
               </div>
             </div>
@@ -356,7 +356,7 @@
             </div>
             <div class="row">
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="OUTCOME" id="purchases-new-item-total" placeholder="" value="0" disabled />
+                <input type="text" name="OUTCOME" id="purchases-new-item-total" value="0" disabled />
                 <label for="purchases-new-item-total">Total</label>
               </div>
             </div>
@@ -462,29 +462,30 @@
                     <option value="product">Product</option>
                     <option value="service">Service</option>
                   </select>
+                  <label for="add-portfolio-type-select">Type</label>
                 </div>
                 <div class="input-field col s12 m2">
-                  <input type="text" name="CODE" id="portfolio-new-item-code" placeholder="Code" />
+                  <input type="text" name="CODE" id="portfolio-new-item-code" />
                   <label for="portfolio-new-item-code">Code</label>
                 </div>
                 <div class="input-field col s12 m6">
-                  <input type="text" name="ITEM" id="portfolio-new-item-name" placeholder="Product name" />
+                  <input type="text" name="ITEM" id="portfolio-new-item-name" />
                   <label for="portfolio-new-item-name">Product name</label>
                 </div>
                 <div class="input-field col s12 m2">
-                  <input type="text" name="CATEGORY" id="portfolio-new-item-category" placeholder="Category" />
+                  <input type="text" name="CATEGORY" id="portfolio-new-item-category" />
                   <label for="portfolio-new-item-category">Category</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" name="DESCRIPTION" id="portfolio-new-item-description" placeholder="Description" />
+                  <input type="text" name="DESCRIPTION" id="portfolio-new-item-description" />
                   <label for="portfolio-new-item-description">Description</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12" style="display: none;">
-                  <input type="text" name="STOCKREFS" id="portfolio-new-item-stockrefs" placeholder="" />
+                  <input type="text" name="STOCKREFS" id="portfolio-new-item-stockrefs" />
                   <label for="portfolio-new-item-stockrefs">Stock Refs</label>
                 </div>
               </div>
@@ -496,7 +497,7 @@
               </div>
               <div class="row">
                 <div class="input-field col s6 offset-s6 m4 offset-m8">
-                  <input type="text" name="PRICE" id="portfolio-new-item-price" placeholder="Price" />
+                  <input type="text" name="PRICE" id="portfolio-new-item-price" />
                   <label for="portfolio-new-item-price">Price</label>
                 </div>
               </div>
@@ -523,40 +524,51 @@
                   <option value="product">Product</option>
                   <option value="service">Service</option>
                 </select>
+                <label for="add-stock-type-select">Type</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CODE" placeholder="Code" />
+                <input type="text" name="CODE" id="add-stock-item-code" />
+                <label for="add-stock-item-code">Code</label>
               </div>
               <div class="input-field col s12 m7">
-                <input type="text" name="ITEM" placeholder="Item" />
+                <input type="text" name="ITEM" id="add-stock-item-item" />
+                <label for="add-stock-item-item">Item</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m7">
-                <input type="text" name="DESCRIPTION" placeholder="Description" />
+                <input type="text" name="DESCRIPTION" id="add-stock-item-description" />
+                <label for="add-stock-item-description">Description</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="UNIT" placeholder="Unit of measurement" />
+                <input type="text" name="UNIT" id="add-stock-item-unit" />
+                <label for="add-stock-item-unit">Unit of measurement</label>
               </div>
               <div class="input-field col s12 m3">
-                <input type="text" name="CATEGORY" placeholder="Category" />
+                <input type="text" name="CATEGORY" id="add-stock-item-category" />
+                <label for="add-stock-item-category">Category</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m2">
-                <input type="text" name="COST" placeholder="Cost" />
+                <input type="text" name="COST" id="add-stock-item-cost"/>
+                <label for="add-stock-item-cost">Cost</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="PRICE" placeholder="Price" />
+                <input type="text" name="PRICE" id="add-stock-item-price" />
+                <label for="add-stock-item-price">Price</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="MINIMUM" placeholder="Minimum stock" />
+                <input type="text" name="MINIMUM" id="add-stock-item-minimum" />
+                <label for="add-stock-item-minimum">Min. stock</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="STOCK" placeholder="Stock" />
+                <input type="text" name="STOCK" id="add-stock-item-stock" />
+                <label for="add-stock-item-stock">Stock</label>
               </div>
               <div class="input-field col s12 m4">
-                <input type="text" name="SUPPLIER" placeholder="Supplier" />
+                <input type="text" name="SUPPLIER" id="add-stock-item-supplier" />
+                <label for="add-stock-item-supplier">Supplier</label>
               </div>
             </div>
             <button type="submit" class="btn waves-effect waves-light right">
@@ -578,7 +590,7 @@
             <form id="update-portfolio-form" class="col s12" onsubmit="submitUpdatePortfolio(this)">
               <div class="row">
                 <div class="input-field col s12" style="display: none;">
-                  <input type="text" name="_ID" id="portfolio-update-item-id" placeholder="" />
+                  <input type="text" name="_ID" id="portfolio-update-item-id" />
                   <label for="portfolio-update-item-id">Stock Refs</label>
                 </div>
                 <div class="input-field col s12 m2">
@@ -586,27 +598,27 @@
                   <label for="portfolio-update-item-type"></label>
                 </div>
                 <div class="input-field col s12 m2">
-                  <input type="text" name="CODE" id="portfolio-update-item-code" placeholder="Code" />
+                  <input type="text" name="CODE" id="portfolio-update-item-code" />
                   <label for="portfolio-update-item-code">Code</label>
                 </div>
                 <div class="input-field col s12 m6">
-                  <input type="text" name="ITEM" id="portfolio-update-item-item" placeholder="Product name" />
+                  <input type="text" name="ITEM" id="portfolio-update-item-item" />
                   <label for="portfolio-update-item-item">Product name</label>
                 </div>
                 <div class="input-field col s12 m2">
-                  <input type="text" name="CATEGORY" id="portfolio-update-item-category" placeholder="Category" />
+                  <input type="text" name="CATEGORY" id="portfolio-update-item-category" />
                   <label for="portfolio-update-item-category">Category</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" name="DESCRIPTION" id="portfolio-update-item-description" placeholder="Description" />
+                  <input type="text" name="DESCRIPTION" id="portfolio-update-item-description" />
                   <label for="portfolio-update-item-description">Description</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12" style="display: none;">
-                  <input type="text" name="STOCKREFS" id="portfolio-update-item-stockrefs" placeholder="" />
+                  <input type="text" name="STOCKREFS" id="portfolio-update-item-stockrefs" />
                   <label for="portfolio-update-item-stockrefs">Stock Refs</label>
                 </div>
               </div>
@@ -618,7 +630,7 @@
               </div>
               <div class="row">
                 <div class="input-field col s6 offset-s6 m4 offset-m8">
-                  <input type="text" name="PRICE" id="portfolio-update-item-price" placeholder="Price" />
+                  <input type="text" name="PRICE" id="portfolio-update-item-price" />
                   <label for="portfolio-update-item-price">Price</label>
                 </div>
               </div>
@@ -658,8 +670,8 @@
               </div>
             </div>
             <input type="text" name="_ID" id="cashflow-update-item-id" style="display: none;" />
-            <input type="text" name="INCOME" id="cashflow-update-item-income" placeholder="Income" style="display: none;" />
-            <input type="text" name="OUTCOME" id="cashflow-update-item-outcome" placeholder="Outcome" style="display: none;" />
+            <input type="text" name="INCOME" id="cashflow-update-item-income" style="display: none;" />
+            <input type="text" name="OUTCOME" id="cashflow-update-item-outcome" style="display: none;" />
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
           </form>
@@ -679,40 +691,51 @@
             <div class="row">
               <div class="input-field col s12 m3">
                 <input type="text" name="TYPE" id="stock-update-item-type" readonly />
+                <label for="stock-update-item-type">Type</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CODE" id="stock-update-item-code" placeholder="Code" />
+                <input type="text" name="CODE" id="stock-update-item-code" />
+                <label for="stock-update-item-code">Code</label>
               </div>
               <div class="input-field col s12 m7">
-                <input type="text" name="ITEM" id="stock-update-item-item" placeholder="Item" />
+                <input type="text" name="ITEM" id="stock-update-item-item" />
+                <label for="stock-update-item-item">Item</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m7">
-                <input type="text" name="DESCRIPTION" id="stock-update-item-description" placeholder="Description" />
+                <input type="text" name="DESCRIPTION" id="stock-update-item-description" />
+                <label for="stock-update-item-description">Description</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="UNIT" id="stock-update-item-unit" placeholder="Unit of measurement" />
+                <input type="text" name="UNIT" id="stock-update-item-unit" />
+                <label for="stock-update-item-unit">Unit</label>
               </div>
               <div class="input-field col s12 m3">
-                <input type="text" name="CATEGORY" id="stock-update-item-category" placeholder="Category" />
+                <input type="text" name="CATEGORY" id="stock-update-item-category" />
+                <label for="stock-update-item-category">Category</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m2">
-                <input type="text" name="COST" id="stock-update-item-cost" placeholder="Cost" />
+                <input type="text" name="COST" id="stock-update-item-cost" />
+                <label for="stock-update-item-cost">Cost</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="PRICE" id="stock-update-item-price" placeholder="Price" />
+                <input type="text" name="PRICE" id="stock-update-item-price" />
+                <label for="stock-update-item-price">Price</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="MINIMUM" id="stock-update-item-minimum" placeholder="Minimum stock" />
+                <input type="text" name="MINIMUM" id="stock-update-item-minimum" />
+                <label for="stock-update-item-minimum">Min. stock</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="STOCK" id="stock-update-item-stock" placeholder="Stock" />
+                <input type="text" name="STOCK" id="stock-update-item-stock" />
+                <label for="stock-update-item-stock">Stock</label>
               </div>
               <div class="input-field col s12 m4">
-                <input type="text" name="SUPPLIER" id="stock-update-item-supplier" placeholder="Supplier" />
+                <input type="text" name="SUPPLIER" id="stock-update-item-supplier" />
+                <label for="stock-update-item-supplier">Supplier</label>
               </div>
             </div>
             <input type="text" name="_ID" id="stock-update-item-id" style="display: none;" />
@@ -734,30 +757,37 @@
           <form id="add-movements-form" onsubmit="submitNewMovement(this)">
             <div class="row">
               <div class="input-field col s12 m2">
-                <input type="text" name="DATE" placeholder="Date" />
+                <input type="text" name="DATE" id="movements-add-item-date" />
+                <label for="movements-add-item-date">Date</label>
               </div>
               <div class="input-field col s12 m2">
                 <select name="TYPE" id="add-movements-type-select">
                   <option value="receipt">Receipt</option>
                   <option value="issue">Issue</option>
                 </select>
+                <label for="movements-add-type-select">Type</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CODE" placeholder="Code" />
+                <input type="text" name="CODE" id="movements-add-item-code" />
+                <label for="movements-add-item-code">Code</label>
               </div>
               <div class="input-field col s12 m4">
-                <input type="text" name="ITEM" placeholder="Item" />
+                <input type="text" name="ITEM" id="movements-add-item-item" />
+                <label for="movements-add-item-item">Item</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CATEGORY" placeholder="Category" />
+                <input type="text" name="CATEGORY" />
+                <label for="movements-add-item-category">Category</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m10">
-                <input type="text" name="DESCRIPTION" placeholder="Description" />
+                <input type="text" name="DESCRIPTION" id="movements-add-item-description" />
+                <label for="movements-add-item-description">Description</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="MOVEMENT" placeholder="Movement" />
+                <input type="text" name="MOVEMENT" id="movements-add-item-movement" />
+                <label for="movements-add-item-movement">Movement</label>
               </div>
             </div>
             <button type="submit" class="btn waves-effect waves-light right">
@@ -778,27 +808,34 @@
           <form id="update-movements-form" onsubmit="submitUpdateMovement(this)">
             <div class="row">
               <div class="input-field col s12 m2">
-                <input type="text" name="DATE" id="movements-update-item-date" placeholder="Date" />
+                <input type="text" name="DATE" id="movements-update-item-date" />
+                <label for="movements-update-item-date">Date</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="TYPE" id="movements-update-item-type" placeholder="Type" readonly />
+                <input type="text" name="TYPE" id="movements-update-item-type" readonly />
+                <label for="movements-update-item-type">Type</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CODE" id="movements-update-item-code" placeholder="Code" />
+                <input type="text" name="CODE" id="movements-update-item-code" />
+                <label for="movements-update-item-code">Code</label>
               </div>
               <div class="input-field col s12 m4">
-                <input type="text" name="PRODUCT" id="movements-update-item-product" placeholder="Product" />
+                <input type="text" name="ITEM" id="movements-update-item-item" />
+                <label for="movements-update-item-product">Item</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CATEGORY" id="movements-update-item-category" placeholder="Category" />
+                <input type="text" name="CATEGORY" id="movements-update-item-category" />
+                <label for="movements-update-item-category">Category</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m10">
-                <input type="text" name="DESCRIPTION" id="movements-update-item-description" placeholder="Description" />
+                <input type="text" name="DESCRIPTION" id="movements-update-item-description" />
+                <label for="movements-update-item-description">Description</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="MOVEMENT" id="movements-update-item-movement"  placeholder="Movement" />
+                <input type="text" name="MOVEMENT" id="movements-update-item-movement" />
+                <label for="movements-update-item-movement">Movement</label>
               </div>
             </div>
             <input type="text" name="_ID" id="movements-update-item-id" style="display: none;" />
@@ -820,30 +857,38 @@
           <form id="add-suppliers-form" onsubmit="submitNewSupplier(this)">
             <div class="row">
               <div class="input-field col s12 m4">
-                <input type="text" name="NAME" id="supplier-add-item-name" placeholder="Name" />
+                <input type="text" name="NAME" id="supplier-add-item-name" />
+                <label for="supplier-add-item-name">Name</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="IDENTIFICATION" id="supplier-add-item-identification" placeholder="Identification" />
+                <input type="text" name="IDENTIFICATION" id="supplier-add-item-identification" />
+                <label for="supplier-add-item-identification">Identification</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="TELEPHONE" id="supplier-add-item-telephone" placeholder="Telephone" />
+                <input type="text" name="TELEPHONE" id="supplier-add-item-telephone" />
+                <label for="supplier-add-item-telephone">Telephone</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CELLPHONE" id="supplier-add-item-cellphone" placeholder="Cellphone" />
+                <input type="text" name="CELLPHONE" id="supplier-add-item-cellphone" />
+                <label for="supplier-add-item-cellphone">Cellphone</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="EMAIL" id="supplier-add-item-email" placeholder="Email" />
+                <input type="text" name="EMAIL" id="supplier-add-item-email" />
+                <label for="supplier-add-item-email">Email</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m3">
-                <input type="text" name="ADDRESS" id="supplier-add-item-address" placeholder="Address" />
+                <input type="text" name="ADDRESS" id="supplier-add-item-address" />
+                <label for="supplier-add-item-address">Address</label>
               </div>
               <div class="input-field col s12 m3">
-                <input type="text" name="CITY" id="supplier-add-item-city" placeholder="City" />
+                <input type="text" name="CITY" id="supplier-add-item-city" />
+                <label for="supplier-add-item-city">City</label>
               </div>
               <div class="input-field col s12 m6">
-                <input type="text" name="OTHER" id="supplier-add-item-other" placeholder="Other details" />
+                <input type="text" name="OTHER" id="supplier-add-item-other" />
+                <label for="supplier-add-item-other">Other details</label>
               </div>
             </div>
             <button type="submit" class="btn waves-effect waves-light right">
@@ -864,30 +909,38 @@
           <form id="update-suppliers-form" onsubmit="submitUpdateSupplier(this)">
             <div class="row">
               <div class="input-field col s12 m4">
-                <input type="text" name="NAME" id="suppliers-update-item-name" placeholder="Name" />
+                <input type="text" name="NAME" id="suppliers-update-item-name" />
+                <label for="suppliers-update-item-name">Name</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="IDENTIFICATION" id="suppliers-update-item-identification" placeholder="Identification" />
+                <input type="text" name="IDENTIFICATION" id="suppliers-update-item-identification" />
+                <label for="suppliers-update-item-identification">Identification</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="TELEPHONE" id="suppliers-update-item-telephone" placeholder="Telephone" />
+                <input type="text" name="TELEPHONE" id="suppliers-update-item-telephone" />
+                <label for="suppliers-update-item-telephone">Telephone</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="CELLPHONE" id="suppliers-update-item-cellphone" placeholder="Cellphone" />
+                <input type="text" name="CELLPHONE" id="suppliers-update-item-cellphone" />
+                <label for="suppliers-update-item-cellphone">Cellphone</label>
               </div>
               <div class="input-field col s12 m2">
-                <input type="text" name="EMAIL" id="suppliers-update-item-email" placeholder="Email" />
+                <input type="text" name="EMAIL" id="suppliers-update-item-email" />
+                <label for="suppliers-update-item-email">Email</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m3">
-                <input type="text" name="ADDRESS" id="suppliers-update-item-address" placeholder="Address" />
+                <input type="text" name="ADDRESS" id="suppliers-update-item-address" />
+                <label for="suppliers-update-item-address">Address</label>
               </div>
               <div class="input-field col s12 m3">
-                <input type="text" name="CITY" id="suppliers-update-item-city" placeholder="City" />
+                <input type="text" name="CITY" id="suppliers-update-item-city" />
+                <label for="suppliers-update-item-city">City</label>
               </div>
               <div class="input-field col s12 m6">
-                <input type="text" name="OTHER" id="suppliers-update-item-other" placeholder="Other details" />
+                <input type="text" name="OTHER" id="suppliers-update-item-other" />
+                <label for="suppliers-update-item-other">Other details</label>
               </div>
             </div>
             <input type="text" name="_ID" id="suppliers-update-item-id" style="display: none;" />
