@@ -28,6 +28,7 @@ function setLoadedDB() {
   // Check if there are enough databases
   // loaded to let use the app
   if (appConfig.dbsLoaded >= 5) {
+    dbData.loaded = true;
     hidePreloader();
     M.AutoInit(); // Initialize Materialize when everything's loaded
   }
