@@ -130,7 +130,7 @@
       <a class="btn-floating btn-large waves-effect light-blue darken-3 z-depth-3">
         <i class="large material-icons white-text">more_vert</i>
       </a>
-      <ul>
+      <ul>  
         <li id="add-portfolio-to-sales-item-btn"><a class="btn-floating blue darken-3" onclick="actionAddToSalesItem()"><i class="material-icons">shopping_cart</i></a></li>
         <li id="add-stock-to-purchases-item-btn"><a class="btn-floating cyan darken-2" onclick="actionAddToPurchasesItem()"><i class="material-icons">work</i></a></li>
         <li id="add-stock-to-portfolio-item-btn"><a class="btn-floating indigo" onclick="actionAddToPortfolioItem()"><i class="material-icons">local_offer</i></a></li>
@@ -185,6 +185,21 @@
     </div>
   </header>
   <main>
+    <div class="view-title">
+      <div class="container container-large">
+        <h5 id="view-title">View title</h5>
+        <nav class="grey lighten-5 toolbar" id="toolbar">
+          <ul>
+            <li><a class="tool-btn" id="add-tool-btn" onclick="actionAdd()"><i class="material-icons tool-icon grey-text text-darken-3">add</i></a></li>
+            <li><a class="tool-btn" id="edit-tool-btn" onclick="actionUpdate()"><i class="material-icons tool-icon grey-text text-darken-3">edit</i></a></li>
+            <li><a class="tool-btn" id="delete-tool-btn" onclick="actionDelete()"><i class="material-icons tool-icon grey-text text-darken-3">delete</i></a></li>
+            <li><a class="tool-btn" id="add-to-portfolio-tool-btn"><i class="material-icons tool-icon grey-text text-darken-3" onclick="actionAddToPortfolioItem()">local_offer</i></a></li>
+            <li><a class="tool-btn" id="add-to-purchase-tool-btn" onclick="actionAddToPurchasesItem()"><i class="material-icons tool-icon grey-text text-darken-3">work</i></a></li>
+            <li><a class="tool-btn" id="add-to-sale-tool-btn" onclick="actionAddToSalesItem()"><i class="material-icons tool-icon grey-text text-darken-3">shopping_cart</i></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
     <div id="views">
       <div id="dashboard-view">
         <div class="row">
@@ -278,7 +293,6 @@
       </div>
       <div id="sales-view">
         <div class="container">
-          <h5>Sales</h5>
           <form id="add-sales-form" class="col s12" onsubmit="submitNewSale(this)">
             <div class="row">
               <div class="input-field col s12 m3">
@@ -327,7 +341,6 @@
       </div>
       <div id="purchases-view">
         <div class="container">
-          <h5>Purchases</h5>
           <form id="add-purchases-form" class="col s12" onsubmit="submitNewPurchase(this)">
             <div class="row">
               <div class="input-field col s12 m3">
@@ -367,52 +380,35 @@
       </div>
       <div id="cashflow-view">
         <div class="container container-large">
-          <h5>Cashflow</h5>
-          <nav class="grey lighten-5 toolbar">
-            <ul>
-              <li><a class="tool-btn"><i class="material-icons tool-icon grey-text text-darken-3">add</i></a></li>
-              <li><a class="tool-btn"><i class="material-icons tool-icon grey-text text-darken-3">edit</i></a></li>
-              <li><a class="tool-btn"><i class="material-icons tool-icon grey-text text-darken-3">delete</i></a></li>
-              <li><a class="tool-btn"><i class="material-icons tool-icon grey-text text-darken-3">local_offer</i></a></li>
-              <li><a class="tool-btn"><i class="material-icons tool-icon grey-text text-darken-3">work</i></a></li>
-              <li><a class="tool-btn"><i class="material-icons tool-icon grey-text text-darken-3">shopping_cart</i></a></li>
-            </ul>
-          </nav>
           <div id="cashflow-table-container"></div>
         </div>
       </div>
       <div id="portfolio-view">
         <div class="container container-large">
-          <h5>Portfolio</h5>
           <div id="portfolio-table-container"></div>
         </div>
       </div>
       <div id="stock-view">
         <div class="container container-large">
-          <h5>Stock</h5> 
           <div id="stock-table-container"></div>
         </div>
       </div>
       <div id="movements-view">
         <div class="container container-large">
-          <h5>Inventory receipts and issues</h5>
           <div id="movements-table-container"></div>
         </div>
       </div>
       <div id="suppliers-view">
         <div class="container container-large">
-          <h5>Suppliers</h5>
           <div id="suppliers-table-container"></div>
         </div>
       </div>
       <div id="settings-view">
         <div class="container container-large">
-          <h5>Configuration</h5>
         </div>
       </div>
       <div id="help-view">
         <div class="container container-large">
-          <h5>Help</h5>
         </div>
       </div>
       <!-- SubViews-->
@@ -425,7 +421,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>New movement</h5>
+          <h6>Create new item</h6>
           <form id="add-cashflow-form" onsubmit="submitNewCashflow(this)">
             <div class="row">
               <div class="input-field col s12 m2">
@@ -464,7 +460,7 @@
         </nav>
         <div class="container">
           <div class="row">
-            <h5>New portfolio item</h5>
+            <h6>Create new item</h6>
             <form id="add-portfolio-form" class="col s12" onsubmit="submitNewPortfolio(this)">
               <div class="row">
                 <div class="input-field col s12 m2">
@@ -526,7 +522,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>New product</h5>
+          <h6>Create new item</h6>
           <form id="add-stock-form" onsubmit="submitNewStock(this)">
             <div class="row">
               <div class="input-field col s12 m3">
@@ -596,7 +592,7 @@
         </nav>
         <div class="container">
           <div class="row">
-            <h5>Update portfolio item</h5>
+            <h6>Update item</h6>
             <form id="update-portfolio-form" class="col s12" onsubmit="submitUpdatePortfolio(this)">
               <div class="row">
                 <div class="input-field col s12" style="display: none;">
@@ -659,7 +655,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>Update movement</h5>
+          <h6>Update item</h6>
           <form id="update-cashflow-form" onsubmit="submitUpdateCashflow(this)">
             <div class="row">
               <div class="input-field col s12 m2">
@@ -696,7 +692,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>Edit product information</h5>
+          <h6>Edit item information</h6>
           <form id="update-stock-form" onsubmit="submitUpdateStock(this)">
             <div class="row">
               <div class="input-field col s12 m3">
@@ -763,7 +759,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>New inventory movement</h5>
+          <h6>New inventory receipt or issue</h6>
           <form id="add-movements-form" onsubmit="submitNewMovement(this)">
             <div class="row">
               <div class="input-field col s12 m2">
@@ -814,7 +810,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>Edit inventory movement</h5>
+          <h6>Edit inventory receipt or issue</h6>
           <form id="update-movements-form" onsubmit="submitUpdateMovement(this)">
             <div class="row">
               <div class="input-field col s12 m2">
@@ -863,7 +859,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>New supplier</h5>
+          <h6>Create new supplier</h6>
           <form id="add-suppliers-form" onsubmit="submitNewSupplier(this)">
             <div class="row">
               <div class="input-field col s12 m4">
@@ -915,7 +911,7 @@
           </div>
         </nav>
         <div class="container">
-          <h5>Edit supplier information</h5>
+          <h6>Edit supplier information</h6>
           <form id="update-suppliers-form" onsubmit="submitUpdateSupplier(this)">
             <div class="row">
               <div class="input-field col s12 m4">

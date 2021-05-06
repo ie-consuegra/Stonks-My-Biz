@@ -1,3 +1,22 @@
+function showToolbar(event) {
+  if (event.matches) {
+    tableToolbar.style.display = 'none';
+  } else {
+    switch (appConfig.view) {
+      case 'dashboard':
+      case 'sales':
+      case 'purchases':
+      case 'settings':
+      case 'help':
+        tableToolbar.style.display = 'none';
+        break;
+      default:
+        tableToolbar.style.display = 'block';
+        break;
+    }
+  }
+}
+
 function setActiveView(view) {
   const appViews = document.querySelector('#views').childNodes;
   appViews.forEach((node) => {
@@ -60,7 +79,7 @@ function toggleToolButtonsVisibility(viewName) {
         toggleToolButtonsForPortfolio(portfolioTable);
         break;
       case 'cashflow':
-        toggleToolButtonsForStock(cashflowTable);
+        toggleToolButtons(cashflowTable);
         break;
       case 'stock':
         toggleToolButtonsForStock(stockTable);
@@ -82,6 +101,12 @@ function toggleToolButtonsVisibility(viewName) {
     actionAddBtn.style.display = 'none';
     actionUpdateBtn.style.display = 'none';
     actionDeleteBtn.style.display = 'none';
+    addToolBtn.style.display = 'none';
+    editToolBtn.style.display = 'none';
+    deleteToolBtn.style.display = 'none';
+    addToPortfolioToolBtn.style.display = 'none';
+    addToPurchaseToolBtn.style.display = 'none';
+    addToSaleToolBtn.style.display = 'none';
   }
 }
 
@@ -90,6 +115,7 @@ function switchView(view) {
   const viewLinkId = `${view}-link`;
 
   setActiveView(viewDivId);
+  document.getElementById('view-title').style.display = 'block';
 
   if (appConfig.view) {
     const lastViewLinkId = `${appConfig.view}-link`;
@@ -100,10 +126,17 @@ function switchView(view) {
   appConfig.view = view; // Register new view
   toggleElementsVisibility();
   toggleToolButtonsVisibility();
+
+  // Show toolbar according to the size of the screen
+  const screen = window.matchMedia('(max-width: 601px)');
+  showToolbar(screen);
+  screen.addEventListener('change', showToolbar);
   return false; // Avoid reloading the page
 }
 
 function switchSubView(subView) {
+  tableToolbar.style.display = 'none';
+  document.getElementById('view-title').style.display = 'none';
   const { view } = appConfig;
   const viewDivId = `${subView}-${view}-view`;
   setActiveView(viewDivId);

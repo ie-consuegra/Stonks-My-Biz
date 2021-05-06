@@ -13,6 +13,14 @@ const actionAddBtn = document.getElementById('add-btn');
 const actionUpdateBtn = document.getElementById('update-btn');
 const actionDeleteBtn = document.getElementById('delete-btn');
 const actionMenuDivider = document.getElementById('action-menu-divider');
+// Toolbar and items
+const tableToolbar = document.getElementById('toolbar');
+const addToolBtn = document.getElementById('add-tool-btn');
+const editToolBtn = document.getElementById('edit-tool-btn');
+const deleteToolBtn = document.getElementById('delete-tool-btn');
+const addToPortfolioToolBtn = document.getElementById('add-to-portfolio-tool-btn');
+const addToPurchaseToolBtn = document.getElementById('add-to-purchase-tool-btn');
+const addToSaleToolBtn = document.getElementById('add-to-sale-tool-btn');
 // Modals
 const deleteModal = document.getElementById('delete-modal');
 // "Smart tables"
