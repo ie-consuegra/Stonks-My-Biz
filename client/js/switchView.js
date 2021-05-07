@@ -110,12 +110,23 @@ function toggleToolButtonsVisibility(viewName) {
   }
 }
 
+function getPureAnchorText(elem) {
+  const anchorText = elem.text;
+  const iconText = elem.children[0].textContent; // Get the text of the i tag
+  const aTextLength = anchorText.length - iconText.length;
+  return anchorText.substring(0, aTextLength);
+}
+
 function switchView(view) {
   const viewDivId = `${view}-view`;
   const viewLinkId = `${view}-link`;
 
+  const linkElem = document.getElementById(viewLinkId);
+  const viewTitle = document.getElementById('view-title');
+
   setActiveView(viewDivId);
-  document.getElementById('view-title').style.display = 'block';
+  viewTitle.style.display = 'block';
+  viewTitle.innerHTML = getPureAnchorText(linkElem);
 
   if (appConfig.view) {
     const lastViewLinkId = `${appConfig.view}-link`;
