@@ -405,7 +405,9 @@
       </div>
       <div id="settings-view">
         <div class="container">
-          <h6>Parameters</h6>
+          <div class="row">
+            <h6>Parameters</h6>
+          </div>
           <ul class="collapsible">
             <li>
               <div class="collapsible-header">
@@ -415,42 +417,53 @@
               <div class="collapsible-body">
                 <div class="row">
                   <div class="col s12 m6">
-                    <p>Edit the information that will appear on the receipts</p>
+                    <p>Edit the information of your business. This will appear in the receipts.</p>
                     <div class="input-field col s12">
-                      <input type="text" name="" id="" placeholder="Business name">
+                      <input type="text" name="" id="business-name" placeholder="Business name">
+                      <label for="business-name">Business name</label>
                     </div>
                     <div class="col s12">
                       <p>Identification and registry numbers</p>
                     </div>
                     <div class="input-field col s5 m2">
-                      <input type="text" name="" id="" placeholder="">
+                      <input type="text" name="" id="business-id-one" placeholder="">
                     </div>
                     <div class="input-field col s7 m10">
-                      <input type="text" name="" id="" placeholder="">
+                      <input type="text" name="" id="business-id-one-number" placeholder="">
                     </div>
                     <div class="input-field col s5 m2">
-                      <input type="text" name="" id="" placeholder="">
+                      <input type="text" name="" id="business-id-two" placeholder="">
                     </div>
                     <div class="input-field col s7 m10">
-                      <input type="text" name="" id="" placeholder="">
+                      <input type="text" name="" id="business-id-two-number" placeholder="">
                     </div>
                     <div class="input-field col s5 m2">
-                      <input type="text" name="" id="" placeholder="">
+                      <input type="text" name="" id="business-id-three" placeholder="">
                     </div>
                     <div class="input-field col s7 m10">
-                      <input type="text" name="" id="" placeholder="">
+                      <input type="text" name="" id="business-id-three-number" placeholder="">
                     </div>
                   </div>
                   <div class="col s12 m6">
                     <p>Contact information</p>
                     <div class="input-field col s12">
-                      <input type="text" name="" id="" placeholder="Telephone">
+                      <input type="text" name="" id="business-tel">
+                      <label for="business-tel">Telephones</label>
                     </div>
                     <div class="input-field col s12">
-                      <input type="text" name="" id="" placeholder="Address">
+                      <input type="text" name="" id="business-address">
+                      <label for="business-address">Address</label>
                     </div>
                     <div class="input-field col s12">
-                      <input type="text" name="" id="" placeholder="Website">
+                      <input type="text" name="" id="business-website">
+                      <label for="business-website">Website</label>
+                    </div>
+                    <div class="col s12">
+                      <p>Extra info/slogan/others</p>
+                    </div>
+                    <div class="input-field col s12">
+                      <textarea id="business-extras" class="materialize-textarea"></textarea>
+                      <label for="business-extras">Extra info</label>
                     </div>
                   </div>
                 </div>
@@ -479,11 +492,11 @@
                   <div class="input-field col s12 m3 l2">
                     <p>7/05/2021</p>
                   </div>
-                  <div class="input-field col s12 m3 l1">
+                  <div class="input-field col s6 m3 l1">
                     <input type="text" id="currency-format" value="$">
                     <label for="currency-format">Currency</label>
                   </div>
-                  <div class="input-field col s12 m3 l1">
+                  <div class="input-field col s6 m3 l1">
                     <select name="" id="decimal-sign">
                       <option value="comma">,</option>
                       <option value="period">.</option>
@@ -498,34 +511,62 @@
             </li>
             <li>
               <div class="collapsible-header">
+                <i class="material-icons">
+                  shopping_cart
+                </i>
+                Sales
+              </div>
+              <div class="collapsible-body">
+                <p>Taxes and extra costs</p>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
                 <i class="material-icons">local_offer</i>
                 Portfolio and stock
               </div>
               <div class="collapsible-body">
-                <div class="row">
-                  <p>Include stock items automatically</p>
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" id="auto-portfolio">
-                      <span class="lever"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="row">
-                  <p>Categories</p>
-                </div>
+                <ul class="collection">
+                  <li class="collection-item">
+                    <div>Include stock items automatically
+                      <div class="switch secondary-content">
+                        <label>
+                          <input type="checkbox" id="auto-portfolio">
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </li>
             <li>
               <div class="collapsible-header">
                 <i class="material-icons">update</i>
-                Load or backup parameters
+                Backup parameters
               </div>
               <div class="collapsible-body">
                 <p>Backup app parameters</p>
                 <a class="waves-effect waves-light btn">Backup</a>
-                <p>Load app parameters</p>
-                <a class="waves-effect waves-light btn">Load</a>
+              </div>
+            </li>
+          </ul>
+          <div class="row">
+            <h6>Advanced</h6>
+            <p>(Continue only if you know what you are doing. Changes in this section can cause malfunctions.)</p>
+          </div>
+          <ul class="collapsible">
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">cloud_queue</i>
+                Database spreadsheets links
+              </div>
+              <div class="collapsible-body">
+                <a href="">Portfolio</a>
+                <a href="">Cashflow</a>
+                <a href="">Stock</a>
+                <a href="">Receipts and issues</a>
+                <a href="">Suppliers</a>
               </div>
             </li>
           </ul>
