@@ -479,8 +479,11 @@
                   <div class="col s12">
                     <p>Custom the format of dates and currency</p>
                   </div>
-                  <div class="input-field col s12 m3 l2">
-                    <select name="" id="">
+                  <div class="input-field col m7 hide-on-small-only">
+                    <p>Date format</p>
+                  </div>
+                  <div class="input-field col s7 m3">
+                    <select name="" id="date-format">
                       <option value="">dd/mm/yyyy</option>
                       <option value="">dd/mm</option>
                       <option value="">01/jan</option>
@@ -488,22 +491,32 @@
                       <option value="">dd-mm</option>
                       <option value="">01-jan</option>
                     </select>
+                    <label for="date-format">Date format</label>
                   </div>
-                  <div class="input-field col s12 m3 l2">
+                  <div class="input-field col s5 m2">
                     <p>7/05/2021</p>
                   </div>
-                  <div class="input-field col s6 m3 l1">
+                  <div class="input-field col m7 hide-on-small-only">
+                    <p>Currency</p>
+                  </div>
+                  <div class="input-field col s7 m3">
                     <input type="text" id="currency-format" value="$">
                     <label for="currency-format">Currency</label>
                   </div>
-                  <div class="input-field col s6 m3 l1">
-                    <select name="" id="decimal-sign">
-                      <option value="comma">,</option>
-                      <option value="period">.</option>
-                    </select>
-                    <label for="decimal-sign">Decimal sign</label>
+                  <div class="input-field col s5 m2">
+                    <p>$ 123</p>
                   </div>
-                  <div class="col s12 m3 l2">
+                  <div class="input-field col m7 hide-on-small-only">
+                    <p>Decimal separator</p>
+                  </div>
+                  <div class="input-field col s7 m3">
+                    <select name="" id="decimal-separator">
+                      <option value="comma">Comma (,)</option>
+                      <option value="period">Point (.)</option>
+                    </select>
+                    <label for="decimal-separator">Decimal separator</label>
+                  </div>
+                  <div class="input-field col s5 m2">
                     <p>$ 1.120,50</p>
                   </div>
                 </div>
@@ -511,24 +524,13 @@
             </li>
             <li>
               <div class="collapsible-header">
-                <i class="material-icons">
-                  shopping_cart
-                </i>
-                Sales
-              </div>
-              <div class="collapsible-body">
-                <p>Taxes and extra costs</p>
-              </div>
-            </li>
-            <li>
-              <div class="collapsible-header">
                 <i class="material-icons">local_offer</i>
-                Portfolio and stock
+                Portfolio
               </div>
               <div class="collapsible-body">
                 <ul class="collection">
                   <li class="collection-item">
-                    <div>Include stock items automatically
+                    <div>Include stock items
                       <div class="switch secondary-content">
                         <label>
                           <input type="checkbox" id="auto-portfolio">
@@ -540,17 +542,10 @@
                 </ul>
               </div>
             </li>
-            <li>
-              <div class="collapsible-header">
-                <i class="material-icons">update</i>
-                Backup parameters
-              </div>
-              <div class="collapsible-body">
-                <p>Backup app parameters</p>
-                <a class="waves-effect waves-light btn">Backup</a>
-              </div>
-            </li>
           </ul>
+          <div class="row">
+            <a class="waves-effect waves-light btn right" id="save-params-btn">Save changes</a>
+          </div>
           <div class="row">
             <h6>Advanced</h6>
             <p>(Continue only if you know what you are doing. Changes in this section can cause malfunctions.)</p>
@@ -558,15 +553,20 @@
           <ul class="collapsible">
             <li>
               <div class="collapsible-header">
-                <i class="material-icons">cloud_queue</i>
-                Database spreadsheets links
+                <i class="material-icons">update</i>
+                Backup parameters
               </div>
               <div class="collapsible-body">
-                <a href="">Portfolio</a>
-                <a href="">Cashflow</a>
-                <a href="">Stock</a>
-                <a href="">Receipts and issues</a>
-                <a href="">Suppliers</a>
+                <a class="waves-effect waves-light btn">Backup</a>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">cloud_queue</i>
+                Database
+              </div>
+              <div class="collapsible-body">
+                <a class="waves-effect waves-light btn" id="open-database-btn">Open database folder</a>
               </div>
             </li>
           </ul>
