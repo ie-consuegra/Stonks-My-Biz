@@ -76,3 +76,29 @@ function findOne(values, query) {
   const foundIndex = values.findIndex(isEqual);
   return values[foundIndex];
 }
+
+/**
+ * Sum all the numbers in an array
+ * @param {Number[]} values Array of numbers
+ */
+function sum(values) {
+  const total = values.reduce((acc, value) => {
+    if (!value) { // For null or undefined assign 0 to avoid NaN errors.
+      value = 0;
+    }
+    return acc + value;
+  });
+  return total;
+}
+
+/**
+ * Sum all the numbers of the specified field
+ * @param {Array[]} values Set of values in a 2d array
+ * @param {String} field Name of the field (column title in db)
+ */
+function getColumnTotal(values, field) {
+  const columnValues = getValuesByFields(values, [field]).flat();
+  columnValues.shift(); // Remove the title of the array
+  const total = sum(columnValues);
+  return total;
+}

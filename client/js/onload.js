@@ -29,9 +29,10 @@ function setLoadedDB() {
   // loaded to let use the app
   if (appConfig.dbsLoaded >= 5) {
     dbData.loaded = true;
-    hidePreloader();
     M.AutoInit(); // Initialize Materialize when everything's loaded
     initDatepickers(); // Initialize datepickers
+    dashboardComputations(); // Use the data to show info on the dashboard
+    hidePreloader();
   }
 }
 

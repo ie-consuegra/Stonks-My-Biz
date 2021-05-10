@@ -214,25 +214,36 @@
                           <span class="right">
                             <i class="material-icons">account_balance</i>
                           </span>
-                          <span class="card-title" id="balance">Balance: $210,000</span>
+                          <span class="card-title" id="balance">Balance: ...</span>
                           <br>
-                          <p><strong>Last registry</strong></p>
-                          <p>(Outcome) Bio-Blister packs: $5,400</p>
+                          <p><strong>Current month:</strong>
+                          </p>
+                          <p><strong>Income: </strong><span id="income"></span></p>
+                          <p><strong>Outcome: </strong><span id="outcome"></span></p>
                           <p></p>
                         </div>
                         <div class="card-action">
-                          <a href="#" class="red-text text-darken-2">View all</a>
+                          <a class="red-text text-darken-2" onclick="switchView('sales')">Register sale</a>
+                          <a class="red-text text-darken-2" onclick="switchView('purchases')">Register purchase</a>
                         </div>
                       </div>
                     </div>
                     <div class="col s12 m4">
                       <div class="card yellow lighten-3">
                         <div class="card-content">
-                          <span class="card-title">Notes</span>
-                          <p>Stonks App looks awesome!</p>
+                          <span class="right">
+                            <i class="material-icons">notifications</i>
+                          </span>
+                          <span class="card-title">Notifications</span>
+                          <br>
+                          <p><strong>Depleted stock</strong></p>
+                          <p id="depleted-stock">There's no depleted stock</p>
+                          <br>
+                          <p><strong>Stock below the minimum</strong></p>
+                          <p id="minimum-stock">There's no stock below the minimum</p>
                         </div>
                         <div class="card-action">
-                          <a href="#" class="red-text text-darken-2">Notes</a>
+                          <a class="red-text text-darken-2" onclick="switchView('stock')">View stock</a>
                         </div>
                       </div>
                     </div>
@@ -246,32 +257,31 @@
                           </span>
                           <span class="card-title">History</span>
                           <br>
-                          <p><strong>Last 3 months</strong> (A Striped + narrow table)</p>
+                          <p><strong>Last 3 days this month</strong></p>
                           <table class="striped narrow">
                             <thead>
                               <tr>
-                                <th>Month</th>
+                                <th>Day</th>
                                 <th>Income</th>
                                 <th>Outcome</th>
                                 <th>Balance</th>
                               </tr>
                             </thead>
-
                             <tbody>
                               <tr>
-                                <td>June</td>
+                                <td>9-may</td>
                                 <td>$59,110</td>
                                 <td>$31,920</td>
                                 <td>$28,800</td>
                               </tr>
                               <tr>
-                                <td>July</td>
+                                <td>8-may</td>
                                 <td>$65,400</td>
                                 <td>$33,750</td>
                                 <td>$32,310</td>
                               </tr>
                               <tr>
-                                <td>August</td>
+                                <td>7-may</td>
                                 <td>$64,500</td>
                                 <td>$34,500</td>
                                 <td>$30,200</td>
@@ -280,7 +290,7 @@
                           </table>
                         </div>
                         <div class="card-action">
-                          <a href="#" class="red-text text-darken-2">View annual report</a>
+                          <a class="red-text text-darken-2" onclick="switchView('cashflow')">View cashflow</a>
                         </div>
                       </div>
                     </div>
