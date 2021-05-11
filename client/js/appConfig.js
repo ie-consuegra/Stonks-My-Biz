@@ -15,14 +15,17 @@ const appConfig = {
   portfolio: {
     loadStock: false,
   },
+  stock: {
+    calcValue: false,
+  },
   data: {
     income: 0,
     outcome: 0,
     balance: 0,
     inventoryCost: 0, // Total purchase value
     inventoryPrice: 0, // Total sale value
-    notifications: [],
   },
+  notifications: '',
   set view(viewName) {
     if (viewName !== undefined) {
       this.currentView = viewName;
