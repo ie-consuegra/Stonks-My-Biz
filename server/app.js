@@ -51,7 +51,7 @@ const suppliersDBS = new DBS(suppliersModel, stonksApp.getFolder);
 
 // Variables for format dates function
 const dateField = ['DATE'];
-const format = 'dd/MM/yyyy';
+const format = (stonksApp.settings.preferences ? stonksApp.settings.preferences.dateFormat : 'dd/MM/yyyy');
 const datesFormatter = createDatesFormatter(formatDates, dateField, format);
 
 // database functions
@@ -197,4 +197,18 @@ function removeMovement(entryIds) {
 function removeSuppliers(entryIds) {
   const values = suppliersDBS.use().remove(entryIds);
   return values;
+}
+
+function saveAppSettings(settingsData) {
+  const configStr = JSON.stringify(settingsData);
+  PropertiesService
+    .getScriptProperties
+    .setProperty('APP_SETTINGS', configStr);
+
+  // Reload settings
+  stonksApp.getAppSettings();
+}
+
+function getAppSettings() {
+  return stonksApp.settings;
 }

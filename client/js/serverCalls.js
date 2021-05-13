@@ -200,3 +200,20 @@ function deleteSuppliers() {
     .withSuccessHandler(removeSuccess)
     .removeSuppliers(suppliersTable.selectedIds);
 }
+
+function saveSettings() {
+  showPreloader();
+  google
+    .script
+    .run
+    .withSuccessHandler(settingsSaved)
+    .saveAppSettings(settings.data);
+}
+
+function fetchSettings() {
+  google
+    .script
+    .run
+    .withSuccessHandler(settingsObtained)
+    .getAppSettings();
+}

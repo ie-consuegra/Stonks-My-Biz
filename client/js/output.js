@@ -11,7 +11,7 @@ function loadMovement(values) {
 }
 
 function reloadOnTable(values) {
-  switch (appConfig.view) {
+  switch (settings.view) {
     case 'portfolio':
       portfolioTable.reload(values);
       portfolioStockTable.reset();
@@ -44,12 +44,12 @@ function removeSuccess(values) {
 }
 
 function resetForm(formType) {
-  const formId = `${formType}-${appConfig.view}-form`;
+  const formId = `${formType}-${settings.view}-form`;
   document.getElementById(formId).reset();
 }
 
 function newSubmitted(values) {
-  const { view } = appConfig;
+  const { view } = settings;
   switchView(view);
   reloadOnTable(values);
   resetForm('add');
@@ -57,7 +57,7 @@ function newSubmitted(values) {
 }
 
 function updateSubmitted(values) {
-  const { view } = appConfig;
+  const { view } = settings;
   switchView(view);
   reloadOnTable(values);
   resetForm('update');
@@ -73,5 +73,9 @@ function saleSubmitted(values) {
 function purchaseSubmitted(values) {
   dbData.cashflow = values;
   cashflowTable.reload(values);
+  hidePreloader();
+}
+
+function settingsSaved() {
   hidePreloader();
 }

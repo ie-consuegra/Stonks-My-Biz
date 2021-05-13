@@ -2,7 +2,7 @@ function showToolbar(event) {
   if (event.matches) {
     tableToolbar.style.display = 'none';
   } else {
-    switch (appConfig.view) {
+    switch (settings.view) {
       case 'dashboard':
       case 'sales':
       case 'purchases':
@@ -43,7 +43,7 @@ function setInactiveLink(linkId) {
 }
 
 function toggleElementsVisibility(viewName) {
-  const view = viewName || appConfig.view;
+  const view = viewName || settings.view;
   switch (view) {
     case 'dashboard':
     case 'settings':
@@ -72,7 +72,7 @@ function toggleElementsVisibility(viewName) {
 }
 
 function toggleToolButtonsVisibility(viewName) {
-  const view = viewName || appConfig.view;
+  const view = viewName || settings.view;
   if (dbData.loaded) {
     switch (view) {
       case 'portfolio':
@@ -128,13 +128,13 @@ function switchView(view) {
   viewTitle.style.display = 'block';
   viewTitle.innerHTML = getPureAnchorText(linkElem);
 
-  if (appConfig.view) {
-    const lastViewLinkId = `${appConfig.view}-link`;
+  if (settings.view) {
+    const lastViewLinkId = `${settings.view}-link`;
     setInactiveLink(lastViewLinkId);
   }
   setActiveLink(viewLinkId);
 
-  appConfig.view = view; // Register new view
+  settings.view = view; // Register new view
   toggleElementsVisibility();
   toggleToolButtonsVisibility();
 
@@ -148,7 +148,7 @@ function switchView(view) {
 function switchSubView(subView) {
   tableToolbar.style.display = 'none';
   document.getElementById('view-title').style.display = 'none';
-  const { view } = appConfig;
+  const { view } = settings;
   const viewDivId = `${subView}-${view}-view`;
   setActiveView(viewDivId);
   toggleElementsVisibility(subView);

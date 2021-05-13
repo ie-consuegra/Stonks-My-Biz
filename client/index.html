@@ -489,18 +489,16 @@
                     <p>Date format</p>
                   </div>
                   <div class="input-field col s7 m3">
-                    <select name="" id="date-format">
-                      <option value="">dd/mm/yyyy</option>
-                      <option value="">dd/mm</option>
-                      <option value="">01/jan</option>
-                      <option value="">dd-mm-yyyy</option>
-                      <option value="">dd-mm</option>
-                      <option value="">01-jan</option>
+                    <select name="" id="date-format" onchange="setDateFormat(this)">
+                      <option value="dd/MM/yyyy">dd/MM/yyyy</option>
+                      <option value="dd/MM">dd/MM</option>
+                      <option value="dd-MM-yyyy">dd-MM-yyyy</option>
+                      <option value="dd-MM">dd-MM</option>
                     </select>
                     <label for="date-format">Date format</label>
                   </div>
                   <div class="input-field col s5 m2">
-                    <p>7/05/2021</p>
+                    <p id="date-format-example"></p>
                   </div>
                   <div class="input-field col m7 hide-on-small-only">
                     <p>Currency</p>
@@ -550,7 +548,7 @@
             </li>
           </ul>
           <div class="row">
-            <a class="waves-effect waves-light btn right" id="save-params-btn">Save changes</a>
+            <a class="waves-effect waves-light btn right" id="save-params-btn" onclick="saveSettings()">Save changes</a>
           </div>
           <div class="row">
             <h6>Advanced</h6>

@@ -14,8 +14,8 @@ function processStockData() {
   let depletedStock = '';
   let minimumStock = '';
 
-  appConfig.data.inventoryCost = 0;
-  appConfig.data.inventoryPrice = 0;
+  totals.inventoryCost = 0;
+  totals.inventoryPrice = 0;
 
   // Remove array of titles (The first one)
   stock.shift();
@@ -25,10 +25,10 @@ function processStockData() {
     const minStock = entry[9];
     const currStock = entry[10];
 
-    if (appConfig.stock.calcValue) {
+    if (settings.data.stock.calcValue) {
       // Get total cost and price
-      appConfig.data.inventoryCost += entry[7];
-      appConfig.data.inventoryPrice += entry[8];
+      totals.inventoryCost += entry[7];
+      totals.inventoryPrice += entry[8];
     }
 
     if (currStock <= minStock) {
@@ -53,7 +53,7 @@ function processStockData() {
 
   stockNotifications = `${depletedTitle}${depletedStock}<br>${minimumTitle}${minimumStock}`;
 
-  appConfig.notifications = `${appConfig.notifications}${stockNotifications}`;
+  settings.data.notifications = `${settings.data.notifications}${stockNotifications}`;
 }
 
 function dashboardComputations() {
@@ -63,16 +63,16 @@ function dashboardComputations() {
   const notificationsElem = document.getElementById('notifications');
 
   // Cashflow totals
-  appConfig.data.income = getColumnTotal(dbData.cashflow, 'INCOME');
-  appConfig.data.outcome = getColumnTotal(dbData.cashflow, 'OUTCOME');
+  totals.income = getColumnTotal(dbData.cashflow, 'INCOME');
+  totals.outcome = getColumnTotal(dbData.cashflow, 'OUTCOME');
 
-  appConfig.data.balance = appConfig.data.income - appConfig.data.outcome;
+  totals.balance = totals.income - totals.outcome;
 
   // Pending: Format value according to the user preference
-  incomeElem.innerHTML = `$ ${appConfig.data.income}`;
-  outcomeElem.innerHTML = `$ ${appConfig.data.outcome}`;
-  balanceElem.innerHTML = `Balance: $ ${appConfig.data.balance}`;
+  incomeElem.innerHTML = `$ ${totals.income}`;
+  outcomeElem.innerHTML = `$ ${totals.outcome}`;
+  balanceElem.innerHTML = `Balance: $ ${totals.balance}`;
 
   processStockData();
-  notificationsElem.innerHTML = appConfig.notifications;
+  notificationsElem.innerHTML = settings.data.notifications;
 }

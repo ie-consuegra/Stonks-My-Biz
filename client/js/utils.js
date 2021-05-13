@@ -1,3 +1,34 @@
+/** Change the format of the given date
+ *
+ * @param {Object} dateObj Date
+ * @param {String} format Format i.e. 'dd/MM/yyyy'
+ * @returns Formatted date as string
+ */
+function formatDate(dateObj, format) {
+  const day = dateObj.getDate();
+  const month = dateObj.getMonth() + 1;
+  const year = dateObj.getFullYear();
+
+  let formattedDateStr = '';
+  switch (format) {
+    case 'dd/MM/yyyy':
+      formattedDateStr = `${day}/${month}/${year}`;
+      break;
+    case 'dd/MM':
+      formattedDateStr = `${day}/${month}`;
+      break;
+    case 'dd-MM-yyyy':
+      formattedDateStr = `${day}-${month}-${year}`;
+      break;
+    case 'dd-MM':
+      formattedDateStr = `${day}-${month}`;
+      break;
+    default:
+      break;
+  }
+  return formattedDateStr;
+}
+
 function getTimestamp() {
   const now = new Date();
   const month = now.getMonth() + 1;
@@ -101,4 +132,14 @@ function getColumnTotal(values, field) {
   columnValues.shift(); // Remove the title of the array
   const total = sum(columnValues);
   return total;
+}
+
+/** Check if an object is empty
+ * returns true or false
+ * @param {Object} obj Object
+ * @returns Boolean
+ */
+function isEmpty(obj) {
+  const arr = Object.keys(obj);
+  return arr.length === 0;
 }

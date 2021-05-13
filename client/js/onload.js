@@ -24,10 +24,10 @@ function copyObjectEntries(objReceives, objGives) {
 }
 
 function setLoadedDB() {
-  appConfig.dbsLoaded += 1;
+  settings.data.dbsLoaded += 1;
   // Check if there are enough databases
   // loaded to let use the app
-  if (appConfig.dbsLoaded >= 5) {
+  if (settings.data.dbsLoaded >= 5) {
     dbData.loaded = true;
     M.AutoInit(); // Initialize Materialize when everything's loaded
     initDatepickers(); // Initialize datepickers
@@ -78,9 +78,20 @@ function loadSuppliersValues(values) {
   setLoadedDB();
 }
 
+function settingsObtained(settingsData) {
+  if (isEmpty(settingsData)) {
+    // Mandatory: User has to configure the app
+    fetchAll(); // Attention to this line
+    switchView('settings');
+  } else {
+    settings.load(settingsData);
+    fetchAll();
+    switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
+  }
+}
+
 window.addEventListener('load', () => {
   preventFormSubmit();
   showPreloader();
-  switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
-  fetchAll();
+  fetchSettings();
 });

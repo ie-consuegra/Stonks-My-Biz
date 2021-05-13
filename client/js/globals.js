@@ -55,3 +55,10 @@ to make it available to any process requires it without asking
 for the values of any smarttable.
 */
 const dbData = { loaded: false };
+const totals = {
+  income: 0,
+  outcome: 0,
+  balance: 0,
+  inventoryCost: 0, // Total purchase value
+  inventoryPrice: 0, // Total sale value
+};

@@ -128,7 +128,7 @@ function toggleToolButtonsForStock(smartTable) {
 }
 
 function loadInUpdateForm(data) {
-  const { view } = appConfig;
+  const { view } = settings;
   const dataKeysArr = Object.entries(data);
   dataKeysArr.forEach(([key, value]) => {
     const field = key === '_ID' ? 'id' : key.toLowerCase();
@@ -140,7 +140,7 @@ function loadInUpdateForm(data) {
 }
 
 function loadInForm() {
-  const { view } = appConfig;
+  const { view } = settings;
   let table;
 
   switch (view) {
@@ -241,7 +241,7 @@ function actionDelete() {
 }
 
 function actionDeleteContinue() {
-  switch (appConfig.view) {
+  switch (settings.view) {
     case 'portfolio':
       deletePortfolio();
       break;
@@ -315,4 +315,17 @@ function inputToRefs(inputElem) {
     }
     inputText.value = JSON.stringify(valuesObj);
   }
+}
+
+// CHANGES IN SETTINGS VIEW INPUTS
+function changeDateFormatExample(format) {
+  const dateFormatExample = document.getElementById('date-format-example');
+  const today = new Date();
+  dateFormatExample.innerHTML = formatDate(today, format);
+}
+
+function setDateFormat(selectElem) {
+  const format = selectElem.value;
+  changeDateFormatExample(format);
+  settings.setDateFormat(format);
 }

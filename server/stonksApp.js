@@ -139,8 +139,24 @@ const stonksApp = {
     this.version = version;
   },
 
+  /** Get app settings stored in Script Properties
+   *
+   */
+  getAppSettings() {
+    const configStr = PropertiesService
+      .getScriptProperties()
+      .getProperty('APP_SETTINGS') || '';
+
+    if (configStr) {
+      this.settings = { ...JSON.parse(configStr) };
+    } else {
+      this.settings = {};
+    }
+  },
+
   init() {
     this.setAppFolder();
+    this.getAppSettings();
     // this.setAppsDB();
   },
 };
