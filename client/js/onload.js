@@ -24,10 +24,10 @@ function copyObjectEntries(objReceives, objGives) {
 }
 
 function setLoadedDB() {
-  settings.data.dbsLoaded += 1;
+  settings.dbsLoaded += 1;
   // Check if there are enough databases
   // loaded to let use the app
-  if (settings.data.dbsLoaded >= 5) {
+  if (settings.dbsLoaded >= 5) {
     dbData.loaded = true;
     M.AutoInit(); // Initialize Materialize when everything's loaded
     initDatepickers(); // Initialize datepickers

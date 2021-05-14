@@ -1,7 +1,9 @@
 const settings = {
+  dbsLoaded: 0,
+  currentView: '',
+  notifications: '',
+  // Data contains info that must be stored in server
   data: {
-    currentView: '',
-    dbsLoaded: 0,
     preferences: {
       dateFormat: '',
       currency: '',
@@ -21,7 +23,6 @@ const settings = {
     stock: {
       calcValue: false,
     },
-    notifications: '',
   },
   set view(viewName) {
     if (viewName !== undefined) {

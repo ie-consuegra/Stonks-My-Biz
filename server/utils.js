@@ -43,3 +43,7 @@ function createDatesFormatter(formatterFn, dateField, format) {
 function deleteProperties() {
   PropertiesService.getScriptProperties().deleteAllProperties();
 }
+
+function deleteAppSettingsStored() {
+  PropertiesService.getScriptProperties().deleteProperty('APP_SETTINGS');
+}

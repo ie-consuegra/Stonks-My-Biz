@@ -202,7 +202,7 @@ function removeSuppliers(entryIds) {
 function saveAppSettings(settingsData) {
   const configStr = JSON.stringify(settingsData);
   PropertiesService
-    .getScriptProperties
+    .getScriptProperties()
     .setProperty('APP_SETTINGS', configStr);
 
   // Reload settings

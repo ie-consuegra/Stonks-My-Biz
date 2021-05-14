@@ -53,7 +53,7 @@ function processStockData() {
 
   stockNotifications = `${depletedTitle}${depletedStock}<br>${minimumTitle}${minimumStock}`;
 
-  settings.data.notifications = `${settings.data.notifications}${stockNotifications}`;
+  settings.notifications = `${settings.notifications}${stockNotifications}`;
 }
 
 function dashboardComputations() {
@@ -74,5 +74,5 @@ function dashboardComputations() {
   balanceElem.innerHTML = `Balance: $ ${totals.balance}`;
 
   processStockData();
-  notificationsElem.innerHTML = settings.data.notifications;
+  notificationsElem.innerHTML = settings.notifications;
 }
