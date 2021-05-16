@@ -504,24 +504,24 @@
                     <p>Currency</p>
                   </div>
                   <div class="input-field col s7 m3">
-                    <input type="text" id="currency-format" value="$">
+                    <input type="text" id="currency-format" value="$" maxlength="5" oninput="setCurrency(this)">
                     <label for="currency-format">Currency</label>
                   </div>
                   <div class="input-field col s5 m2">
-                    <p>$ 123</p>
+                    <p id="currency-example">$123</p>
                   </div>
                   <div class="input-field col m7 hide-on-small-only">
                     <p>Decimal separator</p>
                   </div>
                   <div class="input-field col s7 m3">
-                    <select name="" id="decimal-separator">
-                      <option value="comma">Comma (,)</option>
-                      <option value="period">Point (.)</option>
+                    <select name="" id="decimal-separator" onchange="setDecimalSeparator(this)">
+                      <option value=",">Comma (,)</option>
+                      <option value=".">Point (.)</option>
                     </select>
                     <label for="decimal-separator">Decimal separator</label>
                   </div>
                   <div class="input-field col s5 m2">
-                    <p>$ 1.120,50</p>
+                    <p id="decimal-example">1.120,50</p>
                   </div>
                 </div>
               </div>

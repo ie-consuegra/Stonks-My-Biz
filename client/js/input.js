@@ -324,8 +324,31 @@ function changeDateFormatExample(format) {
   dateFormatExample.innerHTML = formatDate(today, format);
 }
 
+function changeCurrencyExample(currSymbol) {
+  const currencyExample = document.getElementById('currency-example');
+  currencyExample.innerHTML = `${currSymbol}123`;
+}
+
+function changeDecimalSeparatorExample(decSeparator) {
+  const decimalExample = document.getElementById('decimal-example');
+  const thousandsSeparator = (decSeparator === ',' ? '.' : ',');
+  decimalExample.innerHTML = `1${thousandsSeparator}120${decSeparator}50`;
+}
+
 function setDateFormat(selectElem) {
   const format = selectElem.value;
   changeDateFormatExample(format);
   settings.setDateFormat(format);
+}
+
+function setCurrency(inputElem) {
+  const currency = inputElem.value;
+  changeCurrencyExample(currency);
+  settings.setCurrency(currency);
+}
+
+function setDecimalSeparator(selectElem) {
+  const decSeparator = selectElem.value;
+  changeDecimalSeparatorExample(decSeparator);
+  settings.setDecimalSeparator(decSeparator);
 }

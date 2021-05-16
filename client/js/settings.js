@@ -35,6 +35,12 @@ const settings = {
   setDateFormat(format) {
     this.data.preferences.dateFormat = format;
   },
+  setCurrency(currSymbol) {
+    this.data.preferences.currency = currSymbol;
+  },
+  setDecimalSeparator(decSeparator) {
+    this.data.preferences.decimalSeparator = decSeparator;
+  },
   load(settingsData) {
     this.data = { ...settingsData };
   },

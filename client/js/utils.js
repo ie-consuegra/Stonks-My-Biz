@@ -5,9 +5,12 @@
  * @returns Formatted date as string
  */
 function formatDate(dateObj, format) {
-  const day = dateObj.getDate();
-  const month = dateObj.getMonth() + 1;
+  let day = dateObj.getDate();
+  let month = dateObj.getMonth() + 1;
   const year = dateObj.getFullYear();
+
+  if (month < 10) { month = `0${month}`; }
+  if (day < 10) { day = `0${day}`; }
 
   let formattedDateStr = '';
   switch (format) {
