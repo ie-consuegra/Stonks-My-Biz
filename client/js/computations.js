@@ -1,3 +1,10 @@
+function formatCurrency(num) {
+  const { currency, decimalSeparator, useCents } = settings.data.preferences;
+  const formattedNumber = formatNumber(num, decimalSeparator, 2, useCents);
+  const formattedCurrency = `${currency}${formattedNumber}`;
+  return formattedCurrency;
+}
+
 function getBalance(values) {
   const income = getColumnTotal(values, 'INCOME');
   const outcome = getColumnTotal(values, 'OUTCOME');
@@ -68,10 +75,14 @@ function dashboardComputations() {
 
   totals.balance = totals.income - totals.outcome;
 
-  // Pending: Format value according to the user preference
-  incomeElem.innerHTML = `$ ${totals.income}`;
-  outcomeElem.innerHTML = `$ ${totals.outcome}`;
-  balanceElem.innerHTML = `Balance: $ ${totals.balance}`;
+  // Format total values according to user preferences
+  const formattedIncome = formatCurrency(totals.income.toString());
+  const formattedOutcome = formatCurrency(totals.outcome.toString());
+  const formattedTotal = formatCurrency(totals.balance.toString());
+
+  incomeElem.innerHTML = formattedIncome;
+  outcomeElem.innerHTML = formattedOutcome;
+  balanceElem.innerHTML = `Balance: ${formattedTotal}`;
 
   processStockData();
   notificationsElem.innerHTML = settings.notifications;

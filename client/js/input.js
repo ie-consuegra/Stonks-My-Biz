@@ -335,6 +335,18 @@ function changeDecimalSeparatorExample(decSeparator) {
   decimalExample.innerHTML = `1${thousandsSeparator}120${decSeparator}50`;
 }
 
+function changeUseCentsExample(useCents) {
+  const useCentsExample = document.getElementById('use-cents-example');
+  const { decimalSeparator } = settings.data.preferences;
+  let example = '';
+  if (useCents) {
+    example = `325${decimalSeparator}00`;
+  } else {
+    example = '325';
+  }
+  useCentsExample.innerHTML = example;
+}
+
 function setDateFormat(selectElem) {
   const format = selectElem.value;
   changeDateFormatExample(format);
@@ -351,4 +363,10 @@ function setDecimalSeparator(selectElem) {
   const decSeparator = selectElem.value;
   changeDecimalSeparatorExample(decSeparator);
   settings.setDecimalSeparator(decSeparator);
+}
+
+function setUseCents(selectElem) {
+  const useCents = (selectElem.value === 'true');
+  changeUseCentsExample(useCents);
+  settings.setUseCents(useCents);
 }

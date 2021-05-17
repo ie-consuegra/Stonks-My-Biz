@@ -6,8 +6,9 @@ const settings = {
   data: {
     preferences: {
       dateFormat: '',
-      currency: '',
-      decimalSeparator: '',
+      currency: '$',
+      useCents: true,
+      decimalSeparator: ',',
     },
     company: {
       name: '',
@@ -40,6 +41,9 @@ const settings = {
   },
   setDecimalSeparator(decSeparator) {
     this.data.preferences.decimalSeparator = decSeparator;
+  },
+  setUseCents(useCents) {
+    this.data.preferences.useCents = useCents;
   },
   load(settingsData) {
     this.data = { ...settingsData };
