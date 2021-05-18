@@ -38,6 +38,7 @@ function setLoadedDB() {
 
 function loadCashflowValues(values) {
   cashflowTable.setInputCallback(toggleToolButtons);
+  cashflowTable.addFormatter([4, 5, 6], formatCurrency);
   cashflowTable.load(values);
 
   dbData.cashflow = values;
@@ -46,6 +47,7 @@ function loadCashflowValues(values) {
 
 function loadPortfolioValues(values) {
   portfolioTable.setInputCallback(toggleToolButtonsForPortfolio);
+  portfolioTable.addFormatter([7, 8], formatCurrency);
   portfolioTable.load(values, { avoidColumns: [9, 11] });
 
   portfolioStockTable.setInputCallback(inputToRefs);
@@ -56,6 +58,7 @@ function loadPortfolioValues(values) {
 
 function loadStockValues(values) {
   stockTable.setInputCallback(toggleToolButtonsForStock);
+  stockTable.addFormatter([7, 8], formatCurrency);
   stockTable.load(values);
 
   dbData.stock = values;

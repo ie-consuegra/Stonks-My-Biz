@@ -1,4 +1,11 @@
 /**
+ * Formats or translates the given input
+ * @callback formatter
+ * @param {String} value
+ * @returns {String} Formatted string
+ */
+
+/**
 * Class representing a table the user can interact with
 */
 class SmartTable {
@@ -20,6 +27,7 @@ class SmartTable {
     this.values = [];
     this.checkboxes = [];
     this.numberInputs = [];
+    this.formatters = [];
   }
 
   setInputCallback(callback) {
@@ -83,6 +91,9 @@ class SmartTable {
                     break;
                 }
                 cell.appendChild(element);
+              } else if (this.formatters[j]) {
+                const value = values[i][j].toString();
+                cell.innerHTML = this.formatters[j](value);
               } else {
                 cell.innerHTML = values[i][j];
               }
@@ -104,6 +115,9 @@ class SmartTable {
                   break;
               }
               cell.appendChild(element);
+            } else if (this.formatters[j]) {
+              const value = values[i][j].toString();
+              cell.innerHTML = this.formatters[j](value);
             } else {
               cell.innerHTML = values[i][j];
             }
@@ -226,6 +240,18 @@ class SmartTable {
       tableRow.addEventListener('click', (e) => {
         action(e);
       });
+    });
+  }
+
+  /**
+   * Add a formatter function to the corresponding index
+   * Formatter is used when loading values to the table
+   * @param {Array} indices Positions where the formatter will be called
+   * @param {formatter} formatter
+   */
+  addFormatter(indices, formatter) {
+    indices.forEach((formatterIndex) => {
+      this.formatters[formatterIndex] = formatter;
     });
   }
 

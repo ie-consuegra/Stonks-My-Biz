@@ -1,7 +1,10 @@
 function formatCurrency(num) {
-  const { currency, decimalSeparator, useCents } = settings.data.preferences;
-  const formattedNumber = formatNumber(num, decimalSeparator, 2, useCents);
-  const formattedCurrency = `${currency}${formattedNumber}`;
+  let formattedCurrency = '';
+  if (num) {
+    const { currency, decimalSeparator, useCents } = settings.data.preferences;
+    const formattedNumber = formatNumber(num, decimalSeparator, 2, useCents);
+    formattedCurrency = `${currency}${formattedNumber}`;
+  }
   return formattedCurrency;
 }
 
