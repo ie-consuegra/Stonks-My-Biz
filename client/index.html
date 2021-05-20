@@ -422,56 +422,58 @@
               </div>
               <div class="collapsible-body">
                 <div class="row">
-                  <div class="col s12 m6">
-                    <p>Edit the information of your business. This will appear in the receipts.</p>
-                    <div class="input-field col s12">
-                      <input type="text" name="" id="business-name" placeholder="Business name">
-                      <label for="business-name">Business name</label>
+                  <form id="business-info-form">
+                    <div class="col s12 m6">
+                      <p>Edit the information of your business. This will appear in the receipts.</p>
+                      <div class="input-field col s12">
+                        <input type="text" name="" id="business-name" placeholder="Business name">
+                        <label for="business-name">Business name</label>
+                      </div>
+                      <div class="col s12">
+                        <p>Identification and registry numbers</p>
+                      </div>
+                      <div class="input-field col s5 m2">
+                        <input type="text" name="" id="business-id1" placeholder="">
+                      </div>
+                      <div class="input-field col s7 m10">
+                        <input type="text" name="" id="business-id1-number" placeholder="">
+                      </div>
+                      <div class="input-field col s5 m2">
+                        <input type="text" name="" id="business-id2" placeholder="">
+                      </div>
+                      <div class="input-field col s7 m10">
+                        <input type="text" name="" id="business-id2-number" placeholder="">
+                      </div>
+                      <div class="input-field col s5 m2">
+                        <input type="text" name="" id="business-id3" placeholder="">
+                      </div>
+                      <div class="input-field col s7 m10">
+                        <input type="text" name="" id="business-id3-number" placeholder="">
+                      </div>
                     </div>
-                    <div class="col s12">
-                      <p>Identification and registry numbers</p>
+                    <div class="col s12 m6">
+                      <p>Contact information</p>
+                      <div class="input-field col s12">
+                        <input type="text" name="" id="business-phones">
+                        <label for="business-phones">Telephones</label>
+                      </div>
+                      <div class="input-field col s12">
+                        <input type="text" name="" id="business-address">
+                        <label for="business-address">Address</label>
+                      </div>
+                      <div class="input-field col s12">
+                        <input type="text" name="" id="business-website">
+                        <label for="business-website">Website</label>
+                      </div>
+                      <div class="col s12">
+                        <p>Extra info/slogan/others</p>
+                      </div>
+                      <div class="input-field col s12">
+                        <textarea id="business-extras" class="materialize-textarea"></textarea>
+                        <label for="business-extras">Extra info</label>
+                      </div>
                     </div>
-                    <div class="input-field col s5 m2">
-                      <input type="text" name="" id="business-id-one" placeholder="">
-                    </div>
-                    <div class="input-field col s7 m10">
-                      <input type="text" name="" id="business-id-one-number" placeholder="">
-                    </div>
-                    <div class="input-field col s5 m2">
-                      <input type="text" name="" id="business-id-two" placeholder="">
-                    </div>
-                    <div class="input-field col s7 m10">
-                      <input type="text" name="" id="business-id-two-number" placeholder="">
-                    </div>
-                    <div class="input-field col s5 m2">
-                      <input type="text" name="" id="business-id-three" placeholder="">
-                    </div>
-                    <div class="input-field col s7 m10">
-                      <input type="text" name="" id="business-id-three-number" placeholder="">
-                    </div>
-                  </div>
-                  <div class="col s12 m6">
-                    <p>Contact information</p>
-                    <div class="input-field col s12">
-                      <input type="text" name="" id="business-tel">
-                      <label for="business-tel">Telephones</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input type="text" name="" id="business-address">
-                      <label for="business-address">Address</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input type="text" name="" id="business-website">
-                      <label for="business-website">Website</label>
-                    </div>
-                    <div class="col s12">
-                      <p>Extra info/slogan/others</p>
-                    </div>
-                    <div class="input-field col s12">
-                      <textarea id="business-extras" class="materialize-textarea"></textarea>
-                      <label for="business-extras">Extra info</label>
-                    </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </li>
@@ -504,8 +506,8 @@
                     <p>Currency</p>
                   </div>
                   <div class="input-field col s7 m3">
-                    <input type="text" id="currency-format" value="$" maxlength="5" oninput="setCurrency(this)">
-                    <label for="currency-format">Currency</label>
+                    <input type="text" id="currency" value="$" maxlength="5" oninput="setCurrency(this)">
+                    <label for="currency">Currency</label>
                   </div>
                   <div class="input-field col s5 m2">
                     <p id="currency-example">$123</p>
@@ -527,14 +529,14 @@
                     <p>Cents</p>
                   </div>
                   <div class="input-field col s7 m3">
-                    <select name="" id="use-cents" onchange="setUseCents(this)">
+                    <select name="" id="cents" onchange="setCents(this)">
                       <option value="true">Use</option>
                       <option value="false">Do not use</option>
                     </select>
-                    <label for="use-cents">Cents</label>
+                    <label for="cents">Cents</label>
                   </div>
                   <div class="input-field col s5 m2">
-                    <p id="use-cents-example">325,00</p>
+                    <p id="cents-example">325,00</p>
                   </div>
                 </div>
               </div>
@@ -550,7 +552,7 @@
                     <div>Include stock items
                       <div class="switch secondary-content">
                         <label>
-                          <input type="checkbox" id="auto-portfolio">
+                          <input type="checkbox" id="auto-portfolio" onchange="setAutoPortfolio(this)" >
                           <span class="lever"></span>
                         </label>
                       </div>

@@ -81,13 +81,39 @@ function loadSuppliersValues(values) {
   setLoadedDB();
 }
 
+function loadSettingValuesInInputs(settingsData) {
+  const { company } = settingsData;
+  const { preferences } = settingsData;
+
+  const companyEntries = Object.entries(company);
+  companyEntries.forEach(([key, value]) => {
+    if (key === 'ids') {
+      const idEntries = Object.entries(value);
+      idEntries.forEach(([k, val]) => {
+        document.getElementById(`business-${k}`).value = val.name;
+        document.getElementById(`business-${k}-number`).value = val.number;
+      });
+    } else {
+      document.getElementById(`business-${key}`).value = value;
+    }
+  });
+
+  // Load preferences
+  document.getElementById('currency').value = preferences.currency;
+  selectOption(document.getElementById('date-format'), preferences.dateFormat);
+  selectOption(document.getElementById('decimal-separator'), preferences.decimalSeparator);
+  selectOption(document.getElementById('cents'), preferences.cents.toString());
+}
+
 function settingsObtained(settingsData) {
   if (isEmpty(settingsData)) {
     // Mandatory: User has to configure the app
     fetchAll(); // Attention to this line
     switchView('settings');
+    loadSettingValuesInInputs(settings.data);
   } else {
     settings.load(settingsData);
+    loadSettingValuesInInputs(settingsData);
     fetchAll();
     switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   }

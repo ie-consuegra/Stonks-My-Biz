@@ -248,3 +248,21 @@ function makeParsableToNum(numStr, decSeparator) {
   }
   return validNum;
 }
+
+/**
+ * Search an item in the options of a select element and change the index to that
+ * of the item passed as argument.
+ * @param {Object} selectElem HTML Select element
+ * @param {String} item Value the select element must have
+ */
+function selectOption(selectElem, item) {
+  const { options } = selectElem;
+  const optionsArr = Array.from(options);
+  const index = optionsArr.findIndex((option) => option.value === item);
+  if (index !== -1) {
+    selectElem.selectedIndex = index;
+  } else {
+    // Select the first index by default
+    selectElem.selectedIndex = 0;
+  }
+}

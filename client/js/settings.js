@@ -7,7 +7,7 @@ const settings = {
     preferences: {
       dateFormat: '',
       currency: '$',
-      useCents: true,
+      cents: true,
       decimalSeparator: ',',
     },
     company: {
@@ -15,8 +15,12 @@ const settings = {
       phones: '',
       address: '',
       website: '',
-      extraInfo: '',
-      ids: {},
+      extras: '',
+      ids: {
+        id1: { name: '', number: '' },
+        id2: { name: '', number: '' },
+        id3: { name: '', number: '' },
+      },
     },
     portfolio: {
       loadStock: false,
@@ -42,8 +46,11 @@ const settings = {
   setDecimalSeparator(decSeparator) {
     this.data.preferences.decimalSeparator = decSeparator;
   },
-  setUseCents(useCents) {
-    this.data.preferences.useCents = useCents;
+  setCents(useCents) {
+    this.data.preferences.cents = useCents;
+  },
+  setAutoPortfolio(loadStock) {
+    this.data.portfolio.loadStock = loadStock;
   },
   load(settingsData) {
     this.data = { ...settingsData };

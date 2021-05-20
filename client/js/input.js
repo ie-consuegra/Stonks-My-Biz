@@ -335,16 +335,16 @@ function changeDecimalSeparatorExample(decSeparator) {
   decimalExample.innerHTML = `1${thousandsSeparator}120${decSeparator}50`;
 }
 
-function changeUseCentsExample(useCents) {
-  const useCentsExample = document.getElementById('use-cents-example');
+function changeCentsExample(cents) {
+  const centsExample = document.getElementById('cents-example');
   const { decimalSeparator } = settings.data.preferences;
   let example = '';
-  if (useCents) {
+  if (cents) {
     example = `325${decimalSeparator}00`;
   } else {
     example = '325';
   }
-  useCentsExample.innerHTML = example;
+  centsExample.innerHTML = example;
 }
 
 function setDateFormat(selectElem) {
@@ -365,8 +365,32 @@ function setDecimalSeparator(selectElem) {
   settings.setDecimalSeparator(decSeparator);
 }
 
-function setUseCents(selectElem) {
-  const useCents = (selectElem.value === 'true');
-  changeUseCentsExample(useCents);
-  settings.setUseCents(useCents);
+function setCents(selectElem) {
+  const cents = (selectElem.value === 'true');
+  changeCentsExample(cents);
+  settings.setCents(cents);
+}
+
+function setAutoPortfolio(checkboxElem) {
+  settings.setAutoPortfolio(checkboxElem.checked);
+}
+
+/**
+ * Save the information of the business in the settings object global variable
+ */
+function saveBusinessInfo() {
+  const { company } = settings.data;
+
+  const companyEntries = Object.entries(company);
+  companyEntries.forEach(([key, value]) => {
+    if (key === 'ids') {
+      const idEntries = Object.keys(value);
+      idEntries.forEach((k) => {
+        settings.data.company.ids[k].name = document.getElementById(`business-${k}`).value;
+        settings.data.company.ids[k].number = document.getElementById(`business-${k}-number`).value;
+      });
+    } else {
+      settings.data.company[key] = document.getElementById(`business-${key}`).value;
+    }
+  });
 }

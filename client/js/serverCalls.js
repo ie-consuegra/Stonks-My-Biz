@@ -203,6 +203,7 @@ function deleteSuppliers() {
 
 function saveSettings() {
   showPreloader();
+  saveBusinessInfo();
   google
     .script
     .run
