@@ -142,6 +142,11 @@ function switchView(view) {
   const screen = window.matchMedia('(max-width: 601px)');
   showToolbar(screen);
   screen.addEventListener('change', showToolbar);
+
+  // Reinitialize Materialize labels in views with inputs
+  if (view === 'sales' || view === 'purchases') {
+    M.updateTextFields();
+  }
   return false; // Avoid reloading the page
 }
 

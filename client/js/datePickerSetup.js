@@ -1,15 +1,7 @@
 const today = new Date();
-// const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-const dayNum = today.getDate();
-const month = today.getMonth() + 1;
-const year = today.getFullYear();
 
-const formattedDayNum = (dayNum < 10) ? `0${dayNum}` : `${dayNum}`;
-const formattedMonth = (month < 10) ? `0${month}` : `${month}`;
-const formattedDate = `${formattedDayNum}/${formattedMonth}/${year}`;
-
+// This values will be in the language file
 const options = {
-  format: 'dd/mm/yyyy',
   i18n: {
     cancel: 'cancelar',
     done: 'Aceptar',
@@ -24,6 +16,10 @@ const options = {
 };
 
 function initDatepickers() {
+  const format = settings.data.preferences.dateFormat;
+  const formattedDate = formatDate(today, format);
+  options.format = format.toLowerCase();
+
   const elems = document.querySelectorAll('.datepicker');
   M.Datepicker.init(elems, options);
   elems.forEach((elem) => {
