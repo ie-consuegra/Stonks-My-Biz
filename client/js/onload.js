@@ -105,6 +105,29 @@ function loadSettingValuesInInputs(settingsData) {
   selectOption(document.getElementById('cents'), preferences.cents.toString());
 }
 
+function defineCurrencyInputs() {
+  const currencyInputs = document.querySelectorAll('.currency-input');
+
+  const { decimalSeparator, cents } = settings.data.preferences;
+
+  const numberFormatterWhenInputting = (num) => formatNumber(num, decimalSeparator, 2);
+  const numberFormatterWhenLeaving = (num) => formatNumber(num, decimalSeparator, 2, cents);
+
+  for (let index = 0; index < currencyInputs.length; index += 1) {
+    const input = currencyInputs[index];
+
+    input.addEventListener('keyup', () => {
+      const { value } = input;
+      input.value = numberFormatterWhenInputting(value);
+    });
+
+    input.addEventListener('blur', () => {
+      const { value } = input;
+      input.value = numberFormatterWhenLeaving(value);
+    });
+  }
+}
+
 function settingsObtained(settingsData) {
   if (isEmpty(settingsData)) {
     // Mandatory: User has to configure the app
@@ -118,6 +141,7 @@ function settingsObtained(settingsData) {
     fetchAll();
     switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   }
+  defineCurrencyInputs();
 }
 
 window.addEventListener('load', () => {

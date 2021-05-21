@@ -8,6 +8,11 @@ function formatCurrency(num) {
   return formattedCurrency;
 }
 
+function makeParsable(numStr) {
+  const { decimalSeparator } = settings.data.preferences;
+  return makeParsableToNum(numStr, decimalSeparator);
+}
+
 function getBalance(values) {
   const income = getColumnTotal(values, 'INCOME');
   const outcome = getColumnTotal(values, 'OUTCOME');
