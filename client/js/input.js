@@ -347,6 +347,14 @@ function changeCentsExample(cents) {
   centsExample.innerHTML = example;
 }
 
+function updateSettingsFormatExamples() {
+  const { preferences } = settings.data;
+  changeDateFormatExample(preferences.dateFormat);
+  changeCurrencyExample(preferences.currency);
+  changeDecimalSeparatorExample(preferences.decimalSeparator);
+  changeCentsExample(preferences.cents);
+}
+
 function setDateFormat(selectElem) {
   const format = selectElem.value;
   changeDateFormatExample(format);

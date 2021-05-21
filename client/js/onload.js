@@ -114,6 +114,7 @@ function settingsObtained(settingsData) {
   } else {
     settings.load(settingsData);
     loadSettingValuesInInputs(settingsData);
+    updateSettingsFormatExamples();
     fetchAll();
     switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   }
