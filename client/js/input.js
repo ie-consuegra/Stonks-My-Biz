@@ -134,7 +134,14 @@ function loadInUpdateForm(data) {
     const field = key === '_ID' ? 'id' : key.toLowerCase();
     const elemId = `${view}-update-item-${field}`;
     if (document.getElementById(elemId)) {
-      document.getElementById(elemId).value = value;
+      // Check if the value must be formatted
+      const inputElem = document.getElementById(elemId);
+      if (Array.from(inputElem.classList).indexOf('currency-input') !== -1) {
+        const { decimalSeparator, cents } = settings.data.preferences;
+        inputElem.value = formatNumber(value.toString(), decimalSeparator, 2, cents);
+      } else {
+        inputElem.value = value;
+      }
     }
   });
 }
@@ -270,18 +277,15 @@ function arrangeCashflowData(formElement) {
   data.CONCEPT = formInputs.CONCEPT.value;
   data.DETAILS = formInputs.DETAILS.value;
 
-  data.INCOME = '';
-  data.OUTCOME = '';
+  data.AMOUNT = '';
 
   switch (data.CONCEPT) {
     case 'income':
-      data.INCOME = makeParsable(formInputs.AMOUNT.value);
-      data.BALANCE = totals.balance + Number(data.INCOME);
+      data.AMOUNT = makeParsable(formInputs.AMOUNT.value);
       break;
     case 'outcome':
     case 'expense':
-      data.OUTCOME = makeParsable(formInputs.AMOUNT.value);
-      data.BALANCE = totals.balance - Number(data.OUTCOME);
+      data.AMOUNT = `-${makeParsable(formInputs.AMOUNT.value)}`;
       break;
     default:
       break;

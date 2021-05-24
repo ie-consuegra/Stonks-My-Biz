@@ -115,13 +115,29 @@ function findOne(values, query) {
  * Sum all the numbers in an array
  * @param {Number[]} values Array of numbers
  */
-function sum(values) {
-  const total = values.reduce((acc, value) => {
-    if (!value) { // For null or undefined assign 0 to avoid NaN errors.
-      value = 0;
-    }
-    return acc + value;
-  });
+function sum(values, intTypes = 'all') {
+  let total = 0;
+
+  const isPositive = (num) => num > 0;
+  const isNegative = (num) => num < 0;
+
+  if (intTypes === 'all') {
+    total = values.reduce((acc, value) => {
+      if (!value) { // For null or undefined assign 0 to avoid NaN errors.
+        value = 0;
+      }
+      return acc + value;
+    });
+  }
+
+  if (intTypes === 'positive') {
+    total = values.filter(isPositive).reduce((acc, value) => acc + value);
+  }
+
+  if (intTypes === 'negative') {
+    total = values.filter(isNegative).reduce((acc, value) => acc + value);
+  }
+
   return total;
 }
 
@@ -130,10 +146,10 @@ function sum(values) {
  * @param {Array[]} values Set of values in a 2d array
  * @param {String} field Name of the field (column title in db)
  */
-function getColumnTotal(values, field) {
+function getColumnTotal(values, field, intType = 'all') {
   const columnValues = getValuesByFields(values, [field]).flat();
   columnValues.shift(); // Remove the title of the array
-  const total = sum(columnValues);
+  const total = sum(columnValues, intType);
   return total;
 }
 

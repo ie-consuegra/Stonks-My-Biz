@@ -1,9 +1,10 @@
 function formatCurrency(num) {
   let formattedCurrency = '';
   if (num) {
+    const integerSign = (Number(num) < 0 ? '-' : '');
     const { currency, decimalSeparator, cents } = settings.data.preferences;
     const formattedNumber = formatNumber(num, decimalSeparator, 2, cents);
-    formattedCurrency = `${currency}${formattedNumber}`;
+    formattedCurrency = `${currency}${integerSign}${formattedNumber}`;
   }
   return formattedCurrency;
 }
@@ -11,14 +12,6 @@ function formatCurrency(num) {
 function makeParsable(numStr) {
   const { decimalSeparator } = settings.data.preferences;
   return makeParsableToNum(numStr, decimalSeparator);
-}
-
-function getBalance(values) {
-  const income = getColumnTotal(values, 'INCOME');
-  const outcome = getColumnTotal(values, 'OUTCOME');
-
-  const balance = income - outcome;
-  return balance;
 }
 
 function processStockData() {
@@ -78,8 +71,8 @@ function dashboardComputations() {
   const notificationsElem = document.getElementById('notifications');
 
   // Cashflow totals
-  totals.income = getColumnTotal(dbData.cashflow, 'INCOME');
-  totals.outcome = getColumnTotal(dbData.cashflow, 'OUTCOME');
+  totals.income = getColumnTotal(dbData.cashflow, 'AMOUNT', 'positive');
+  totals.outcome = getColumnTotal(dbData.cashflow, 'AMOUNT', 'negative') * -1;
 
   totals.balance = totals.income - totals.outcome;
 

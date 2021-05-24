@@ -25,7 +25,7 @@ stonksApp.setVersion = '0.0.0';
 stonksApp.init();
 
 // CASHFLOW database "creation/connection"
-const cashflowSchema = ['DATE', 'CONCEPT', 'DETAILS', 'INCOME', 'OUTCOME', 'BALANCE'];
+const cashflowSchema = ['DATE', 'CONCEPT', 'DETAILS', 'AMOUNT'];
 const cashflowModel = DBS.createModelFrom('cashflow', cashflowSchema);
 const cashflowDBS = new DBS(cashflowModel, stonksApp.getFolder);
 
