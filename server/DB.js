@@ -54,8 +54,8 @@ class DB {
     const entry = [];
     if (DB.isValid(data)) {
       this.model.fields.forEach((item) => {
-        if (item === '_ID') {
-          if ('_ID' in data || data._ID) {
+        if (item === 'ROW_ID') {
+          if ('ROW_ID' in data || data.ROW_ID) {
             entry.push(data[item]);
           } else {
             entry.push(DB.generateId());
@@ -155,7 +155,7 @@ class DB {
    */
   update(data) {
     // Valid data to write on a sheet must be a 2d array
-    const id = data._ID;
+    const id = data.ROW_ID;
     const newValues = this.arrange(data);
     const values = this.fetch();
 

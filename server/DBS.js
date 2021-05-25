@@ -17,7 +17,7 @@ class DBS {
    */
   constructor(model, parentFolder, useCatalog = true) {
     this.model = model;
-    this.model.fields.unshift('_ID'); // Add the _ID column
+    this.model.fields.unshift('ROW_ID'); // Add the ROW_ID column
     this.parentFolder = parentFolder;
     this.useCatalog = useCatalog;
   }

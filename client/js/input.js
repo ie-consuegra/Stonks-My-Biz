@@ -131,7 +131,7 @@ function loadInUpdateForm(data) {
   const { view } = settings;
   const dataKeysArr = Object.entries(data);
   dataKeysArr.forEach(([key, value]) => {
-    const field = key === '_ID' ? 'id' : key.toLowerCase();
+    const field = key === 'ROW_ID' ? 'id' : key.toLowerCase();
     const elemId = `${view}-update-item-${field}`;
     if (document.getElementById(elemId)) {
       // Check if the value must be formatted
@@ -188,7 +188,7 @@ function addToPortfolioItem() {
   const selectedStockCheckboxes = stockTable.selectedCheckboxes;
   const selectedStockIds = selectedStockCheckboxes.map((checkbox) => checkbox.id.toString());
   const values = selectedStockIds.map((ref) => {
-    const query = { field: '_ID', keyword: ref };
+    const query = { field: 'ROW_ID', keyword: ref };
     return findOne(dbData.stock, query);
   });
   values.unshift([]); // The equivalent to the title row
@@ -205,7 +205,7 @@ function addToSalesItem() {
   const selectedPortfolioCheckboxes = portfolioTable.selectedCheckboxes;
   const selectedIds = selectedPortfolioCheckboxes.map((checkbox) => checkbox.id.toString());
   const values = selectedIds.map((ref) => {
-    const query = { field: '_ID', keyword: ref };
+    const query = { field: 'ROW_ID', keyword: ref };
     return findOne(dbData.portfolio, query);
   });
   values.unshift([]); // The equivalent to the title row
@@ -221,7 +221,7 @@ function addToPurchasesItem() {
   const selectedStockCheckboxes = stockTable.selectedCheckboxes;
   const selectedStockIds = selectedStockCheckboxes.map((checkbox) => checkbox.id.toString());
   const values = selectedStockIds.map((ref) => {
-    const query = { field: '_ID', keyword: ref };
+    const query = { field: 'ROW_ID', keyword: ref };
     return findOne(dbData.stock, query);
   });
   values.unshift([]); // The equivalent to the title row
@@ -279,8 +279,8 @@ function arrangeCashflowData(formElement) {
 
   data.AMOUNT = '';
 
-  if (formInputs._ID) {
-    data._ID = formInputs._ID.value;
+  if (formInputs.ROW_ID) {
+    data.ROW_ID = formInputs.ROW_ID.value;
   }
 
   switch (data.CONCEPT) {

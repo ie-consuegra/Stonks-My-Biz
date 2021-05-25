@@ -64,7 +64,7 @@ class SmartTable {
         } else {
           values[i].forEach((title, colIndex) => {
             if (colIndex === 0) {
-              // Leave the first th blank to avoid showing the _ID column title
+              // Leave the first th blank to avoid showing the ROW_ID column title
               theadRow.innerHTML = '<th></th>';
             }
             theadRow.innerHTML = `${theadRow.innerHTML}<th>${title}</th>`;
