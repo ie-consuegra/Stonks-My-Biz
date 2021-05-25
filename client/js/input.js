@@ -172,7 +172,7 @@ function loadInForm() {
 
   const entryId = table.selectedCheckboxes[0].id.toString();
 
-  const selectedEntry = table.values.find((entry) => entry[0].toString() === entryId);
+  const selectedEntry = dbData[view].find((entry) => entry[0].toString() === entryId);
 
   const fields = dbData[view][0];
   const data = {};
