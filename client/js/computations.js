@@ -20,7 +20,7 @@ function makeParsable(numStr) {
 }
 
 function processStockData() {
-  const { stock } = dbData;
+  const stock = [...dbData.stock];
   let stockNotifications = '';
   const depletedTitle = '<p><strong>Depleted stock</strong></p>';
   const minimumTitle = '<p><strong>Stock below minimum</strong></p>';

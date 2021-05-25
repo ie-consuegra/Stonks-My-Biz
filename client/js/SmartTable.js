@@ -23,8 +23,6 @@ class SmartTable {
     // this.addClickEventToTableRows = this.addClickEventToTableRows.bind(this);
     // striped table is default
     this.type = type || ['striped'];
-    // Initialize the values the table will contain
-    this.values = [];
     this.checkboxes = [];
     this.numberInputs = [];
     this.formatters = [];
@@ -50,11 +48,11 @@ class SmartTable {
     // Initialize this.checkboxes
     this.checkboxes = [];
     // Copy values
-    this.values = [...values];
+    const valuesDuplicate = [...values];
     this.thead = document.createElement('thead');
     this.tbody = document.createElement('tbody');
 
-    for (let i = 0; i < values.length; i += 1) {
+    for (let i = 0; i < valuesDuplicate.length; i += 1) {
       if (i === 0) { // If it's the first row create the thead
         const theadRow = this.thead.insertRow();
         if (this.titles) {
@@ -62,7 +60,7 @@ class SmartTable {
             theadRow.innerHTML = `${theadRow.innerHTML}<th>${title}</th>`;
           });
         } else {
-          values[i].forEach((title, colIndex) => {
+          valuesDuplicate[i].forEach((title, colIndex) => {
             if (colIndex === 0) {
               // Leave the first th blank to avoid showing the ROW_ID column title
               theadRow.innerHTML = '<th></th>';
@@ -73,7 +71,7 @@ class SmartTable {
       } else {
         const tbodyRow = this.tbody.insertRow();
         let tableColumnIndex = 0;
-        for (let j = 0; j < values[i].length; j += 1) {
+        for (let j = 0; j < valuesDuplicate[i].length; j += 1) {
           if (this.options.avoidColumns) {
             if (this.options.avoidColumns.indexOf(j) === -1) {
               const cell = tbodyRow.insertCell(tableColumnIndex);
@@ -81,21 +79,21 @@ class SmartTable {
                 let element;
                 switch (this.options.inputType) {
                   case 'checkbox':
-                    element = this.createCheckbox(values[i][j]);
+                    element = this.createCheckbox(valuesDuplicate[i][j]);
                     break;
                   case 'number':
-                    element = this.createNumberInput(values[i][j]);
+                    element = this.createNumberInput(valuesDuplicate[i][j]);
                     break;
                   default:
-                    element = this.createCheckbox(values[i][j]);
+                    element = this.createCheckbox(valuesDuplicate[i][j]);
                     break;
                 }
                 cell.appendChild(element);
               } else if (this.formatters[j]) {
-                const value = values[i][j].toString();
+                const value = valuesDuplicate[i][j].toString();
                 cell.innerHTML = this.formatters[j](value);
               } else {
-                cell.innerHTML = values[i][j];
+                cell.innerHTML = valuesDuplicate[i][j];
               }
               tableColumnIndex += 1;
             }
@@ -105,21 +103,21 @@ class SmartTable {
               let element;
               switch (this.options.inputType) {
                 case 'checkbox':
-                  element = this.createCheckbox(values[i][j]);
+                  element = this.createCheckbox(valuesDuplicate[i][j]);
                   break;
                 case 'number':
-                  element = this.createNumberInput(values[i][j]);
+                  element = this.createNumberInput(valuesDuplicate[i][j]);
                   break;
                 default:
-                  element = this.createCheckbox(values[i][j]);
+                  element = this.createCheckbox(valuesDuplicate[i][j]);
                   break;
               }
               cell.appendChild(element);
             } else if (this.formatters[j]) {
-              const value = values[i][j].toString();
+              const value = valuesDuplicate[i][j].toString();
               cell.innerHTML = this.formatters[j](value);
             } else {
-              cell.innerHTML = values[i][j];
+              cell.innerHTML = valuesDuplicate[i][j];
             }
           }
         }
@@ -135,7 +133,7 @@ class SmartTable {
     this.table.classList.add(this.type);
     // If there are values, not only the column titles
     // add clickEventListeners to checkboxes or number inputs
-    if (values.length > 1) {
+    if (valuesDuplicate.length > 1) {
       if (this.options.inputType === 'checkbox') {
         this.addClickEventToCheckboxes();
         this.inputCallback(this);
