@@ -49,20 +49,22 @@ function submitNewPortfolio(formData) {
 
 function submitNewSale(formData) {
   showPreloader();
+  const data = arrangeCashflowData(formData);
   google
     .script
     .run
     .withSuccessHandler(saleSubmitted)
-    .insertSale(formData);
+    .insertSale(data);
 }
 
 function submitNewPurchase(formData) {
   showPreloader();
+  const data = arrangeCashflowData(formData);
   google
     .script
     .run
     .withSuccessHandler(purchaseSubmitted)
-    .insertPurchase(formData);
+    .insertPurchase(data);
 }
 
 function submitNewCashflow(formData) {
@@ -104,20 +106,22 @@ function submitNewSupplier(formData) {
 
 function submitUpdatePortfolio(formData) {
   showPreloader();
+  const data = arrangeCashflowData(formData);
   google
     .script
     .run
     .withSuccessHandler(updateSubmitted)
-    .updatePortfolio(formData);
+    .updatePortfolio(data);
 }
 
 function submitUpdateCashflow(formData) {
   showPreloader();
+  const data = arrangeCashflowData(formData);
   google
     .script
     .run
     .withSuccessHandler(updateSubmitted)
-    .updateCashflow(formData);
+    .updateCashflow(data);
 }
 
 function submitUpdateStock(formData) {

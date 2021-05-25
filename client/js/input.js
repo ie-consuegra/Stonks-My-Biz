@@ -279,10 +279,16 @@ function arrangeCashflowData(formElement) {
 
   data.AMOUNT = '';
 
+  if (formInputs._ID) {
+    data._ID = formInputs._ID.value;
+  }
+
   switch (data.CONCEPT) {
     case 'income':
+    case 'sale':
       data.AMOUNT = makeParsable(formInputs.AMOUNT.value);
       break;
+    case 'purchase':
     case 'outcome':
     case 'expense':
       data.AMOUNT = `-${makeParsable(formInputs.AMOUNT.value)}`;

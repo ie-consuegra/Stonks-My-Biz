@@ -9,6 +9,11 @@ function formatCurrency(num) {
   return formattedCurrency;
 }
 
+/**
+ * Transform a number (string) with thousands and decimal separators into a parsable string
+ * @param {String} numStr Number in string form
+ * @returns String Number in string form parsable by JavaScript into a number
+ */
 function makeParsable(numStr) {
   const { decimalSeparator } = settings.data.preferences;
   return makeParsableToNum(numStr, decimalSeparator);

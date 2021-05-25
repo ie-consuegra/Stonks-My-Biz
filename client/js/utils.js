@@ -114,6 +114,7 @@ function findOne(values, query) {
 /**
  * Sum all the numbers in an array
  * @param {Number[]} values Array of numbers
+ * @param {String} intTypes Type of number to take into account: 'positive', 'negative' or 'all'
  */
 function sum(values, intTypes = 'all') {
   let total = 0;
@@ -145,11 +146,12 @@ function sum(values, intTypes = 'all') {
  * Sum all the numbers of the specified field
  * @param {Array[]} values Set of values in a 2d array
  * @param {String} field Name of the field (column title in db)
+ * @param {String} intTypes Type of number to take into account: 'positive', 'negative' or 'all'
  */
-function getColumnTotal(values, field, intType = 'all') {
+function getColumnTotal(values, field, intTypes = 'all') {
   const columnValues = getValuesByFields(values, [field]).flat();
   columnValues.shift(); // Remove the title of the array
-  const total = sum(columnValues, intType);
+  const total = sum(columnValues, intTypes);
   return total;
 }
 
