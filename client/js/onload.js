@@ -27,7 +27,9 @@ function setLoadedDB() {
   settings.dbsLoaded += 1;
   // Check if there are enough databases
   // loaded to let use the app
-  if (settings.dbsLoaded >= 5) {
+  const numOfDbs = settings.salePortfolio ? 5 : 4;
+
+  if (settings.dbsLoaded >= numOfDbs) {
     dbData.loaded = true;
     M.AutoInit(); // Initialize Materialize when everything's loaded
     initDatepickers(); // Initialize datepickers
@@ -84,6 +86,7 @@ function loadSuppliersValues(values) {
 function loadSettingValuesInInputs(settingsData) {
   const { company } = settingsData;
   const { preferences } = settingsData;
+  const { sales } = settingsData;
 
   const companyEntries = Object.entries(company);
   companyEntries.forEach(([key, value]) => {
@@ -95,6 +98,15 @@ function loadSettingValuesInInputs(settingsData) {
       });
     } else {
       document.getElementById(`business-${key}`).value = value;
+    }
+
+    // Sales section, check the appropiate radio input
+    if (sales.loadFromStock === true && sales.loadFromPortfolio === false) {
+      document.getElementById('stock-only').checked = true;
+    } else if (sales.loadFromStock && sales.loadFromPortfolio) {
+      document.getElementById('stock-and-portfolio').checked = true;
+    } else {
+      document.getElementById('portfolio-only').checked = true;
     }
   });
 
@@ -141,7 +153,17 @@ function settingsObtained(settingsData) {
     fetchAll();
     switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   }
+
   defineCurrencyInputs();
+
+  // Show links to the portfolio view if set by user
+  if (settings.salePortfolio) {
+    const portfolioLiElem = document.getElementById('portfolio-li');
+    const salesGoPorfolioBtn = document.getElementById('sales-go-portfolio-btn');
+
+    portfolioLiElem.style.display = 'list-item';
+    salesGoPorfolioBtn.style.display = 'block';
+  }
 }
 
 window.addEventListener('load', () => {

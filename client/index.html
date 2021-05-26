@@ -97,7 +97,7 @@
       </li>
       <li><a onclick="switchView('dashboard')" id="dashboard-link" class="app-link">Dashboard<i
             class="material-icons">dashboard</i></a></li>
-      <li><a onclick="switchView('portfolio')" id="portfolio-link" class="app-link">Portfolio<i
+      <li id="portfolio-li" style="display:none;"><a onclick="switchView('portfolio')" id="portfolio-link" class="app-link">Portfolio<i
         class="material-icons">local_offer</i></a></li>
       <li><a class="subheader">MOVEMENTS</a></li>
       <li><a onclick="switchView('sales')" id="sales-link" class="app-link">Sales<i
@@ -322,7 +322,8 @@
             <div id="sales-portfolio-table-container"></div>
             <div class="row">
               <div class="col s12">
-                <a class="btn waves-effect waves-light right" onclick="goToPortfolio()"><i class="material-icons">local_offer</i></a>
+                <a class="btn waves-effect waves-light right" onclick="goToPortfolio()" id="sales-go-portfolio-btn" style="display: none;"><i class="material-icons">local_offer</i></a>
+                <a class="btn waves-effect waves-light right" onclick="goToStock()" id="sales-go-stock-btn"><i class="material-icons">assignment</i></a>
               </div>
             </div>
             <div class="row">
@@ -543,22 +544,33 @@
             </li>
             <li>
               <div class="collapsible-header">
-                <i class="material-icons">local_offer</i>
-                Portfolio
+                <i class="material-icons">shopping_cart</i>
+                Sales
               </div>
               <div class="collapsible-body">
-                <ul class="collection">
-                  <li class="collection-item">
-                    <div>Include stock items
-                      <div class="switch secondary-content">
-                        <label>
-                          <input type="checkbox" id="auto-portfolio" onchange="setAutoPortfolio(this)" >
-                          <span class="lever"></span>
-                        </label>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <div class="row">
+                  <form>
+                    <p>Sale items from:</p>
+                    <p>
+                      <label>
+                        <input name="sale-stock-portfolio" type="radio" id="stock-only"/>
+                        <span>Stock only</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input name="sale-stock-portfolio" type="radio" id="stock-and-portfolio"/>
+                        <span>Stock and portfolio</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input name="sale-stock-portfolio" type="radio" id="portfolio-only"/>
+                        <span>Portfolio only</span>
+                      </label>
+                    </p>
+                  </form>
+                </div>
               </div>
             </li>
           </ul>

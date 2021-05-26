@@ -5,7 +5,7 @@ const settings = {
   // Data contains info that must be stored in server
   data: {
     preferences: {
-      dateFormat: '',
+      dateFormat: 'dd/MM/yyyy',
       currency: '$',
       cents: true,
       decimalSeparator: ',',
@@ -22,8 +22,9 @@ const settings = {
         id3: { name: '', number: '' },
       },
     },
-    portfolio: {
-      loadStock: false,
+    sales: {
+      loadFromStock: true,
+      loadFromPortfolio: false,
     },
     stock: {
       calcValue: false,
@@ -54,5 +55,11 @@ const settings = {
   },
   load(settingsData) {
     this.data = { ...settingsData };
+  },
+  get salePortfolio() {
+    return this.data.sales.loadFromPortfolio;
+  },
+  get saleStock() {
+    return this.data.sales.loadFromStock;
   },
 };

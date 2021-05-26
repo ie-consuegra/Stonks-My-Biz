@@ -153,7 +153,9 @@ function submitUpdateSupplier(formData) {
 
 // Fetch all necesary data
 function fetchAll() {
-  fetchPortfolio();
+  if (settings.salePortfolio) {
+    fetchPortfolio();
+  }
   fetchCashflow();
   fetchStock();
   fetchMovements();

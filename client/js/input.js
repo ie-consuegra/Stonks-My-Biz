@@ -80,14 +80,30 @@ function toggleToolButtonsForPortfolio(smartTable) {
 }
 
 function toggleToolButtonsForStock(smartTable) {
-  actionAddToSalesItemBtn.style.display = 'none';
-  addToSaleToolBtn.style.display = 'none';
-
   const numChecked = smartTable.selectedCheckboxes.length;
+
+  const addToPortfolioVisibility = (visible = false) => {
+    if (visible && settings.salePortfolio) {
+      actionAddToPortfolioItemBtn.style.display = 'inline-block';
+      addToPortfolioToolBtn.style.display = 'block';
+    } else {
+      actionAddToPortfolioItemBtn.style.display = 'none';
+      addToPortfolioToolBtn.style.display = 'none';
+    }
+  };
+
+  const addToSalesVisibility = (visible = false) => {
+    if (visible && settings.saleStock) {
+      actionAddToSalesItemBtn.style.display = 'inline-block';
+      addToSaleToolBtn.style.display = 'block';
+    } else {
+      actionAddToSalesItemBtn.style.display = 'none';
+      addToSaleToolBtn.style.display = 'none';
+    }
+  };
 
   if (numChecked === 1) {
     actionAddToPurchasesItemBtn.style.display = 'inline-block';
-    actionAddToPortfolioItemBtn.style.display = 'inline-block';
     actionMenuDivider.style.display = 'block';
     actionAddBtn.style.display = 'none';
     actionUpdateBtn.style.display = 'inline-block';
@@ -96,11 +112,12 @@ function toggleToolButtonsForStock(smartTable) {
     addToolBtn.style.display = 'none';
     editToolBtn.style.display = 'block';
     deleteToolBtn.style.display = 'block';
-    addToPortfolioToolBtn.style.display = 'block';
     addToPurchaseToolBtn.style.display = 'block';
+
+    addToPortfolioVisibility(true);
+    addToSalesVisibility(true);
   } else if (numChecked > 1) {
     actionAddToPurchasesItemBtn.style.display = 'inline-block';
-    actionAddToPortfolioItemBtn.style.display = 'inline-block';
     actionMenuDivider.style.display = 'block';
     actionAddBtn.style.display = 'none';
     actionUpdateBtn.style.display = 'none';
@@ -109,11 +126,12 @@ function toggleToolButtonsForStock(smartTable) {
     addToolBtn.style.display = 'none';
     editToolBtn.style.display = 'none';
     deleteToolBtn.style.display = 'block';
-    addToPortfolioToolBtn.style.display = 'block';
     addToPurchaseToolBtn.style.display = 'block';
+
+    addToPortfolioVisibility(true);
+    addToSalesVisibility(true);
   } else {
     actionAddToPurchasesItemBtn.style.display = 'none';
-    actionAddToPortfolioItemBtn.style.display = 'none';
     actionMenuDivider.style.display = 'none';
     actionAddBtn.style.display = 'inline-block';
     actionUpdateBtn.style.display = 'none';
@@ -122,8 +140,10 @@ function toggleToolButtonsForStock(smartTable) {
     addToolBtn.style.display = 'block';
     editToolBtn.style.display = 'none';
     deleteToolBtn.style.display = 'none';
-    addToPortfolioToolBtn.style.display = 'none';
     addToPurchaseToolBtn.style.display = 'none';
+
+    addToPortfolioVisibility(false);
+    addToSalesVisibility(false);
   }
 }
 
@@ -202,11 +222,22 @@ function actionAddToPortfolioItem() {
 }
 
 function addToSalesItem() {
-  const selectedPortfolioCheckboxes = portfolioTable.selectedCheckboxes;
-  const selectedIds = selectedPortfolioCheckboxes.map((checkbox) => checkbox.id.toString());
+  let selectedCheckboxes = [];
+  let data = [];
+  if (settings.view === 'portfolio') {
+    selectedCheckboxes = portfolioTable.selectedCheckboxes;
+    data = [...dbData.portfolio];
+  } else if (settings.view === 'stock') {
+    selectedCheckboxes = stockTable.selectedCheckboxes;
+    data = [...dbData.stock];
+  } else {
+    throw new Error('The items from this view cannot be loaded');
+  }
+
+  const selectedIds = selectedCheckboxes.map((checkbox) => checkbox.id.toString());
   const values = selectedIds.map((ref) => {
     const query = { field: 'ROW_ID', keyword: ref };
-    return findOne(dbData.portfolio, query);
+    return findOne(data, query);
   });
   values.unshift([]); // The equivalent to the title row
   salesPortfolioTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 7, 9, 10, 11] });
