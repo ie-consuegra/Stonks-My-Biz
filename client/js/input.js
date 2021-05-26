@@ -221,24 +221,35 @@ function actionAddToPortfolioItem() {
   switchSubView('add');
 }
 
+function getSelectedEntries(selectedCheckboxes, data) {
+  const selectedIds = selectedCheckboxes.map((checkbox) => checkbox.id.toString());
+  const values = selectedIds.map((rowId) => {
+    const query = { field: 'ROW_ID', keyword: rowId };
+    return findOne(data, query);
+  });
+
+  return values;
+}
+
 function addToSalesItem() {
-  let selectedCheckboxes = [];
-  let data = [];
+  let selectedStock = [];
+  let selectedPortfolio = [];
+
   if (settings.view === 'portfolio') {
-    selectedCheckboxes = portfolioTable.selectedCheckboxes;
-    data = [...dbData.portfolio];
+    selectedPortfolio = getSelectedEntries(portfolioTable.selectedCheckboxes, dbData.portfolio);
+    if (settings.saleStock) {
+      selectedStock = getSelectedEntries(stockTable.selectedCheckboxes, dbData.stock);
+    }
   } else if (settings.view === 'stock') {
-    selectedCheckboxes = stockTable.selectedCheckboxes;
-    data = [...dbData.stock];
+    selectedStock = getSelectedEntries(stockTable.selectedCheckboxes, dbData.stock);
+    if (settings.salePortfolio) {
+      selectedPortfolio = getSelectedEntries(portfolioTable.selectedCheckboxes, dbData.portfolio);
+    }
   } else {
     throw new Error('The items from this view cannot be loaded');
   }
 
-  const selectedIds = selectedCheckboxes.map((checkbox) => checkbox.id.toString());
-  const values = selectedIds.map((ref) => {
-    const query = { field: 'ROW_ID', keyword: ref };
-    return findOne(data, query);
-  });
+  const values = [...selectedPortfolio, ...selectedStock];
   values.unshift([]); // The equivalent to the title row
   salesPortfolioTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 7, 9, 10, 11] });
 }
@@ -437,4 +448,25 @@ function saveBusinessInfo() {
       settings.data.company[key] = document.getElementById(`business-${key}`).value;
     }
   });
+}
+
+function setSaleItemSource(radioInputElem) {
+  if (radioInputElem.checked) {
+    switch (radioInputElem.id) {
+      case 'stock-only':
+        settings.data.sales.loadFromStock = true;
+        settings.data.sales.loadFromPortfolio = false;
+        break;
+      case 'stock-and-portfolio':
+        settings.data.sales.loadFromStock = true;
+        settings.data.sales.loadFromPortfolio = true;
+        break;
+      case 'portfolio-only':
+        settings.data.sales.loadFromStock = false;
+        settings.data.sales.loadFromPortfolio = true;
+        break;
+      default:
+        break;
+    }
+  }
 }

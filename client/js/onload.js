@@ -100,13 +100,20 @@ function loadSettingValuesInInputs(settingsData) {
       document.getElementById(`business-${key}`).value = value;
     }
 
-    // Sales section, check the appropiate radio input
+    // Make visible/invisible the buttons in sales view
+    // Check the appropiate radio input in settings view > sales
     if (sales.loadFromStock === true && sales.loadFromPortfolio === false) {
       document.getElementById('stock-only').checked = true;
+      document.getElementById('sales-go-stock-btn').style.display = 'block';
+      document.getElementById('sales-go-portfolio-btn').style.display = 'none';
     } else if (sales.loadFromStock && sales.loadFromPortfolio) {
       document.getElementById('stock-and-portfolio').checked = true;
+      document.getElementById('sales-go-stock-btn').style.display = 'block';
+      document.getElementById('sales-go-portfolio-btn').style.display = 'block';
     } else {
       document.getElementById('portfolio-only').checked = true;
+      document.getElementById('sales-go-stock-btn').style.display = 'none';
+      document.getElementById('sales-go-portfolio-btn').style.display = 'block';
     }
   });
 

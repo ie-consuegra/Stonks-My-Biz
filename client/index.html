@@ -553,19 +553,19 @@
                     <p>Sale items from:</p>
                     <p>
                       <label>
-                        <input name="sale-stock-portfolio" type="radio" id="stock-only"/>
+                        <input name="sale-stock-portfolio" type="radio" id="stock-only" onchange="setSaleItemSource(this)" />
                         <span>Stock only</span>
                       </label>
                     </p>
                     <p>
                       <label>
-                        <input name="sale-stock-portfolio" type="radio" id="stock-and-portfolio"/>
+                        <input name="sale-stock-portfolio" type="radio" id="stock-and-portfolio" onchange="setSaleItemSource(this)" />
                         <span>Stock and portfolio</span>
                       </label>
                     </p>
                     <p>
                       <label>
-                        <input name="sale-stock-portfolio" type="radio" id="portfolio-only"/>
+                        <input name="sale-stock-portfolio" type="radio" id="portfolio-only" onchange="setSaleItemSource(this)" />
                         <span>Portfolio only</span>
                       </label>
                     </p>
