@@ -111,8 +111,8 @@
             class="material-icons">assignment</i></a></li>
       <li><a onclick="switchView('movements')" id="movements-link" class="app-link">Receipts and issues<i
             class="material-icons">import_export</i></a></li>
-      <li><a onclick="switchView('suppliers')" id="suppliers-link" class="app-link">Suppliers<i
-            class="material-icons">business</i></a></li>
+      <li style="display: none;"><a onclick="switchView('suppliers')" id="suppliers-link" class="app-link">Suppliers<i
+            class="material-icons">business</i></a></li> <!-- Future feature -->
       <li>
         <div class="divider"></div>
       </li>
@@ -542,7 +542,7 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li style="display:none;"> <!-- Future feature -->
               <div class="collapsible-header">
                 <i class="material-icons">shopping_cart</i>
                 Sales
@@ -768,7 +768,7 @@
                 <input type="text" name="STOCK" id="add-stock-item-stock" />
                 <label for="add-stock-item-stock">Stock</label>
               </div>
-              <div class="input-field col s12 m4">
+              <div class="input-field col s12 m4" style="display: none;"> <!-- Future feature -->
                 <input type="text" name="SUPPLIER" id="add-stock-item-supplier" />
                 <label for="add-stock-item-supplier">Supplier</label>
               </div>
@@ -933,7 +933,7 @@
                 <input type="text" name="STOCK" id="stock-update-item-stock" />
                 <label for="stock-update-item-stock">Stock</label>
               </div>
-              <div class="input-field col s12 m4">
+              <div class="input-field col s12 m4" style="display: none;"> <!-- Future feature -->
                 <input type="text" name="SUPPLIER" id="stock-update-item-supplier" />
                 <label for="stock-update-item-supplier">Supplier</label>
               </div>

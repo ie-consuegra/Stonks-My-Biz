@@ -38,11 +38,16 @@ portfolioTable.setTitles(['', 'Code', 'Item', 'Description', 'Unit', 'Type', 'Ca
 const portfolioStockTable = new SmartTable('portfolio-stock-table-container');
 portfolioStockTable.setTitles(['Qty', 'Product', 'Unit', 'Cost']);
 const stockTable = new SmartTable('stock-table-container');
-stockTable.setTitles(['', 'Code', 'Item', 'Description', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Min.', 'Stock', 'Supplier']);
+// Temporarily remove 'Description' and 'Supplier' column titles (future feature)
+stockTable.setTitles(['', 'Code', 'Item', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Min.', 'Stock']);
 const movementsTable = new SmartTable('movements-table-container');
 movementsTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
+// Future feature
+/*
 const suppliersTable = new SmartTable('suppliers-table-container');
-suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone', 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
+suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone'
+, 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
+*/
 
 const preloader = document.getElementById('loadingPopup');
 

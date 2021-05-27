@@ -159,7 +159,8 @@ function fetchAll() {
   fetchCashflow();
   fetchStock();
   fetchMovements();
-  fetchSuppliers();
+  // Future feature
+  // fetchSuppliers();
 }
 
 function deletePortfolio() {

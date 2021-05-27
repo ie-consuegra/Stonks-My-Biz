@@ -25,10 +25,10 @@ function copyObjectEntries(objReceives, objGives) {
 
 function setLoadedDB() {
   settings.dbsLoaded += 1;
-  // Check if there are enough databases
-  // loaded to let use the app
-  const numOfDbs = settings.salePortfolio ? 5 : 4;
-
+  // Check if all databases are loaded
+  // 3 Databases: Cashflow, stock and 'receipts and issues'
+  // const numOfDbs = settings.salePortfolio ? 5 : 4; (future feature)
+  const numOfDbs = 3;
   if (settings.dbsLoaded >= numOfDbs) {
     dbData.loaded = true;
     M.AutoInit(); // Initialize Materialize when everything's loaded
@@ -61,7 +61,8 @@ function loadPortfolioValues(values) {
 function loadStockValues(values) {
   stockTable.setInputCallback(toggleToolButtonsForStock);
   stockTable.addFormatter([7, 8], formatCurrency);
-  stockTable.load(values);
+  // Don't show fields connected to future features: description and supplier
+  stockTable.load(values, { avoidColumns: [3, 11] });
 
   dbData.stock = values;
   setLoadedDB();
