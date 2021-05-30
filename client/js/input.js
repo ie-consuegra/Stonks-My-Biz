@@ -190,7 +190,7 @@ function loadInForm() {
       break;
   }
 
-  const entryId = table.selectedCheckboxes[0].id.toString();
+  const [entryId] = table.selectedRowIds;
 
   const selectedEntry = dbData[view].find((entry) => entry[0].toString() === entryId);
 
@@ -204,14 +204,27 @@ function loadInForm() {
   loadInUpdateForm(data);
 }
 
-function addToPortfolioItem() {
-  const selectedStockCheckboxes = stockTable.selectedCheckboxes;
-  const selectedStockIds = selectedStockCheckboxes.map((checkbox) => checkbox.id.toString());
-  const values = selectedStockIds.map((ref) => {
-    const query = { field: 'ROW_ID', keyword: ref };
-    return findOne(dbData.stock, query);
+/** Get an array of row ids and values and returns the entries that match the set of row ids
+ * @param {Array} selectedRowIds Set of row ids to look up
+ * @param {Array[]} data Values where entries will be extracted
+ * @param {Boolean} addFields Define if the result must have a row of titles at index 0
+ * @returns {Array[]}
+ */
+function getSelectedEntries(selectedRowIds, data, addFields = false) {
+  const values = selectedRowIds.map((rowId) => {
+    const query = { field: 'ROW_ID', keyword: rowId };
+    return findOne(data, query);
   });
-  values.unshift([]); // The equivalent to the title row
+
+  if (addFields) {
+    const fields = [...data[0]];
+    values.unshift(fields);
+  }
+  return values;
+}
+
+function addToPortfolioItem() {
+  const values = getSelectedEntries(stockTable.selectedRowIds, dbData.stock, true);
   portfolioStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 5, 6, 8, 9, 10, 11] });
 }
 
@@ -221,36 +234,27 @@ function actionAddToPortfolioItem() {
   switchSubView('add');
 }
 
-function getSelectedEntries(selectedCheckboxes, data) {
-  const selectedIds = selectedCheckboxes.map((checkbox) => checkbox.id.toString());
-  const values = selectedIds.map((rowId) => {
-    const query = { field: 'ROW_ID', keyword: rowId };
-    return findOne(data, query);
-  });
-
-  return values;
-}
-
 function addToSalesItem() {
+  /*  Logic to process items selected from portfolio and/or stock tables
   let selectedStock = [];
   let selectedPortfolio = [];
 
   if (settings.view === 'portfolio') {
-    selectedPortfolio = getSelectedEntries(portfolioTable.selectedCheckboxes, dbData.portfolio);
+    selectedPortfolio = getSelectedEntries(portfolioTable.selectedRowIds, dbData.portfolio, true);
     if (settings.saleStock) {
-      selectedStock = getSelectedEntries(stockTable.selectedCheckboxes, dbData.stock);
+      selectedStock = getSelectedEntries(stockTable.selectedRowIds, dbData.stock, true);
     }
   } else if (settings.view === 'stock') {
-    selectedStock = getSelectedEntries(stockTable.selectedCheckboxes, dbData.stock);
+    selectedStock = getSelectedEntries(stockTable.selectedRowIds, dbData.stock, true);
     if (settings.salePortfolio) {
-      selectedPortfolio = getSelectedEntries(portfolioTable.selectedCheckboxes, dbData.portfolio);
+      selectedPortfolio = getSelectedEntries(portfolioTable.selectedRowIds, dbData.portfolio, true);
     }
   } else {
     throw new Error('The items from this view cannot be loaded');
   }
-
-  const values = [...selectedPortfolio, ...selectedStock];
-  values.unshift([]); // The equivalent to the title row
+  */
+  const values = getSelectedEntries(stockTable.selectedRowIds, dbData.stock, true);
+  // const values = [...selectedPortfolio, ...selectedStock];
   salesPortfolioTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 7, 9, 10, 11] });
 }
 
@@ -260,13 +264,7 @@ function actionAddToSalesItem() {
 }
 
 function addToPurchasesItem() {
-  const selectedStockCheckboxes = stockTable.selectedCheckboxes;
-  const selectedStockIds = selectedStockCheckboxes.map((checkbox) => checkbox.id.toString());
-  const values = selectedStockIds.map((ref) => {
-    const query = { field: 'ROW_ID', keyword: ref };
-    return findOne(dbData.stock, query);
-  });
-  values.unshift([]); // The equivalent to the title row
+  const values = getSelectedEntries(stockTable.selectedRowIds, dbData.stock, true);
   purchasesStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 8, 9, 10, 11] });
 }
 

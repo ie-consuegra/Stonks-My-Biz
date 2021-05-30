@@ -14,18 +14,20 @@ class SmartTable {
    * @param {String} parentContainerId Id of the element where the table will be
    * @param {Array} type Type of table defined by an array of classes
    */
-  constructor(parentContainerId, type) {
+  constructor(parentContainerId, tableName, type = ['striped']) {
     const container = document.getElementById(parentContainerId);
     this.table = document.createElement('table');
     container.appendChild(this.table);
+    this.tableName = tableName;
     this.addClickEventToCheckboxes = this.addClickEventToCheckboxes.bind(this);
     this.removeClickEventToCheckboxes = this.removeClickEventToCheckboxes.bind(this);
     // this.addClickEventToTableRows = this.addClickEventToTableRows.bind(this);
     // striped table is default
-    this.type = type || ['striped'];
+    this.type = type;
     this.checkboxes = [];
     this.numberInputs = [];
     this.formatters = [];
+    this.fields = []; // Original column titles
   }
 
   setInputCallback(callback) {
@@ -49,6 +51,8 @@ class SmartTable {
     this.checkboxes = [];
     // Copy values
     const valuesDuplicate = [...values];
+    // Get the fields (original column titles) located at the 0 index of values
+    [this.fields] = valuesDuplicate;
     this.thead = document.createElement('thead');
     this.tbody = document.createElement('tbody');
 
@@ -71,21 +75,23 @@ class SmartTable {
       } else {
         const tbodyRow = this.tbody.insertRow();
         let tableColumnIndex = 0;
+        let rowId = '';
         for (let j = 0; j < valuesDuplicate[i].length; j += 1) {
           if (this.options.avoidColumns) {
             if (this.options.avoidColumns.indexOf(j) === -1) {
               const cell = tbodyRow.insertCell(tableColumnIndex);
               if (j === 0) {
+                rowId = valuesDuplicate[i][j];
                 let element;
                 switch (this.options.inputType) {
                   case 'checkbox':
-                    element = this.createCheckbox(valuesDuplicate[i][j]);
+                    element = this.createCheckbox(rowId);
                     break;
                   case 'number':
-                    element = this.createNumberInput(valuesDuplicate[i][j]);
+                    element = this.createNumberInput(rowId);
                     break;
                   default:
-                    element = this.createCheckbox(valuesDuplicate[i][j]);
+                    element = this.createCheckbox(rowId);
                     break;
                 }
                 cell.appendChild(element);
@@ -95,12 +101,14 @@ class SmartTable {
               } else {
                 cell.innerHTML = valuesDuplicate[i][j];
               }
+              this.setElementId(cell, rowId, this.fields[j]);
               tableColumnIndex += 1;
             }
           } else {
             const cell = tbodyRow.insertCell(j);
             if (j === 0) {
               let element;
+              rowId = valuesDuplicate[i][j];
               switch (this.options.inputType) {
                 case 'checkbox':
                   element = this.createCheckbox(valuesDuplicate[i][j]);
@@ -119,6 +127,7 @@ class SmartTable {
             } else {
               cell.innerHTML = valuesDuplicate[i][j];
             }
+            this.setElementId(cell, rowId, this.fields[j]);
           }
         }
       }
@@ -155,7 +164,7 @@ class SmartTable {
    * @param {String} id The id the element will have
    * @returns {Object} Checkbox element as required by materialize to work
    */
-  createCheckbox(id) {
+  createCheckbox(rowId) {
     // Insert a checkbox in the first cell of each row
     // Add row id value to each checkbox as its own id
     const label = document.createElement('label');
@@ -163,7 +172,7 @@ class SmartTable {
     const span = document.createElement('span');
 
     checkbox.setAttribute('type', 'checkbox');
-    checkbox.id = id;
+    checkbox.id = `${this.tableName}-${rowId}-checkbox`;
     label.appendChild(checkbox);
     label.appendChild(span);
     // Store each checkbox into an array
@@ -176,11 +185,11 @@ class SmartTable {
    * @param {String} id The id the element will have
    * @return {Object} A number input element
    */
-  createNumberInput(id) {
+  createNumberInput(rowId) {
     const numberInput = document.createElement('input');
     numberInput.setAttribute('type', 'number');
     numberInput.setAttribute('class', 'small-input');
-    numberInput.id = id;
+    numberInput.id = `${this.tableName}-${rowId}-numInput`;
 
     this.numberInputs.push(numberInput);
     return numberInput;
@@ -261,11 +270,16 @@ class SmartTable {
   }
 
   /**
-   * Return an array of checked checkboxes ids
+   * Return an array of the row ids according to those selected by user
    */
-  get selectedIds() {
-    const ids = this.selectedCheckboxes.map((checkbox) => checkbox.id.toString());
-    return ids;
+  get selectedRowIds() {
+    const rowIds = this.selectedCheckboxes.map((checkbox) => {
+      const checkboxId = checkbox.id.toString();
+      const idArr = checkboxId.split('-');
+      const rowIdIndex = 1;
+      return idArr[rowIdIndex];
+    });
+    return rowIds;
   }
 
   /** Set the titles the columns of the table will have
@@ -278,5 +292,17 @@ class SmartTable {
 
   reset() {
     this.table.innerHTML = '';
+  }
+
+  /**
+   * Take an HTML element and assign it an id based on other identification
+   * values to avoid id repetition through the DOM
+   * @param {Object} elem HTML Element
+   * @param {String} rowId rowID
+   * @param {String} field Field (orig. column title)
+   */
+  setElementId(elem, rowId, field) {
+    const elemId = `${this.tableName}-${rowId}-${field}`.toLowerCase();
+    elem.id = elemId;
   }
 }

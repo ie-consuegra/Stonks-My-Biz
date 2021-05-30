@@ -24,27 +24,27 @@ const addToSaleToolBtn = document.getElementById('add-to-sale-tool-btn');
 // Modals
 const deleteModal = document.getElementById('delete-modal');
 // "Smart tables"
-const salesPortfolioTable = new SmartTable('sales-portfolio-table-container');
+const salesPortfolioTable = new SmartTable('sales-portfolio-table-container', 'sale');
 salesPortfolioTable.setTitles(['Qty', 'Product', 'Price']);
 
-const purchasesStockTable = new SmartTable('purchases-stock-table-container');
+const purchasesStockTable = new SmartTable('purchases-stock-table-container', 'purchase');
 purchasesStockTable.setTitles(['Qty', 'Product', 'Price']);
 
-const cashflowTable = new SmartTable('cashflow-table-container');
+const cashflowTable = new SmartTable('cashflow-table-container', 'cashflow');
 cashflowTable.setTitles(['', 'Date', 'Concept', 'Details', 'Amount']);
 
-const portfolioTable = new SmartTable('portfolio-table-container');
+const portfolioTable = new SmartTable('portfolio-table-container', 'portfolio');
 portfolioTable.setTitles(['', 'Code', 'Item', 'Description', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Stock']);
-const portfolioStockTable = new SmartTable('portfolio-stock-table-container');
+const portfolioStockTable = new SmartTable('portfolio-stock-table-container', 'portfolio-stock'); // Check the name of this table
 portfolioStockTable.setTitles(['Qty', 'Product', 'Unit', 'Cost']);
-const stockTable = new SmartTable('stock-table-container');
+const stockTable = new SmartTable('stock-table-container', 'stock');
 // Temporarily remove 'Description' and 'Supplier' column titles (future feature)
 stockTable.setTitles(['', 'Code', 'Item', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Min.', 'Stock']);
-const movementsTable = new SmartTable('movements-table-container');
+const movementsTable = new SmartTable('movements-table-container', 'movements');
 movementsTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
 // Future feature
 /*
-const suppliersTable = new SmartTable('suppliers-table-container');
+const suppliersTable = new SmartTable('suppliers-table-container', 'suppliers');
 suppliersTable.setTitles(['', 'Name', 'Identification', 'Telephone'
 , 'Cellphone', 'E-mail', 'Address', 'City', 'Other details']);
 */

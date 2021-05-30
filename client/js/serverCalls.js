@@ -169,7 +169,7 @@ function deletePortfolio() {
     .script
     .run
     .withSuccessHandler(removeSuccess)
-    .removePortfolio(portfolioTable.selectedIds);
+    .removePortfolio(portfolioTable.selectedRowIds);
 }
 
 function deleteCashflow() {
@@ -178,7 +178,7 @@ function deleteCashflow() {
     .script
     .run
     .withSuccessHandler(removeSuccess)
-    .removeCashflow(cashflowTable.selectedIds);
+    .removeCashflow(cashflowTable.selectedRowIds);
 }
 
 function deleteStock() {
@@ -187,7 +187,7 @@ function deleteStock() {
     .script
     .run
     .withSuccessHandler(removeSuccess)
-    .removeStock(stockTable.selectedIds);
+    .removeStock(stockTable.selectedRowIds);
 }
 
 function deleteMovement() {
@@ -196,7 +196,7 @@ function deleteMovement() {
     .script
     .run
     .withSuccessHandler(removeSuccess)
-    .removeMovement(movementsTable.selectedIds);
+    .removeMovement(movementsTable.selectedRowIds);
 }
 
 function deleteSuppliers() {
@@ -205,7 +205,7 @@ function deleteSuppliers() {
     .script
     .run
     .withSuccessHandler(removeSuccess)
-    .removeSuppliers(suppliersTable.selectedIds);
+    .removeSuppliers(suppliersTable.selectedRowIds);
 }
 
 function saveSettings() {
