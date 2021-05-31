@@ -47,6 +47,15 @@ class SmartTable {
     if (!this.options.inputType) {
       this.options.inputType = 'checkbox';
     }
+
+    if (this.options.inputValueColumn) {
+      // Don't show this column, add to avoidColumns
+      if (this.options.avoidColumns) {
+        this.options.avoidColumns.push(this.options.inputValueColumn);
+      } else {
+        this.options.avoidColumns = [this.options.inputValueColumn];
+      }
+    }
     // Initialize this.checkboxes
     this.checkboxes = [];
     // Copy values
@@ -93,6 +102,11 @@ class SmartTable {
                   default:
                     element = this.createCheckbox(rowId);
                     break;
+                }
+                // Add a value to the element
+                // Only applies to number inputs (momentarily)
+                if (this.options.inputValueColumn) {
+                  element.value = valuesDuplicate[i][this.options.inputValueColumn];
                 }
                 cell.appendChild(element);
               } else if (this.formatters[j]) {

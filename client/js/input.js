@@ -206,18 +206,25 @@ function loadInForm() {
 
 /** Get an array of row ids and values and returns the entries that match the set of row ids
  * @param {Array} selectedRowIds Set of row ids to look up
+ * @param {Array} requiredColumns Indexes and default values to filter out not required columns
  * @param {Array[]} data Values where entries will be extracted
- * @param {Boolean} addFields Define if the result must have a row of titles at index 0
+ * @param {String[]} fields Fields (headers) the new table (2d array) will have
  * @returns {Array[]}
  */
-function getSelectedEntries(selectedRowIds, data, addFields = false) {
+function getSelectedEntries(selectedRowIds, requiredColumns, data, fields) {
   const values = selectedRowIds.map((rowId) => {
     const query = { field: 'ROW_ID', keyword: rowId };
-    return findOne(data, query);
+    const selectedEntry = findOne(data, query);
+    const resultValues = requiredColumns.map((reqIndex) => {
+      if (typeof reqIndex === 'object') {
+        return reqIndex.defaultValue;
+      }
+      return selectedEntry[reqIndex];
+    });
+    return resultValues;
   });
 
-  if (addFields) {
-    const fields = [...data[0]];
+  if (fields) {
     values.unshift(fields);
   }
   return values;
@@ -253,9 +260,12 @@ function addToSalesItem() {
     throw new Error('The items from this view cannot be loaded');
   }
   */
-  const values = getSelectedEntries(stockTable.selectedRowIds, dbData.stock, true);
+  const requiredColumns = [0, { defaultValue: 0 }, 2, 8, { defaultValue: 0 }];
+  const fields = ['row_id', 'quantity', 'item', 'price', 'amount'];
+  const { selectedRowIds } = stockTable;
+  const values = getSelectedEntries(selectedRowIds, requiredColumns, dbData.stock, fields);
   // const values = [...selectedPortfolio, ...selectedStock];
-  salesPortfolioTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 7, 9, 10, 11] });
+  salesPortfolioTable.load(values, { inputType: 'number', inputValueColumn: 1 });
 }
 
 function actionAddToSalesItem() {
@@ -264,8 +274,11 @@ function actionAddToSalesItem() {
 }
 
 function addToPurchasesItem() {
-  const values = getSelectedEntries(stockTable.selectedRowIds, dbData.stock, true);
-  purchasesStockTable.load(values, { inputType: 'number', avoidColumns: [1, 3, 4, 5, 6, 8, 9, 10, 11] });
+  const requiredColumns = [0, { defaultValue: 0 }, 2, 7, { defaultValue: 0 }];
+  const { selectedRowIds } = stockTable;
+  const fields = ['row_id', 'quantity', 'item', 'price', 'amount'];
+  const values = getSelectedEntries(selectedRowIds, requiredColumns, dbData.stock, fields);
+  purchasesStockTable.load(values, { inputType: 'number', inputValueColumn: 1 });
 }
 
 function actionAddToPurchasesItem() {
