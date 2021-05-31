@@ -169,7 +169,12 @@ class SmartTable {
   }
 
   reload(values) {
-    this.removeClickEventToCheckboxes();
+    if (this.options.inputType === 'checkbox') {
+      this.removeClickEventToCheckboxes();
+    }
+    if (this.options.inputType === 'number') {
+      this.removeInputEventToNumberInputs();
+    }
     this.load(values, this.options);
   }
 
@@ -247,6 +252,18 @@ class SmartTable {
     this.numberInputs.forEach((numberInput) => {
       numberInput.addEventListener('input', () => {
         this.inputCallback(numberInput);
+      });
+    });
+  }
+
+  /**
+ * Remove oninput event listener to each number input
+ * @param {action} action
+ */
+  removeInputEventToNumberInputs() {
+    this.numberInputs.forEach((numberInput) => {
+      numberInput.removeEventListener('input', () => {
+        this.inputCallback(this);
       });
     });
   }

@@ -147,6 +147,58 @@ function toggleToolButtonsForStock(smartTable) {
   }
 }
 
+function hasStock(rowId, qty) {
+  const currentStockIndex = 10;
+  const stockEntry = findOne(dbData.stock, { field: 'ROW_ID', keyword: rowId });
+  return qty <= stockEntry[currentStockIndex];
+}
+
+function calcAmount(tableData, rowId, qty) {
+  const entry = findOne(tableData, { field: 'ROW_ID', keyword: rowId });
+  const quantityIndex = 1;
+  const priceIndex = 3;
+  const amountIndex = 4;
+
+  // Change the amount and quantity values of the entry
+  // These values must propagate to the original tableData and mutate it
+  const amount = qty * entry[priceIndex];
+  entry[amountIndex] = amount;
+  entry[quantityIndex] = qty;
+
+  return amount;
+}
+
+function showNoStockWarning() {
+  M.toast({ html: 'No enough stock' });
+}
+
+function invoiceCalc(numInputElem) {
+  const quantity = numInputElem.value;
+
+  const tableIndex = 0;
+  const rowIdIndex = 1;
+
+  const numInputElemIdArr = numInputElem.id.split('-');
+  const rowId = numInputElemIdArr[rowIdIndex];
+  const table = numInputElemIdArr[tableIndex];
+
+  // Check if there's stock before doing anything else
+  // Or if it is a "purchases matter" where the stock is not a problem
+  if (hasStock(rowId, quantity) || table === 'purchases') {
+    const amount = calcAmount(dbData[table], rowId, quantity);
+
+    // Change the amount value
+    const amountCell = document.getElementById(`${table}-${rowId}-amount`);
+    amountCell.innerHTML = formatCurrency(amount.toString());
+
+    // Sum the partial amounts and show the total
+    const total = getColumnTotal(dbData[table], 'AMOUNT', 'all');
+    document.getElementById(`${table}-new-item-total`).value = total;
+  } else {
+    showNoStockWarning();
+  }
+}
+
 function loadInUpdateForm(data) {
   const { view } = settings;
   const dataKeysArr = Object.entries(data);
@@ -261,11 +313,12 @@ function addToSalesItem() {
   }
   */
   const requiredColumns = [0, { defaultValue: 0 }, 2, 8, { defaultValue: 0 }];
-  const fields = ['row_id', 'quantity', 'item', 'price', 'amount'];
+  const fields = ['ROW_ID', 'QUANTITY', 'ITEM', 'PRICE', 'AMOUNT'];
   const { selectedRowIds } = stockTable;
   const values = getSelectedEntries(selectedRowIds, requiredColumns, dbData.stock, fields);
   // const values = [...selectedPortfolio, ...selectedStock];
   salesPortfolioTable.load(values, { inputType: 'number', inputValueColumn: 1 });
+  dbData.sales = values;
 }
 
 function actionAddToSalesItem() {
@@ -276,9 +329,10 @@ function actionAddToSalesItem() {
 function addToPurchasesItem() {
   const requiredColumns = [0, { defaultValue: 0 }, 2, 7, { defaultValue: 0 }];
   const { selectedRowIds } = stockTable;
-  const fields = ['row_id', 'quantity', 'item', 'price', 'amount'];
+  const fields = ['ROW_ID', 'QUANTITY', 'ITEM', 'PRICE', 'AMOUNT'];
   const values = getSelectedEntries(selectedRowIds, requiredColumns, dbData.stock, fields);
   purchasesStockTable.load(values, { inputType: 'number', inputValueColumn: 1 });
+  dbData.purchases = values;
 }
 
 function actionAddToPurchasesItem() {

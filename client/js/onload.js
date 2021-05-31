@@ -23,6 +23,13 @@ function copyObjectEntries(objReceives, objGives) {
   });
 }
 
+function setupSalesAndPurchasesTable() {
+  salesPortfolioTable.addFormatter([3, 4], formatCurrency);
+  salesPortfolioTable.setInputCallback(invoiceCalc);
+  purchasesStockTable.addFormatter([3, 4], formatCurrency);
+  purchasesStockTable.setInputCallback(invoiceCalc);
+}
+
 function setLoadedDB() {
   settings.dbsLoaded += 1;
   // Check if all databases are loaded
@@ -34,6 +41,7 @@ function setLoadedDB() {
     M.AutoInit(); // Initialize Materialize when everything's loaded
     initDatepickers(); // Initialize datepickers
     dashboardComputations(); // Use the data to show info on the dashboard
+    setupSalesAndPurchasesTable();
     hidePreloader();
   }
 }

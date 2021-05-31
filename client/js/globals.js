@@ -24,10 +24,10 @@ const addToSaleToolBtn = document.getElementById('add-to-sale-tool-btn');
 // Modals
 const deleteModal = document.getElementById('delete-modal');
 // "Smart tables"
-const salesPortfolioTable = new SmartTable('sales-portfolio-table-container', 'sale');
+const salesPortfolioTable = new SmartTable('sales-portfolio-table-container', 'sales');
 salesPortfolioTable.setTitles(['Qty', 'Description', 'Unit Price', 'Amount']);
 
-const purchasesStockTable = new SmartTable('purchases-stock-table-container', 'purchase');
+const purchasesStockTable = new SmartTable('purchases-stock-table-container', 'purchases');
 purchasesStockTable.setTitles(['Qty', 'Description', 'Unit Price', 'Amount']);
 
 const cashflowTable = new SmartTable('cashflow-table-container', 'cashflow');
