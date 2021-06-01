@@ -172,6 +172,18 @@ function showNoStockWarning() {
   M.toast({ html: 'No enough stock' });
 }
 
+function serialFormat(number) {
+  let numberStr = number.toString();
+  const howLong = numberStr.length;
+  let numLeftZeros = 4;
+  while (numLeftZeros >= howLong) {
+    numberStr = `0${numberStr}`;
+    numLeftZeros -= 1;
+  }
+  numberStr = `s${numberStr}`;
+  return numberStr;
+}
+
 function invoiceCalc(numInputElem) {
   const quantity = numInputElem.value;
 
@@ -193,7 +205,21 @@ function invoiceCalc(numInputElem) {
 
     // Sum the partial amounts and show the total
     const total = getColumnTotal(dbData[table], 'AMOUNT', 'all');
-    document.getElementById(`${table}-new-item-total`).value = total;
+    document.getElementById(`${table}-new-item-total`).value = formatCurrency(total.toString());
+
+    // Add a serial value to the sale details input if there's nothing
+    if (table === 'sales') {
+      const receiptInput = document.getElementById(`${table}-new-item-details`);
+      if (receiptInput.value === '') {
+        const receiptSerial = serialFormat(settings.data.sales.serial);
+        document.getElementById(`${table}-new-item-details`).value = receiptSerial;
+      }
+    }
+
+    // Add the table of items to the metadescription text input (Not visible)
+    const metadescription = { stockItems: dbData[table] };
+    const metadescriptionStr = JSON.stringify(metadescription);
+    document.getElementById(`${table}-new-item-metadescription`).value = metadescriptionStr;
   } else {
     showNoStockWarning();
   }
@@ -383,6 +409,7 @@ function arrangeCashflowData(formElement) {
   data.DATE = formInputs.DATE.value;
   data.CONCEPT = formInputs.CONCEPT.value;
   data.DETAILS = formInputs.DETAILS.value;
+  data.METADESCRIPTION = formInputs.METADESCRIPTION.value;
 
   data.AMOUNT = '';
 

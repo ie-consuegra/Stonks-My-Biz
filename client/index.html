@@ -305,12 +305,15 @@
                 <input type="text" name="DATE" id="sales-new-item-date" class="datepicker" />
                 <label for="sales-new-item-date">Date</label>
               </div>
+              <div class="input-field col s12 m3 offset-m6">
+                <input type="text" name="DETAILS" id="sales-new-item-details" />
+                <label for="sales-new-item-details">Invoice/receipt</label>
+              </div>
             </div>
             <div class="divider"></div>
             <div class="row" style="display: none;">
               <div class="input-field col s12">
-                <input type="text" name="DETAILS" id="sales-new-item-details" />
-                <label for="sales-new-item-details">Details</label>
+                <input type="text" name="METADESCRIPTION" id="sales-new-item-metadescription" />
               </div>
             </div>
             <div class="row" style="display: none;">
@@ -354,12 +357,15 @@
                 <input type="text" name="DATE" id="purchases-new-item-date" class="datepicker" />
                 <label for="purchases-new-item-date">Date</label>
               </div>
+              <div class="input-field col s12 m3 offset-m6">
+                <input type="text" name="DETAILS" id="purchases-new-item-details" />
+                <label for="purchases-new-item-details">Invoice/receipt</label>
+              </div>
             </div>
             <div class="divider"></div>
             <div class="row" style="display: none;">
               <div class="input-field col s12">
-                <input type="text" name="DETAILS" id="purchases-new-item-details" />
-                <label for="purchases-new-item-details">Details</label>
+                <input type="text" name="METADESCRIPTION" id="purchases-new-item-metadescription" />
               </div>
             </div>
             <div class="row" style="display: none;">
@@ -871,6 +877,7 @@
                 <label for="cashflow-update-item-amount">Amount</label>
               </div>
             </div>
+            <input type="text" name="METADESCRIPTION" id="cashflow-update-item-metadescription" style="display: none;" />
             <input type="text" name="ROW_ID" id="cashflow-update-item-id" style="display: none;" />
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>

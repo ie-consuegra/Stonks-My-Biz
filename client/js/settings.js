@@ -23,6 +23,7 @@ const settings = {
       },
     },
     sales: {
+      serial: 1,
       loadFromStock: true,
       loadFromPortfolio: false,
     },
