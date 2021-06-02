@@ -1,3 +1,8 @@
+/** Contains the vocabulary used by the app.
+ * To set the language, deconstruct the appropiate lang[languageCode] into it.
+ * Where languageCode could be: 'es', 'pt' or 'en' for Spanish, Portuguese or English respectively.
+ */
+const terms = { ...lang.es }; // Spanish
 const settings = {
   dbsLoaded: 0,
   currentView: '',

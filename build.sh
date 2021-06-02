@@ -3,7 +3,7 @@ cat ./server/utils.js ./server/DB.js ./server/DBS.js ./server/stonksApp.js ./ser
 echo "✔️  Done, file can be found as backend.js in dist folder"
 printf "\n"
 echo "*  Bundling frontend JavaScript code..."
-cat ./client/js/utils.js ./client/js/SmartTable.js ./client/js/settings.js ./client/js/globals.js ./client/js/switchView.js ./client/js/output.js ./client/js/serverCalls.js ./client/js/input.js ./client/js/computations.js ./client/js/onload.js ./client/js/datePickerSetup.js > ./client/bundle.js
+cat ./client/js/utils.js ./client/js/SmartTable.js ./client/js/languages.js ./client/js/settings.js ./client/js/globals.js ./client/js/switchView.js ./client/js/output.js ./client/js/serverCalls.js ./client/js/input.js ./client/js/computations.js ./client/js/onload.js ./client/js/datePickerSetup.js > ./client/bundle.js
 echo "✔️  Done, file can be found as bundle.js in client folder"
 printf "\n"
 echo "*  Building frontend file..."
