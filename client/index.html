@@ -861,7 +861,7 @@
           <form id="update-cashflow-form" onsubmit="submitUpdateCashflow(this)">
             <div class="row">
               <div class="input-field col s12 m2">
-                <input type="text" name="DATE" id="cashflow-update-item-date" class="datepicker" />
+                <input type="text" name="DATE" id="cashflow-update-item-date" class="" readonly />
                 <label for="cashflow-update-item-date">Date</label>
               </div>
               <div class="input-field col s12 m3">
@@ -876,6 +876,9 @@
                 <input type="text" name="AMOUNT" class="currency-input" id="cashflow-update-item-amount"/>
                 <label for="cashflow-update-item-amount">Amount</label>
               </div>
+            </div>
+            <div class="row">
+              <div class="col s12" id="cashflow-update-item-metadescription-table-container"></div>
             </div>
             <input type="text" name="METADESCRIPTION" id="cashflow-update-item-metadescription" style="display: none;" />
             <input type="text" name="ROW_ID" id="cashflow-update-item-id" style="display: none;" />

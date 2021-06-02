@@ -28,6 +28,10 @@ function setupSalesAndPurchasesTable() {
   salesPortfolioTable.setInputCallback(invoiceCalc);
   purchasesStockTable.addFormatter([3, 4], formatCurrency);
   purchasesStockTable.setInputCallback(invoiceCalc);
+
+  // Add formatters to the table in update cashflow that loads
+  // stock items in sales and purchases.
+  metaStockItemsTable.addFormatter([3, 4], formatCurrency);
 }
 
 function setLoadedDB() {

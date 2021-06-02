@@ -42,6 +42,9 @@ const stockTable = new SmartTable('stock-table-container', 'stock');
 stockTable.setTitles(['', 'Code', 'Item', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Min.', 'Stock']);
 const movementsTable = new SmartTable('movements-table-container', 'movements');
 movementsTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
+// Table of cashflow update item
+const metaStockItemsTable = new SmartTable('cashflow-update-item-metadescription-table-container', 'stock-items');
+metaStockItemsTable.setTitles(['Qty', 'Description', 'Unit Price', 'Amount']);
 // Future feature
 /*
 const suppliersTable = new SmartTable('suppliers-table-container', 'suppliers');

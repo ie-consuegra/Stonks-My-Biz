@@ -41,9 +41,11 @@ class SmartTable {
    * @returns void
    */
   load(values, options) {
-    // Set default inputType in case
-    // has not been set by argument
-    this.options = { ...options };
+    // Avoid rewriting this.options
+    if (!this.options) {
+      this.options = { ...options };
+    }
+    // Set default inputType
     if (!this.options.inputType) {
       this.options.inputType = 'checkbox';
     }
@@ -179,6 +181,16 @@ class SmartTable {
   }
 
   /**
+   * Store the options passed as argument
+   * @param {Object} options Configuration options for the table
+   * @returns {Object} SmartTable for chaining
+   */
+  setOptions(options) {
+    this.options = { ...options };
+    return this;
+  }
+
+  /**
    * Generate a checkbox element
    * @param {String} id The id the element will have
    * @returns {Object} Checkbox element as required by materialize to work
@@ -208,6 +220,7 @@ class SmartTable {
     const numberInput = document.createElement('input');
     numberInput.setAttribute('type', 'number');
     numberInput.setAttribute('class', 'small-input');
+    if (this.options.readOnly) { numberInput.readOnly = true; }
     numberInput.id = `${this.tableName}-${rowId}-numInput`;
 
     this.numberInputs.push(numberInput);
@@ -225,11 +238,13 @@ class SmartTable {
    * @param {action} action
    */
   addClickEventToCheckboxes() {
-    this.checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener('click', () => {
-        this.inputCallback(this);
+    if (this.inputCallback) {
+      this.checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('click', () => {
+          this.inputCallback(this);
+        });
       });
-    });
+    }
   }
 
   /**
@@ -237,11 +252,13 @@ class SmartTable {
    * @param {action} action
    */
   removeClickEventToCheckboxes() {
-    this.checkboxes.forEach((checkbox) => {
-      checkbox.removeEventListener('click', () => {
-        this.inputCallback(this);
+    if (this.inputCallback) {
+      this.checkboxes.forEach((checkbox) => {
+        checkbox.removeEventListener('click', () => {
+          this.inputCallback(this);
+        });
       });
-    });
+    }
   }
 
   /**
@@ -249,11 +266,13 @@ class SmartTable {
    * @param {action} action
    */
   addInputEventToNumberInputs() {
-    this.numberInputs.forEach((numberInput) => {
-      numberInput.addEventListener('input', () => {
-        this.inputCallback(numberInput);
+    if (this.inputCallback) {
+      this.numberInputs.forEach((numberInput) => {
+        numberInput.addEventListener('input', () => {
+          this.inputCallback(numberInput);
+        });
       });
-    });
+    }
   }
 
   /**
@@ -261,11 +280,13 @@ class SmartTable {
  * @param {action} action
  */
   removeInputEventToNumberInputs() {
-    this.numberInputs.forEach((numberInput) => {
-      numberInput.removeEventListener('input', () => {
-        this.inputCallback(this);
+    if (this.inputCallback) {
+      this.numberInputs.forEach((numberInput) => {
+        numberInput.removeEventListener('input', () => {
+          this.inputCallback(this);
+        });
       });
-    });
+    }
   }
 
   /**

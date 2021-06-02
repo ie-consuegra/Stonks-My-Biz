@@ -225,6 +225,15 @@ function invoiceCalc(numInputElem) {
   }
 }
 
+function processMetadescription(metadescription) {
+  const metadescriptionObj = JSON.parse(metadescription);
+  metaStockItemsTable.load(metadescriptionObj.stockItems, {
+    inputType: 'number',
+    inputValueColumn: 1,
+    readOnly: true,
+  });
+}
+
 function loadInUpdateForm(data) {
   const { view } = settings;
   const dataKeysArr = Object.entries(data);
@@ -239,6 +248,13 @@ function loadInUpdateForm(data) {
         inputElem.value = formatNumber(value.toString(), decimalSeparator, 2, cents);
       } else {
         inputElem.value = value;
+      }
+    }
+    if (key === 'METADESCRIPTION') {
+      if (value) {
+        processMetadescription(value);
+      } else {
+        metaStockItemsTable.reset();
       }
     }
   });
