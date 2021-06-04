@@ -168,6 +168,8 @@ function settingsObtained(settingsData) {
     loadSettingValuesInInputs(settings.data);
   } else {
     settings.load(settingsData);
+    // The app loaded the number of the last sale, so increase it
+    increaseSaleSerial();
     loadSettingValuesInInputs(settingsData);
     updateSettingsFormatExamples();
     fetchAll();

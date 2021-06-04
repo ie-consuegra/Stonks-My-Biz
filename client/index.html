@@ -306,8 +306,8 @@
                 <label for="sales-new-item-date">Date</label>
               </div>
               <div class="input-field col s12 m3 offset-m6">
-                <input type="text" name="DETAILS" id="sales-new-item-details" />
-                <label for="sales-new-item-details">Invoice/receipt</label>
+                <input type="text" name="DETAILS" id="sales-new-item-details" readonly />
+                <label for="sales-new-item-details">Sale number</label>
               </div>
             </div>
             <div class="divider"></div>
@@ -331,7 +331,7 @@
             </div>
             <div class="row">
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="AMOUNT" id="sales-new-item-total" value="0" disabled />
+                <input type="text" name="AMOUNT" id="sales-new-item-total" value="0" readonly />
                 <label for="sales-new-item-total">Total</label>
               </div>
               <!-- The amout paid is not saved in the db but the total as INCOME -->
@@ -382,7 +382,7 @@
             </div>
             <div class="row">
               <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
-                <input type="text" name="AMOUNT" id="purchases-new-item-total" value="0" disabled />
+                <input type="text" name="AMOUNT" id="purchases-new-item-total" value="0" readonly />
                 <label for="purchases-new-item-total">Total</label>
               </div>
             </div>

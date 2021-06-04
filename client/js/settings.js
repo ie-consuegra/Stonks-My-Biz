@@ -4,6 +4,7 @@ const settings = {
   notifications: '',
   // Data contains info that must be stored in server
   data: {
+    balance: 0,
     preferences: {
       dateFormat: 'dd/MM/yyyy',
       currency: '$',

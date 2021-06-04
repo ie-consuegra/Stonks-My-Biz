@@ -15,9 +15,20 @@ const options = {
   },
 };
 
+function getFormattedDate() {
+  const format = settings.data.preferences.dateFormat;
+  const formattedDate = formatDate(today, format); // today is temporarily a global var
+  return formattedDate;
+}
+
+function loadDateIn(elemId) {
+  const inputElem = document.getElementById(elemId);
+  inputElem.value = getFormattedDate();
+}
+
 function initDatepickers() {
   const format = settings.data.preferences.dateFormat;
-  const formattedDate = formatDate(today, format);
+  const formattedDate = getFormattedDate();
   options.format = format.toLowerCase();
 
   const elems = document.querySelectorAll('.datepicker');

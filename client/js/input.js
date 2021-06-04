@@ -207,15 +207,6 @@ function invoiceCalc(numInputElem) {
     const total = getColumnTotal(dbData[table], 'AMOUNT', 'all');
     document.getElementById(`${table}-new-item-total`).value = formatCurrency(total.toString());
 
-    // Add a serial value to the sale details input if there's nothing
-    if (table === 'sales') {
-      const receiptInput = document.getElementById(`${table}-new-item-details`);
-      if (receiptInput.value === '') {
-        const receiptSerial = serialFormat(settings.data.sales.serial);
-        document.getElementById(`${table}-new-item-details`).value = receiptSerial;
-      }
-    }
-
     // Add the table of items to the metadescription text input (Not visible)
     const metadescription = { stockItems: dbData[table] };
     const metadescriptionStr = JSON.stringify(metadescription);

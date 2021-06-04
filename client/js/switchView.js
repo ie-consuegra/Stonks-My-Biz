@@ -42,6 +42,11 @@ function setInactiveLink(linkId) {
   icon.classList.remove(...classesForActiveIcon);
 }
 
+function loadSaleSerial() {
+  const saleSerial = serialFormat(settings.data.sales.serial);
+  document.getElementById('sales-new-item-details').value = saleSerial;
+}
+
 function toggleElementsVisibility(viewName) {
   const view = viewName || settings.view;
   switch (view) {
@@ -53,6 +58,11 @@ function toggleElementsVisibility(viewName) {
       searchForm.style.display = 'none';
       break;
     case 'sales':
+      loadSaleSerial();
+      actionButton.style.display = 'none';
+      mainNav.style.display = 'block';
+      searchForm.style.display = 'block';
+      break;
     case 'purchases':
       actionButton.style.display = 'none';
       mainNav.style.display = 'block';

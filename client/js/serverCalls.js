@@ -50,6 +50,15 @@ function submitNewPortfolio(formData) {
 function submitNewSale(formData) {
   showPreloader();
   const data = arrangeCashflowData(formData);
+
+  // Save settings (where the sale serial number is)
+  google
+    .script
+    .run
+    .withSuccessHandler()
+    .saveAppSettings(settings.data);
+
+  // Save new sale
   google
     .script
     .run

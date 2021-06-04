@@ -38,6 +38,10 @@ function reloadOnTable(values) {
   }
 }
 
+function increaseSaleSerial() {
+  settings.data.sales.serial += 1;
+}
+
 function removeSuccess(values) {
   reloadOnTable(values);
   hidePreloader();
@@ -65,14 +69,39 @@ function updateSubmitted(values) {
 }
 
 function saleSubmitted(values) {
+  increaseSaleSerial();
+
+  // Update cashflow data
   dbData.cashflow = values;
   cashflowTable.reload(values);
+
+  // Reset sale form values
+  document.getElementById('add-sales-form').reset();
+  salesPortfolioTable.reset();
+
+  // Reload default values: sale serial number and date
+  loadSaleSerial();
+  loadDateIn('sales-new-item-date');
+  // Reinitialize Materialize input labels
+  M.updateTextFields();
+
   hidePreloader();
 }
 
 function purchaseSubmitted(values) {
+  // Update cashflow data
   dbData.cashflow = values;
   cashflowTable.reload(values);
+
+  // Reset purchase form values
+  document.getElementById('add-purchases-form').reset();
+  purchasesStockTable.reset();
+
+  // Reload default value: date
+  loadDateIn('purchases-new-item-date');
+  // Reinitialize Materialize input labels
+  M.updateTextFields();
+
   hidePreloader();
 }
 

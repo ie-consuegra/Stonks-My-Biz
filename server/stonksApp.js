@@ -142,7 +142,7 @@ const stonksApp = {
   /** Get app settings stored in Script Properties
    *
    */
-  getAppSettings() {
+  getAppSettings() { // Pending: Return settings; create a loadAppSettings() to do this instead
     const configStr = PropertiesService
       .getScriptProperties()
       .getProperty('APP_SETTINGS') || '';
@@ -152,6 +152,39 @@ const stonksApp = {
     } else {
       this.settings = {};
     }
+  },
+
+  /** Set app settings, store in Script Properties
+ *
+ */
+  setAppSettings(configStr) {
+    if (configStr) { // Pending: Set a better check here
+      PropertiesService
+        .getScriptProperties()
+        .setProperty('APP_SETTINGS', configStr);
+    }
+  },
+
+  /**
+   * Shorthand to get a script property value
+   * @param {String} propertyName Name of the Script Property
+   * @returns String The property value
+   */
+  getProperty(propertyName) {
+    return PropertiesService
+      .getScriptProperties()
+      .getProperty(propertyName);
+  },
+
+  /**
+   * Shorthand to set or change the value of a script property
+   * @param {String} propertyName Name of the Script Property
+   * @param {String} value Value of the Script Property
+   */
+  setProperty(propertyName, value) {
+    PropertiesService
+      .getScriptProperties()
+      .setProperty(propertyName, value);
   },
 
   init() {

@@ -201,14 +201,28 @@ function removeSuppliers(entryIds) {
 
 function saveAppSettings(settingsData) {
   const configStr = JSON.stringify(settingsData);
-  PropertiesService
-    .getScriptProperties()
-    .setProperty('APP_SETTINGS', configStr);
+  stonksApp.setAppSettings(configStr);
 
-  // Reload settings
+  // Reload settings internally
   stonksApp.getAppSettings();
 }
 
 function getAppSettings() {
   return stonksApp.settings;
+}
+
+/**
+ * Set or change a Script Property
+ * @param {Object} property { name: String, value: String }
+ */
+function setAppProperty(property) {
+  stonksApp.setProperty(property.name, property.value);
+}
+
+/**
+ * Get a Script Property value
+ * @param {string} propertyName
+ */
+function getAppProperty(propertyName) {
+  return stonksApp.getProperty(propertyName);
 }
