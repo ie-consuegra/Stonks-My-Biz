@@ -347,6 +347,15 @@ class SmartTable {
   }
 
   /**
+   * Deselect all checkboxes
+   */
+  uncheckAll() {
+    this.selectedCheckboxes.forEach((selectedCheckbox) => {
+      selectedCheckbox.checked = false;
+    });
+  }
+
+  /**
    * Take an HTML element and assign it an id based on other identification
    * values to avoid id repetition through the DOM
    * @param {Object} elem HTML Element

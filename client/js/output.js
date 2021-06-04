@@ -79,6 +79,9 @@ function saleSubmitted(values) {
   document.getElementById('add-sales-form').reset();
   salesPortfolioTable.reset();
 
+  // Uncheck the selected items
+  stockTable.uncheckAll();
+
   // Reload default values: sale serial number and date
   loadSaleSerial();
   loadDateIn('sales-new-item-date');
@@ -96,6 +99,9 @@ function purchaseSubmitted(values) {
   // Reset purchase form values
   document.getElementById('add-purchases-form').reset();
   purchasesStockTable.reset();
+
+  // Uncheck the selected items
+  stockTable.uncheckAll();
 
   // Reload default value: date
   loadDateIn('purchases-new-item-date');
