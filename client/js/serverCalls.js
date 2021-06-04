@@ -39,7 +39,7 @@ function fetchSuppliers() {
 }
 
 function submitNewPortfolio(formData) {
-  showPreloader();
+  startPreloader();
   google
     .script
     .run
@@ -48,7 +48,8 @@ function submitNewPortfolio(formData) {
 }
 
 function submitNewSale(formData) {
-  showPreloader();
+  setPreloaderMessage('Saving...');
+  startPreloader();
   const data = arrangeCashflowData(formData);
 
   // Save settings (where the sale serial number is)
@@ -67,7 +68,8 @@ function submitNewSale(formData) {
 }
 
 function submitNewPurchase(formData) {
-  showPreloader();
+  setPreloaderMessage('Saving...');
+  startPreloader();
   const data = arrangeCashflowData(formData);
   google
     .script
@@ -77,7 +79,8 @@ function submitNewPurchase(formData) {
 }
 
 function submitNewCashflow(formData) {
-  showPreloader();
+  setPreloaderMessage('Saving...');
+  startPreloader();
   const data = arrangeCashflowData(formData);
   google
     .script
@@ -87,7 +90,8 @@ function submitNewCashflow(formData) {
 }
 
 function submitNewStock(formData) {
-  showPreloader();
+  setPreloaderMessage('Saving...');
+  startPreloader();
   google
     .script
     .run
@@ -96,7 +100,8 @@ function submitNewStock(formData) {
 }
 
 function submitNewMovement(formData) {
-  showPreloader();
+  setPreloaderMessage('Saving...');
+  startPreloader();
   google
     .script
     .run
@@ -105,7 +110,7 @@ function submitNewMovement(formData) {
 }
 
 function submitNewSupplier(formData) {
-  showPreloader();
+  startPreloader();
   google
     .script
     .run
@@ -114,7 +119,7 @@ function submitNewSupplier(formData) {
 }
 
 function submitUpdatePortfolio(formData) {
-  showPreloader();
+  startPreloader();
   const data = arrangeCashflowData(formData);
   google
     .script
@@ -124,7 +129,8 @@ function submitUpdatePortfolio(formData) {
 }
 
 function submitUpdateCashflow(formData) {
-  showPreloader();
+  setPreloaderMessage('Updating information...');
+  startPreloader();
   const data = arrangeCashflowData(formData);
   google
     .script
@@ -134,7 +140,8 @@ function submitUpdateCashflow(formData) {
 }
 
 function submitUpdateStock(formData) {
-  showPreloader();
+  setPreloaderMessage('Updating item information...');
+  startPreloader();
   google
     .script
     .run
@@ -143,7 +150,8 @@ function submitUpdateStock(formData) {
 }
 
 function submitUpdateMovement(formData) {
-  showPreloader();
+  setPreloaderMessage('Updating receipts and issues registry...');
+  startPreloader();
   google
     .script
     .run
@@ -152,7 +160,7 @@ function submitUpdateMovement(formData) {
 }
 
 function submitUpdateSupplier(formData) {
-  showPreloader();
+  startPreloader();
   google
     .script
     .run
@@ -173,7 +181,7 @@ function fetchAll() {
 }
 
 function deletePortfolio() {
-  showPreloader();
+  startPreloader();
   google
     .script
     .run
@@ -182,7 +190,8 @@ function deletePortfolio() {
 }
 
 function deleteCashflow() {
-  showPreloader();
+  setPreloaderMessage('Deleting...');
+  startPreloader();
   google
     .script
     .run
@@ -191,7 +200,8 @@ function deleteCashflow() {
 }
 
 function deleteStock() {
-  showPreloader();
+  setPreloaderMessage('Deleting...');
+  startPreloader();
   google
     .script
     .run
@@ -200,7 +210,8 @@ function deleteStock() {
 }
 
 function deleteMovement() {
-  showPreloader();
+  setPreloaderMessage('Deleting...');
+  startPreloader();
   google
     .script
     .run
@@ -209,7 +220,7 @@ function deleteMovement() {
 }
 
 function deleteSuppliers() {
-  showPreloader();
+  startPreloader();
   google
     .script
     .run
@@ -218,7 +229,8 @@ function deleteSuppliers() {
 }
 
 function saveSettings() {
-  showPreloader();
+  setPreloaderMessage('Saving app settings...');
+  startPreloader();
   saveBusinessInfo();
   google
     .script

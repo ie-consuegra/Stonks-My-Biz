@@ -163,19 +163,29 @@
             <div class="container">
               <div class="row">
                 <div class="center-align">
-                  <div class="preloader-wrapper small active">
-                    <div class="spinner-layer spinner-blue-only">
-                      <div class="circle-clipper left">
-                        <div class="circle"></div>
-                      </div>
-                      <div class="gap-patch">
-                        <div class="circle"></div>
-                      </div>
-                      <div class="circle-clipper right">
-                        <div class="circle"></div>
+                  <div id="preloader-spinner-container">
+                    <div class="preloader-wrapper small active">
+                      <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div id="preloader-done-container">
+                    <p><i class="material-icons blue-text text-darken-1" style="font-size: 42px; color: rgb(33, 133, 244)" id="preloader-result-icon"></i></p>
+                  </div>
+                </div>
+              </div>
+              <div class="loader-message-container">
+                <div class="center-align">
+                  <p id="loader-message" style="text-align: center; margin-bottom: 0;"></p>
                 </div>
               </div>
             </div>

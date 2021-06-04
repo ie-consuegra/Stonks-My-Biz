@@ -1,3 +1,12 @@
+/**
+ * Set the text the preloader popup will display to the user
+ * @param {String} message Text to display on the preloader popup
+ */
+function setPreloaderMessage(message) {
+  const loaderMessageElem = document.getElementById('loader-message');
+  loaderMessageElem.innerText = message;
+}
+
 function loadStock(values) {
   stockTable.load(values);
   stockTable.addClickEventToCheckboxes(toggleToolButtons);
@@ -44,7 +53,7 @@ function increaseSaleSerial() {
 
 function removeSuccess(values) {
   reloadOnTable(values);
-  hidePreloader();
+  endPreloader();
 }
 
 function resetForm(formType) {
@@ -57,7 +66,7 @@ function newSubmitted(values) {
   switchView(view);
   reloadOnTable(values);
   resetForm('add');
-  hidePreloader();
+  endPreloader();
 }
 
 function updateSubmitted(values) {
@@ -65,7 +74,7 @@ function updateSubmitted(values) {
   switchView(view);
   reloadOnTable(values);
   resetForm('update');
-  hidePreloader();
+  endPreloader();
 }
 
 function saleSubmitted(values) {
@@ -88,7 +97,7 @@ function saleSubmitted(values) {
   // Reinitialize Materialize input labels
   M.updateTextFields();
 
-  hidePreloader();
+  endPreloader();
 }
 
 function purchaseSubmitted(values) {
@@ -108,9 +117,9 @@ function purchaseSubmitted(values) {
   // Reinitialize Materialize input labels
   M.updateTextFields();
 
-  hidePreloader();
+  endPreloader();
 }
 
 function settingsSaved() {
-  hidePreloader();
+  endPreloader();
 }

@@ -8,12 +8,39 @@ function preventFormSubmit() {
   }
 }
 
-function showPreloader() {
+function startPreloader() {
   preloader.style.display = 'block';
+  document.getElementById('preloader-spinner-container').style.display = 'block';
+  document.getElementById('preloader-done-container').style.display = 'none';
 }
 
-function hidePreloader() {
-  preloader.style.display = 'none';
+function endPreloader(time = 600, successful = 'true', message = '') {
+  if (successful) {
+    document.getElementById('preloader-spinner-container').style.display = 'none';
+    document.getElementById('preloader-done-container').style.display = 'block';
+    document.getElementById('preloader-result-icon').innerText = 'done';
+    if (message) {
+      setPreloaderMessage(message);
+    } else {
+      setPreloaderMessage('Done!');
+    }
+  } else {
+    document.getElementById('preloader-spinner-container').style.display = 'none';
+    document.getElementById('preloader-done-container').style.display = 'block';
+    document.getElementById('preloader-result-icon').innerText = 'error';
+    if (message) {
+      setPreloaderMessage(message);
+    } else {
+      setPreloaderMessage('There was an error.');
+    }
+  }
+  if (time === 0) {
+    preloader.style.display = 'none';
+  } else {
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, time);
+  }
 }
 
 function copyObjectEntries(objReceives, objGives) {
@@ -42,11 +69,12 @@ function setLoadedDB() {
   const numOfDbs = 3;
   if (settings.dbsLoaded >= numOfDbs) {
     dbData.loaded = true;
+    setPreloaderMessage('Initializing app...');
     M.AutoInit(); // Initialize Materialize when everything's loaded
     initDatepickers(); // Initialize datepickers
     dashboardComputations(); // Use the data to show info on the dashboard
     setupSalesAndPurchasesTable();
-    hidePreloader();
+    endPreloader(0);
   }
 }
 
@@ -172,6 +200,7 @@ function settingsObtained(settingsData) {
     increaseSaleSerial();
     loadSettingValuesInInputs(settingsData);
     updateSettingsFormatExamples();
+    setPreloaderMessage('Loading app data...');
     fetchAll();
     switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   }
@@ -190,6 +219,7 @@ function settingsObtained(settingsData) {
 
 window.addEventListener('load', () => {
   preventFormSubmit();
-  showPreloader();
+  startPreloader();
+  setPreloaderMessage('Loading app settings...');
   fetchSettings();
 });
