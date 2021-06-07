@@ -340,7 +340,14 @@
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
+              <div class="input-field col s6 m3 l3">
+                <select name="ACCOUNT" id="sales-new-item-account">
+                  <option value="">Cash</option>
+                  <option value="">Bank account</option>
+                </select>
+                <label for="sales-new-item-account">Payment method</label>
+              </div>
+              <div class="input-field col s6 m3 offset-m6 l2 offset-l7">
                 <input type="text" name="AMOUNT" id="sales-new-item-total" value="0" readonly />
                 <label for="sales-new-item-total">Total</label>
               </div>
@@ -391,7 +398,14 @@
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s6 offset-s6 m3 offset-m9 l2 offset-l10">
+              <div class="input-field col s6 m3 l3">
+                <select name="ACCOUNT" id="purchases-new-item-account">
+                  <option value="">Cash</option>
+                  <option value="">Bank account</option>
+                </select>
+                <label for="purchases-new-item-account">Payment method</label>
+              </div>
+              <div class="input-field col s6 m3 offset-m6 l2 offset-l7">
                 <input type="text" name="AMOUNT" id="purchases-new-item-total" value="0" readonly />
                 <label for="purchases-new-item-total">Total</label>
               </div>
@@ -554,6 +568,77 @@
                   </div>
                   <div class="input-field col s5 m2">
                     <p id="cents-example">325,00</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">account_balance_wallet</i>
+                Accounts
+              </div>
+              <div class="collapsible-body">
+                <div id="transfer-accounts-container">
+                  <p id="transfer-accounts-prompt">Transfer from one account to another</p>
+                  <div class="row">
+                    <div class="input-field col s12 m4">
+                      <select name="" id="from-account-select">
+                        <option value="">Cash</option>
+                        <option value="">Bank account</option>
+                        <option value="">PayPal</option>
+                      </select>
+                      <label for="from-account-select">From</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                      <select name="" id="to-account-select">
+                        <option value="">Cash</option>
+                        <option value="">Bank account</option>
+                        <option value="">PayPal</option>
+                      </select>
+                      <label for="to-account-select">To</label>
+                    </div>
+                    <div class="input-field col s10 m3">
+                      <input type="text" name="" id="transfer-amount" class="currency-input">
+                      <label for="transfer-amount">Amount</label>
+                    </div>
+                    <div class="input-field col s2 m1">
+                      <a class="waves-effect waves-light btn"><i class="material-icons">check</i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="delete-accounts-container">
+                  <p id="delete-accounts-prompt">Delete account</p>
+                  <div class="row">
+                    <div class="input-field col s12 m6">
+                      <select name="" id="accounts-select">
+                        <option value="">Cash</option>
+                        <option value="">Bank account</option>
+                        <option value="">PayPal</option>
+                      </select>
+                    </div>
+                    <div class="input-field col s10 m5">
+                      <input type="text" name="" id="accounts-balance" readonly >
+                      <label for="accounts-balance">Balance</label>
+                    </div>
+                    <div class="input-field col s2 m1">
+                      <a class="waves-effect waves-light btn red"><i class="material-icons">delete</i></a>
+                    </div>
+                  </div>
+                </div>
+                <div id="create-accounts-container">
+                  <p id="create-accounts-prompt">Create new account</p>
+                  <div class="row">
+                    <div class="input-field col s12 m6">
+                      <input type="text" name="new-account-name" id="new-account-name" >
+                      <label for="new-account-name">Account name</label>
+                    </div>
+                    <div class="input-field col s10 m5">
+                      <input type="text" name="new-account-balance" id="new-account-balance" class="currency-input" >
+                      <label for="new-account-balance">Initial balance</label>
+                    </div>
+                    <div class="input-field col s2 m1">
+                      <a class="waves-effect light-waves btn"><i class="material-icons">save</i></a>
+                    </div>
                   </div>
                 </div>
               </div>
