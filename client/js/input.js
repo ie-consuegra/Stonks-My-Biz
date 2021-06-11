@@ -569,3 +569,65 @@ function setSaleItemSource(radioInputElem) {
     }
   }
 }
+
+// Account functions: load, create, delete, transfer
+function displayAccountForms() {
+  if (settings.data.balance.length > 1) {
+    document.getElementById('transfer-accounts-container').style.display = 'block';
+    document.getElementById('delete-accounts-container').style.display = 'block';
+  }
+}
+
+function loadAccountsToTransfer(selectElem) {
+  const accountSelected = selectElem.value;
+  const selectElemTo = document.getElementById('to-account-select');
+  selectElemTo.innerHTML = ''; // Remove option elements
+
+  // Add new option elements
+  settings.data.balance.forEach((account) => {
+    if (account.name !== accountSelected) {
+      const option = document.createElement('option');
+      option.value = account.name;
+      option.innerText = account.name;
+      selectElemTo.appendChild(option);
+    }
+  });
+
+  // Initialize the select element (Materialize method)
+  M.FormSelect.init(selectElemTo);
+}
+
+function loadAccountBalance(selectElem) {
+  const selectedAccount = selectElem.value;
+  const accountObj = settings.data.balance.find((account) => account.name === selectedAccount);
+  document.getElementById('accounts-balance').value = accountObj.balance;
+}
+
+function loadAccounts() {
+  settings.data.balance.forEach((account) => {
+    const optionFrom = document.createElement('option');
+    optionFrom.value = account.name;
+    optionFrom.innerText = account.name;
+
+    const option = document.createElement('option');
+    option.value = account.name;
+    option.innerText = account.name;
+
+    document.getElementById('from-account-select').appendChild(optionFrom);
+    document.getElementById('accounts-select').appendChild(option);
+  });
+}
+
+function createAccount() {
+  const name = document.getElementById('new-account-name').value;
+  const balance = document.getElementById('new-account-balance').value;
+
+  if (name && balance) {
+    const account = {
+      name,
+      balance,
+    };
+
+    settings.data.balance.push(account);
+  }
+}

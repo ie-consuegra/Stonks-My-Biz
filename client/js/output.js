@@ -121,5 +121,5 @@ function purchaseSubmitted(values) {
 }
 
 function settingsSaved() {
-  endPreloader();
+  endPreloader(10000, true, 'Please reload this page to see the changes applied');
 }

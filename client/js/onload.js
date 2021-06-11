@@ -200,6 +200,8 @@ function settingsObtained(settingsData) {
     increaseSaleSerial();
     loadSettingValuesInInputs(settingsData);
     updateSettingsFormatExamples();
+    displayAccountForms();
+    loadAccounts();
     setPreloaderMessage('Loading app data...');
     fetchAll();
     switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view

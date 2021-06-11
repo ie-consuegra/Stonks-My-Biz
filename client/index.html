@@ -578,22 +578,16 @@
                 Accounts
               </div>
               <div class="collapsible-body">
-                <div id="transfer-accounts-container">
+                <div id="transfer-accounts-container" style="display: none;">
                   <p id="transfer-accounts-prompt">Transfer from one account to another</p>
                   <div class="row">
                     <div class="input-field col s12 m4">
-                      <select name="" id="from-account-select">
-                        <option value="">Cash</option>
-                        <option value="">Bank account</option>
-                        <option value="">PayPal</option>
+                      <select name="" id="from-account-select" onchange="loadAccountsToTransfer(this)">
                       </select>
                       <label for="from-account-select">From</label>
                     </div>
                     <div class="input-field col s12 m4">
                       <select name="" id="to-account-select">
-                        <option value="">Cash</option>
-                        <option value="">Bank account</option>
-                        <option value="">PayPal</option>
                       </select>
                       <label for="to-account-select">To</label>
                     </div>
@@ -606,19 +600,16 @@
                     </div>
                   </div>
                 </div>
-                <div class="delete-accounts-container">
+                <div id="delete-accounts-container" style="display: none;">
                   <p id="delete-accounts-prompt">Delete account</p>
                   <div class="row">
                     <div class="input-field col s12 m6">
-                      <select name="" id="accounts-select">
-                        <option value="">Cash</option>
-                        <option value="">Bank account</option>
-                        <option value="">PayPal</option>
+                      <select name="" id="accounts-select" onchange="loadAccountBalance(this)">
                       </select>
                     </div>
                     <div class="input-field col s10 m5">
                       <input type="text" name="" id="accounts-balance" readonly >
-                      <label for="accounts-balance">Balance</label>
+                      <label for="accounts-balance"></label>
                     </div>
                     <div class="input-field col s2 m1">
                       <a class="waves-effect waves-light btn red"><i class="material-icons">delete</i></a>
@@ -637,7 +628,7 @@
                       <label for="new-account-balance">Initial balance</label>
                     </div>
                     <div class="input-field col s2 m1">
-                      <a class="waves-effect light-waves btn"><i class="material-icons">save</i></a>
+                      <a class="waves-effect light-waves btn" onclick="createAccount()"><i class="material-icons">save</i></a>
                     </div>
                   </div>
                 </div>
