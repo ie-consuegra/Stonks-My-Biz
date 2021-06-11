@@ -571,10 +571,19 @@ function setSaleItemSource(radioInputElem) {
 }
 
 // Account functions: load, create, delete, transfer
+// Initialize the select elements (Materialize method)
+function initAccountSelects() {
+  const accountSelects = document.querySelectorAll('.account-select');
+  M.FormSelect.init(accountSelects);
+}
+
 function displayAccountForms() {
   if (settings.data.balance.length > 1) {
     document.getElementById('transfer-accounts-container').style.display = 'block';
     document.getElementById('delete-accounts-container').style.display = 'block';
+  } else {
+    document.getElementById('transfer-accounts-container').style.display = 'none';
+    document.getElementById('delete-accounts-container').style.display = 'none';
   }
 }
 
@@ -592,18 +601,22 @@ function loadAccountsToTransfer(selectElem) {
       selectElemTo.appendChild(option);
     }
   });
-
-  // Initialize the select element (Materialize method)
-  M.FormSelect.init(selectElemTo);
+  initAccountSelects();
 }
 
 function loadAccountBalance(selectElem) {
   const selectedAccount = selectElem.value;
   const accountObj = settings.data.balance.find((account) => account.name === selectedAccount);
-  document.getElementById('accounts-balance').value = accountObj.balance;
+  document.getElementById('accounts-balance').value = formatCurrency(accountObj.balance);
 }
 
 function loadAccounts() {
+  const fromAccountSelect = document.getElementById('from-account-select');
+  const accountSelect = document.getElementById('accounts-select');
+
+  fromAccountSelect.innerHTML = '';
+  accountSelect.innerHTML = '';
+
   settings.data.balance.forEach((account) => {
     const optionFrom = document.createElement('option');
     optionFrom.value = account.name;
@@ -613,14 +626,22 @@ function loadAccounts() {
     option.value = account.name;
     option.innerText = account.name;
 
-    document.getElementById('from-account-select').appendChild(optionFrom);
-    document.getElementById('accounts-select').appendChild(option);
+    fromAccountSelect.appendChild(optionFrom);
+    accountSelect.appendChild(option);
   });
+
+  loadAccountsToTransfer(fromAccountSelect);
+  loadAccountBalance(accountSelect);
+
+  // Initialize the select elements
+  initAccountSelects();
 }
 
 function createAccount() {
-  const name = document.getElementById('new-account-name').value;
-  const balance = document.getElementById('new-account-balance').value;
+  const newAccountElem = document.getElementById('new-account-name');
+  const initBalanceElem = document.getElementById('new-account-balance');
+  const name = newAccountElem.value;
+  const balance = makeParsable(initBalanceElem.value);
 
   if (name && balance) {
     const account = {
@@ -628,6 +649,39 @@ function createAccount() {
       balance,
     };
 
+    // Save in settings global variable
     settings.data.balance.push(account);
+
+    // Reset input elements
+    newAccountElem.value = '';
+    initBalanceElem.value = '';
+
+    // Display account related forms if apply
+    displayAccountForms();
+
+    loadAccounts();
+    endPreloader(3000, true, 'Account created, press "Save changes" to apply');
+  }
+}
+
+function deleteAccount() {
+  const accountSelect = document.getElementById('accounts-select');
+  const accountToDelete = accountSelect.value;
+
+  if (settings.data.balance.length > 1) {
+    // Filter out the selected account and store the new array
+    const newAccountsArr = settings.data.balance.filter((accnt) => accnt.name !== accountToDelete);
+    settings.data.balance = newAccountsArr;
+
+    loadAccounts(); // Reload accounts on each select element
+
+    // Display account related forms if apply
+    displayAccountForms();
+
+    startPreloader();
+    endPreloader(3000, true, 'Account removed, press "Save changes" to apply');
+  } else {
+    startPreloader();
+    endPreloader(3000, false, 'There must be at least one account');
   }
 }

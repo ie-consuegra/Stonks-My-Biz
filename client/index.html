@@ -582,12 +582,12 @@
                   <p id="transfer-accounts-prompt">Transfer from one account to another</p>
                   <div class="row">
                     <div class="input-field col s12 m4">
-                      <select name="" id="from-account-select" onchange="loadAccountsToTransfer(this)">
+                      <select name="" class="account-select" id="from-account-select" onchange="loadAccountsToTransfer(this)">
                       </select>
                       <label for="from-account-select">From</label>
                     </div>
                     <div class="input-field col s12 m4">
-                      <select name="" id="to-account-select">
+                      <select name="" class="account-select" id="to-account-select">
                       </select>
                       <label for="to-account-select">To</label>
                     </div>
@@ -604,7 +604,7 @@
                   <p id="delete-accounts-prompt">Delete account</p>
                   <div class="row">
                     <div class="input-field col s12 m6">
-                      <select name="" id="accounts-select" onchange="loadAccountBalance(this)">
+                      <select name="" class="account-select" id="accounts-select" onchange="loadAccountBalance(this)">
                       </select>
                     </div>
                     <div class="input-field col s10 m5">
@@ -612,7 +612,7 @@
                       <label for="accounts-balance"></label>
                     </div>
                     <div class="input-field col s2 m1">
-                      <a class="waves-effect waves-light btn red"><i class="material-icons">delete</i></a>
+                      <a class="waves-effect waves-light btn red" onclick="deleteAccount()"><i class="material-icons">delete</i></a>
                     </div>
                   </div>
                 </div>
