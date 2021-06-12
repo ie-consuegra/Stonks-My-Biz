@@ -341,9 +341,7 @@
             </div>
             <div class="row">
               <div class="input-field col s6 m3 l3">
-                <select name="ACCOUNT" id="sales-new-item-account">
-                  <option value="">Cash</option>
-                  <option value="">Bank account</option>
+                <select name="ACCOUNT" class="account-select all-accounts" id="sales-new-item-account">
                 </select>
                 <label for="sales-new-item-account">Payment method</label>
               </div>
@@ -399,9 +397,7 @@
             </div>
             <div class="row">
               <div class="input-field col s6 m3 l3">
-                <select name="ACCOUNT" id="purchases-new-item-account">
-                  <option value="">Cash</option>
-                  <option value="">Bank account</option>
+                <select name="ACCOUNT" class="account-select all-accounts" id="purchases-new-item-account">
                 </select>
                 <label for="purchases-new-item-account">Payment method</label>
               </div>
@@ -582,7 +578,7 @@
                   <p id="transfer-accounts-prompt">Transfer from one account to another</p>
                   <div class="row">
                     <div class="input-field col s12 m4">
-                      <select name="" class="account-select" id="from-account-select" onchange="loadAccountsToTransfer(this)">
+                      <select name="" class="account-select all-accounts" id="from-account-select" onchange="loadAccountsToTransfer(this)">
                       </select>
                       <label for="from-account-select">From</label>
                     </div>
@@ -604,7 +600,7 @@
                   <p id="delete-accounts-prompt">Delete account</p>
                   <div class="row">
                     <div class="input-field col s12 m6">
-                      <select name="" class="account-select" id="accounts-select" onchange="loadAccountBalance(this)">
+                      <select name="" class="account-select all-accounts" id="accounts-select" onchange="loadAccountBalance(this)">
                       </select>
                     </div>
                     <div class="input-field col s10 m5">

@@ -587,8 +587,9 @@ function displayAccountForms() {
   }
 }
 
-function loadAccountsToTransfer(selectElem) {
-  const accountSelected = selectElem.value;
+function loadAccountsToTransfer() {
+  const fromSelectElem = document.getElementById('from-account-select');
+  const accountSelected = fromSelectElem.value;
   const selectElemTo = document.getElementById('to-account-select');
   selectElemTo.innerHTML = ''; // Remove option elements
 
@@ -604,34 +605,32 @@ function loadAccountsToTransfer(selectElem) {
   initAccountSelects();
 }
 
-function loadAccountBalance(selectElem) {
+function loadAccountBalance() {
+  const selectElem = document.getElementById('accounts-select');
   const selectedAccount = selectElem.value;
   const accountObj = settings.data.balance.find((account) => account.name === selectedAccount);
   document.getElementById('accounts-balance').value = formatCurrency(accountObj.balance);
 }
 
-function loadAccounts() {
-  const fromAccountSelect = document.getElementById('from-account-select');
-  const accountSelect = document.getElementById('accounts-select');
-
-  fromAccountSelect.innerHTML = '';
-  accountSelect.innerHTML = '';
-
+function addOptions(selectElem) {
   settings.data.balance.forEach((account) => {
-    const optionFrom = document.createElement('option');
-    optionFrom.value = account.name;
-    optionFrom.innerText = account.name;
-
     const option = document.createElement('option');
     option.value = account.name;
     option.innerText = account.name;
+    selectElem.appendChild(option);
+  });
+}
 
-    fromAccountSelect.appendChild(optionFrom);
-    accountSelect.appendChild(option);
+function loadAccounts() {
+  const allAccountSelects = document.querySelectorAll('.all-accounts');
+
+  allAccountSelects.forEach((selectElem) => {
+    selectElem.innerHTML = '';
+    addOptions(selectElem);
   });
 
-  loadAccountsToTransfer(fromAccountSelect);
-  loadAccountBalance(accountSelect);
+  loadAccountsToTransfer();
+  loadAccountBalance();
 
   // Initialize the select elements
   initAccountSelects();
