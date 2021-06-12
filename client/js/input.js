@@ -588,28 +588,30 @@ function displayAccountForms() {
 }
 
 function loadAccountsToTransfer() {
-  const fromSelectElem = document.getElementById('from-account-select');
-  const accountSelected = fromSelectElem.value;
-  const selectElemTo = document.getElementById('to-account-select');
-  selectElemTo.innerHTML = ''; // Remove option elements
+  if (settings.data.balance.length > 1) {
+    const fromSelectElem = document.getElementById('from-account-select');
+    const accountSelected = fromSelectElem.value;
+    const selectElemTo = document.getElementById('to-account-select');
+    selectElemTo.innerHTML = ''; // Remove option elements
 
-  // Add new option elements
-  settings.data.balance.forEach((account) => {
-    if (account.name !== accountSelected) {
-      const option = document.createElement('option');
-      option.value = account.name;
-      option.innerText = account.name;
-      selectElemTo.appendChild(option);
-    }
-  });
-  initAccountSelects();
+    // Add new option elements
+    settings.data.balance.forEach((account) => {
+      if (account.name !== accountSelected) {
+        const option = document.createElement('option');
+        option.value = account.name;
+        option.innerText = account.name;
+        selectElemTo.appendChild(option);
+      }
+    });
+    initAccountSelects();
+  }
 }
 
 function loadAccountBalance() {
   const selectElem = document.getElementById('accounts-select');
   const selectedAccount = selectElem.value;
   const accountObj = settings.data.balance.find((account) => account.name === selectedAccount);
-  document.getElementById('accounts-balance').value = formatCurrency(accountObj.balance);
+  document.getElementById('accounts-balance').value = formatCurrency(accountObj.balance.toString());
 }
 
 function addOptions(selectElem) {
@@ -682,5 +684,45 @@ function deleteAccount() {
   } else {
     startPreloader();
     endPreloader(3000, false, 'There must be at least one account');
+  }
+}
+
+function transferToAccount() {
+  const fromAccount = document.getElementById('from-account-select').value;
+  const toAccount = document.getElementById('to-account-select').value;
+  const amountStr = makeParsable(document.getElementById('transfer-amount').value);
+  const amount = Number(amountStr);
+
+  let fromAccountBalance = 0;
+  let toAccountBalance = 0;
+
+  settings.data.balance.forEach((account) => {
+    if (account.name === fromAccount) {
+      fromAccountBalance = Number(account.balance);
+    }
+
+    if (account.name === toAccount) {
+      toAccountBalance = Number(account.balance);
+    }
+  });
+
+  if (amount > fromAccountBalance) {
+    startPreloader();
+    endPreloader(3000, false, 'This amount is higher than the account balance');
+  } else {
+    fromAccountBalance -= amount;
+    toAccountBalance += amount;
+
+    settings.data.balance.forEach((account) => {
+      if (account.name === fromAccount) {
+        account.balance = fromAccountBalance;
+      }
+
+      if (account.name === toAccount) {
+        account.balance = toAccountBalance;
+      }
+    });
+    startPreloader();
+    endPreloader(3000, true, 'Done! press "Save changes" to apply');
   }
 }
