@@ -31,7 +31,7 @@ const purchasesStockTable = new SmartTable('purchases-stock-table-container', 'p
 purchasesStockTable.setTitles(['Qty', 'Description', 'Unit Price', 'Amount']);
 
 const cashflowTable = new SmartTable('cashflow-table-container', 'cashflow');
-cashflowTable.setTitles(['', 'Date', 'Concept', 'Details', 'Amount']);
+cashflowTable.setTitles(['', 'Date', 'Concept', 'Details', 'Amount', 'Account']);
 
 const portfolioTable = new SmartTable('portfolio-table-container', 'portfolio');
 portfolioTable.setTitles(['', 'Code', 'Item', 'Description', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Stock']);

@@ -417,6 +417,7 @@ function arrangeCashflowData(formElement) {
   data.CONCEPT = formInputs.CONCEPT.value;
   data.DETAILS = formInputs.DETAILS.value;
   data.METADESCRIPTION = formInputs.METADESCRIPTION.value;
+  data.ACCOUNT = formInputs.ACCOUNT.value;
 
   data.AMOUNT = '';
 

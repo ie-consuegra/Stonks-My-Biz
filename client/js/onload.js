@@ -80,8 +80,8 @@ function setLoadedDB() {
 
 function loadCashflowValues(values) {
   cashflowTable.setInputCallback(toggleToolButtons);
-  cashflowTable.addFormatter([4, 5, 6], formatCurrency);
-  cashflowTable.load(values, { avoidColumns: [5] });
+  cashflowTable.addFormatter([4], formatCurrency);
+  cashflowTable.load(values, { avoidColumns: [6] });
 
   dbData.cashflow = values;
   setLoadedDB();
