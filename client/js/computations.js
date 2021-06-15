@@ -69,9 +69,25 @@ function processStockData() {
   settings.notifications = `${settings.notifications}${stockNotifications}`;
 }
 
+/**
+ * Get the total balance by adding each account amount
+ * @returns Number, Total of the balances of the accounts
+ */
+function getBalance() {
+  const { balance } = settings.data;
+  let totalBalance = 0;
+  if (balance.length >= 1) {
+    balance.forEach((account) => {
+      totalBalance += Number(account.balance);
+    });
+  }
+  return totalBalance;
+}
+
 function dashboardComputations() {
   const incomeElem = document.getElementById('income');
   const outcomeElem = document.getElementById('outcome');
+  const currentMonthBalance = document.getElementById('current-month-balance');
   const balanceElem = document.getElementById('balance');
   const notificationsElem = document.getElementById('notifications');
 
@@ -85,10 +101,12 @@ function dashboardComputations() {
   const formattedIncome = formatCurrency(totals.income.toString());
   const formattedOutcome = formatCurrency(totals.outcome.toString());
   const formattedTotal = formatCurrency(totals.balance.toString());
+  const formattedBalance = formatCurrency(getBalance().toString());
 
   incomeElem.innerHTML = formattedIncome;
   outcomeElem.innerHTML = formattedOutcome;
-  balanceElem.innerHTML = `Balance: ${formattedTotal}`;
+  currentMonthBalance.innerHTML = formattedTotal;
+  balanceElem.innerHTML = `Balance: ${formattedBalance}`;
 
   processStockData();
   notificationsElem.innerHTML = settings.notifications;
