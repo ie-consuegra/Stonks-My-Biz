@@ -727,6 +727,10 @@
                 <input type="text" name="AMOUNT" class="currency-input" id="add-cashflow-item-amount" />
                 <label for="add-cashflow-item-amount">Amount</label>
               </div>
+              <div class="input-field col s12 offset-m9 m3">
+                <select name="ACCOUNT" class="account-select all-accounts" id="add-cashflow-item-account">
+                </select>
+              </div>
             </div>
             <button type="submit" class="btn waves-effect waves-light right">
               Submit<i class="material-icons right">send</i></button>
@@ -956,6 +960,10 @@
               <div class="input-field col s12 m2">
                 <input type="text" name="AMOUNT" class="currency-input" id="cashflow-update-item-amount"/>
                 <label for="cashflow-update-item-amount">Amount</label>
+              </div>
+              <div class="input-field col s12 offset-m9 m3">
+                <input type="text" name="ACCOUNT" id="cashflow-update-item-account" readonly />
+                <label for="cashflow-update-item-account">Account</label>
               </div>
             </div>
             <div class="row">
