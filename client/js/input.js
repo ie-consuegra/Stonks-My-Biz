@@ -409,6 +409,17 @@ function actionDeleteContinue() {
   }
 }
 
+function updateAccountBalance(accountName, amount) {
+  const { balance } = settings.data;
+  if (balance.length >= 1) {
+    balance.forEach((account) => {
+      if (account.name === accountName) {
+        account.balance = Number(account.balance) + Number(amount);
+      }
+    });
+  }
+}
+
 function arrangeCashflowData(formElement) {
   const data = {};
   const formInputs = formElement.elements;

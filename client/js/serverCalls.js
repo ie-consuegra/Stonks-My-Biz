@@ -51,6 +51,7 @@ function submitNewSale(formData) {
   setPreloaderMessage('Saving...');
   startPreloader();
   const data = arrangeCashflowData(formData);
+  updateAccountBalance(data.ACCOUNT, data.AMOUNT);
 
   // Save settings (where the sale serial number is)
   google
@@ -71,6 +72,7 @@ function submitNewPurchase(formData) {
   setPreloaderMessage('Saving...');
   startPreloader();
   const data = arrangeCashflowData(formData);
+  updateAccountBalance(data.ACCOUNT, data.AMOUNT);
   google
     .script
     .run
@@ -82,6 +84,7 @@ function submitNewCashflow(formData) {
   setPreloaderMessage('Saving...');
   startPreloader();
   const data = arrangeCashflowData(formData);
+  updateAccountBalance(data.ACCOUNT, data.AMOUNT);
   google
     .script
     .run
