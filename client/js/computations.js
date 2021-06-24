@@ -66,6 +66,7 @@ function processStockData() {
 
   stockNotifications = `${depletedTitle}${depletedStock}<br>${minimumTitle}${minimumStock}`;
 
+  settings.notifications = ''; // Reset notifications
   settings.notifications = `${settings.notifications}${stockNotifications}`;
 }
 

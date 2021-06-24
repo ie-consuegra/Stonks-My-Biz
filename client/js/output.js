@@ -54,6 +54,7 @@ function increaseSaleSerial() {
 function removeSuccess(values) {
   reloadOnTable(values);
   endPreloader();
+  dashboardComputations();
 }
 
 function resetForm(formType) {
@@ -67,6 +68,7 @@ function newSubmitted(values) {
   reloadOnTable(values);
   resetForm('add');
   endPreloader();
+  dashboardComputations();
 }
 
 function updateSubmitted(values) {
@@ -75,6 +77,7 @@ function updateSubmitted(values) {
   reloadOnTable(values);
   resetForm('update');
   endPreloader();
+  dashboardComputations();
 }
 
 function saleSubmitted(values) {
@@ -98,6 +101,7 @@ function saleSubmitted(values) {
   M.updateTextFields();
 
   endPreloader();
+  dashboardComputations();
 }
 
 function purchaseSubmitted(values) {
@@ -118,6 +122,7 @@ function purchaseSubmitted(values) {
   M.updateTextFields();
 
   endPreloader();
+  dashboardComputations();
 }
 
 function settingsSaved() {
