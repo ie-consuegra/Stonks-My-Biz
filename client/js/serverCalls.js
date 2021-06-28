@@ -135,6 +135,12 @@ function submitUpdateCashflow(formData) {
   setPreloaderMessage('Updating information...');
   startPreloader();
   const data = arrangeCashflowData(formData);
+
+  // Register the change in the appropiate account
+  const amountDifference = cashflowUpdateAmountDifference(data.AMOUNT);
+  updateAccountBalance(data.ACCOUNT, amountDifference.toString());
+
+  // Submit data
   google
     .script
     .run

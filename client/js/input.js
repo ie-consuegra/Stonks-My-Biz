@@ -409,6 +409,11 @@ function actionDeleteContinue() {
   }
 }
 
+/**
+ * Update the value of the accounts
+ * @param {String} accountName Name of the account
+ * @param {String} amount Value as a string
+ */
 function updateAccountBalance(accountName, amount) {
   const { balance } = settings.data;
   if (balance.length >= 1) {
@@ -475,6 +480,23 @@ function inputToRefs(inputElem) {
     }
     inputText.value = JSON.stringify(valuesObj);
   }
+}
+
+/**
+ * Substract the value passed as argument to the amount found
+ * in the selected entry of the cashflow table
+ * @param {String} newAmount New amount value as string
+ * @returns Number
+ */
+function cashflowUpdateAmountDifference(newAmount) {
+  const [entryId] = cashflowTable.selectedRowIds;
+
+  const selectedEntry = dbData.cashflow.find((entry) => entry[0].toString() === entryId);
+
+  const amountIndex = 4;
+  const oldAmount = selectedEntry[amountIndex];
+  const amountDifference = Number(newAmount) - Number(oldAmount);
+  return amountDifference;
 }
 
 // CHANGES IN SETTINGS VIEW INPUTS
