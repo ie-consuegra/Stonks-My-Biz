@@ -597,17 +597,20 @@
                   </div>
                 </div>
                 <div id="delete-accounts-container" style="display: none;">
-                  <p id="delete-accounts-prompt">Delete account</p>
+                  <p id="delete-accounts-prompt">Edit/Delete account</p>
                   <div class="row">
-                    <div class="input-field col s12 m6">
+                    <div class="input-field col s12 m5">
                       <select name="" class="account-select all-accounts" id="accounts-select" onchange="loadAccountBalance(this)">
                       </select>
                     </div>
-                    <div class="input-field col s10 m5">
-                      <input type="text" name="" id="accounts-balance" readonly >
+                    <div class="input-field col s6 m5">
+                      <input type="text" name="" id="accounts-balance" class="currency-input" >
                       <label for="accounts-balance"></label>
                     </div>
-                    <div class="input-field col s2 m1">
+                    <div class="input-field col s3 m1">
+                      <a class="waves-effect waves-light btn" onclick="editAccount()"><i class="material-icons">save</i></a>
+                    </div>
+                    <div class="input-field col s3 m1">
                       <a class="waves-effect waves-light btn red" onclick="deleteAccount()"><i class="material-icons">delete</i></a>
                     </div>
                   </div>

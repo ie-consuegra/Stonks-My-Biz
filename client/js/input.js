@@ -701,6 +701,25 @@ function createAccount() {
   }
 }
 
+function editAccount() {
+  const accountSelect = document.getElementById('accounts-select');
+  const accountBalanceInput = document.getElementById('accounts-balance');
+  const accountToEdit = accountSelect.value;
+  const newAccountBalance = makeParsable(accountBalanceInput.value);
+
+  if (settings.data.balance.length > 0) {
+    const newAccountsArr = settings.data.balance.map((account) => {
+      if (account.name === accountToEdit) {
+        account.balance = newAccountBalance;
+      }
+      return account;
+    });
+    settings.data.balance = newAccountsArr;
+    startPreloader();
+    endPreloader(3000, true, 'Total balance updated, press "Save changes" to apply');
+  }
+}
+
 function deleteAccount() {
   const accountSelect = document.getElementById('accounts-select');
   const accountToDelete = accountSelect.value;
