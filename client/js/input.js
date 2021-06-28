@@ -418,6 +418,8 @@ function updateAccountBalance(accountName, amount) {
       }
     });
   }
+  // Save data server side
+  saveBalance();
 }
 
 function arrangeCashflowData(formElement) {

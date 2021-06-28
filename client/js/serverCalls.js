@@ -242,6 +242,15 @@ function saveSettings() {
     .saveAppSettings(settings.data);
 }
 
+// Only save settings.data where balance data is
+function saveBalance() {
+  google
+    .script
+    .run
+    .withSuccessHandler()
+    .saveAppSettings(settings.data);
+}
+
 function fetchSettings() {
   google
     .script
