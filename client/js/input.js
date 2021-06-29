@@ -427,6 +427,12 @@ function updateAccountBalance(accountName, amount) {
   saveBalance();
 }
 
+function removeCurrencySign(value) {
+  const currencySign = settings.data.preferences.currency;
+  const valueArr = value.split(currencySign);
+  return valueArr[1];
+}
+
 function arrangeCashflowData(formElement) {
   const data = {};
   const formInputs = formElement.elements;
@@ -438,6 +444,7 @@ function arrangeCashflowData(formElement) {
   data.ACCOUNT = formInputs.ACCOUNT.value;
 
   data.AMOUNT = '';
+  const amountWithoutCurrencySign = removeCurrencySign(formInputs.AMOUNT.value);
 
   if (formInputs.ROW_ID) {
     data.ROW_ID = formInputs.ROW_ID.value;
@@ -446,12 +453,12 @@ function arrangeCashflowData(formElement) {
   switch (data.CONCEPT) {
     case 'income':
     case 'sale':
-      data.AMOUNT = makeParsable(formInputs.AMOUNT.value);
+      data.AMOUNT = makeParsable(amountWithoutCurrencySign);
       break;
     case 'purchase':
     case 'outcome':
     case 'expense':
-      data.AMOUNT = `-${makeParsable(formInputs.AMOUNT.value)}`;
+      data.AMOUNT = `-${makeParsable(amountWithoutCurrencySign)}`;
       break;
     default:
       break;
