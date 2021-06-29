@@ -140,6 +140,12 @@ function insertMovement(data) {
   return formattedValues;
 }
 
+function insertManyMovements(data) {
+  const values = movementsDBS.use().insertMany(data);
+  const formattedValues = datesFormatter(values);
+  return formattedValues;
+}
+
 function insertSupplier(data) {
   const values = suppliersDBS.use().insert(data);
   return values;

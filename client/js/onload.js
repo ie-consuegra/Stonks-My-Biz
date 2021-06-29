@@ -116,6 +116,11 @@ function loadMovementsValues(values) {
   setLoadedDB();
 }
 
+function reloadMovementsValues(values) {
+  movementsTable.load(values);
+  dbData.movements = values;
+}
+
 function loadSuppliersValues(values) {
   suppliersTable.setInputCallback(toggleToolButtons);
   suppliersTable.load(values);

@@ -117,6 +117,20 @@ class DB {
     return this.write(entry, nextRow);
   }
 
+  /**
+   * Insert new data (many rows) from the next available row on
+   * @param {Array[]} data 2D Array containing the data to insert
+   * @returns {Array[]}
+   */
+  insertMany(data) {
+    // Add ids to each entry
+    const entries = data.map((entry) => [DB.generateId(), ...entry]);
+
+    const nextRow = this.sheet.getLastRow() + 1;
+
+    return this.write(entries, nextRow);
+  }
+
   /** Remove a set of entries of the sheet
    * @param {string[]} entryIds
    * @returns {array[]}

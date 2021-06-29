@@ -704,6 +704,7 @@ function createAccount() {
     displayAccountForms();
 
     loadAccounts();
+    startPreloader();
     endPreloader(3000, true, 'Account created, press "Save changes" to apply');
   }
 }
@@ -787,4 +788,26 @@ function transferToAccount() {
     startPreloader();
     endPreloader(3000, true, 'Done! press "Save changes" to apply');
   }
+}
+
+/**
+ * Register a movement when a sale or purchase is made
+ * @param {Object} param0 data from a sale or purchase
+ * @param {String} type It could be SALE or PURCHASE
+ */
+function registerMovement({ DATE, METADESCRIPTION }, type) {
+  // stockItems is a 2d Array
+  const { stockItems } = JSON.parse(METADESCRIPTION);
+
+  // Remove the headers of the 2D Array
+  stockItems.shift();
+
+  // Prepare the entries to fit the receipts and issues (movements) table
+  const movements = stockItems.map((stockItem) => {
+    const product = stockItem[2];
+    const movement = stockItem[1];
+    return [DATE, '', product, '', type, movement];
+  });
+
+  submitManyMovements(movements);
 }

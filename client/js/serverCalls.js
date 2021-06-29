@@ -53,7 +53,9 @@ function submitNewSale(formData) {
   const data = arrangeCashflowData(formData);
   updateAccountBalance(data.ACCOUNT, data.AMOUNT);
 
-  // Save settings (where the sale serial number is)
+  // Register the issue (Only save data on db)
+  registerMovement(data, 'SALE');
+
   google
     .script
     .run
@@ -73,6 +75,10 @@ function submitNewPurchase(formData) {
   startPreloader();
   const data = arrangeCashflowData(formData);
   updateAccountBalance(data.ACCOUNT, data.AMOUNT);
+
+  // Register the issue (Only save data on db)
+  registerMovement(data, 'PURCHASE');
+
   google
     .script
     .run
@@ -263,4 +269,12 @@ function fetchSettings() {
     .run
     .withSuccessHandler(settingsObtained)
     .getAppSettings();
+}
+
+function submitManyMovements(movements) {
+  google
+    .script
+    .run
+    .withSuccessHandler(reloadMovementsValues)
+    .insertManyMovements(movements);
 }
