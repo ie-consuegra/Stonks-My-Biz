@@ -811,3 +811,37 @@ function registerMovement({ DATE, METADESCRIPTION }, type) {
 
   submitManyMovements(movements);
 }
+
+function registerStockChange({ METADESCRIPTION }, type) {
+  // stockItems is a 2d Array
+  const { stockItems } = JSON.parse(METADESCRIPTION);
+
+  // Remove the headers of the 2D Array
+  stockItems.shift();
+
+  // Returns a 2d Array with the stock changed
+  const stockItemsToUpdate = stockItems.map((stockItem) => {
+    const rowId = stockItem[0];
+    const quantityMoved = stockItem[1];
+
+    // Get stock quantity
+    const rowIndex = (dbData.stock.findIndex((entry) => entry[0].toString() === rowId));
+    const quantityStock = dbData.stock[rowIndex][10];
+
+    // Calculate new stock quantity
+    let newQuantity = 0;
+
+    if (type === 'SALE') {
+      newQuantity = Number(quantityStock) - Number(quantityMoved);
+    } else {
+      newQuantity = Number(quantityStock) + Number(quantityMoved);
+    }
+
+    // Change stock, 10 is the index of the stock value
+    dbData.stock[rowIndex][10] = newQuantity;
+
+    return dbData.stock[rowIndex];
+  });
+
+  submitManyStockUpdates(stockItemsToUpdate);
+}

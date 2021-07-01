@@ -181,6 +181,32 @@ class DB {
   }
 
   /**
+   * Change several rows of data of the sheet
+   * @param {Array[]} data 2d Array with the new values
+   * @returns {Array[]}
+   */
+  updateMany(data) {
+    const values = this.fetch();
+    let newValues = [];
+
+    // Check if both tables has the same number of columns
+    if (values[0].length === data[0].length) {
+      data.forEach((row) => {
+        const rowId = row[0];
+
+        // Get the index where the entry is in the values array
+        const rowIndex = (values.findIndex((entry) => entry[0].toString() === rowId));
+        values[rowIndex] = row;
+      });
+
+      newValues = this.write(values);
+    } else {
+      throw new Error('The number of columns of the submitted data does not match those of the sheet');
+    }
+    return newValues;
+  }
+
+  /**
    * Find several entries in a sheet
    * @param {Object} query: Object with two properties: field and keyword
    * @returns {array[]}

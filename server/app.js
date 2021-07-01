@@ -167,6 +167,11 @@ function updateStock(data) {
   return values;
 }
 
+function updateManyStock(data) {
+  const values = stockDBS.use().updateMany(data);
+  return values;
+}
+
 function updateMovement(data) {
   const values = movementsDBS.use().update(data);
   const formattedValues = datesFormatter(values);

@@ -108,6 +108,11 @@ function loadStockValues(values) {
   setLoadedDB();
 }
 
+function reloadStockValues(values) {
+  stockTable.load(values);
+  dbData.stock = values;
+}
+
 function loadMovementsValues(values) {
   movementsTable.setInputCallback(toggleToolButtons);
   movementsTable.load(values);

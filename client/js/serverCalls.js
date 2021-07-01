@@ -56,6 +56,9 @@ function submitNewSale(formData) {
   // Register the issue (Only save data on db)
   registerMovement(data, 'SALE');
 
+  // Register the change in stock
+  registerStockChange(data, 'SALE');
+
   google
     .script
     .run
@@ -78,6 +81,9 @@ function submitNewPurchase(formData) {
 
   // Register the issue (Only save data on db)
   registerMovement(data, 'PURCHASE');
+
+  // Register the change in stock
+  registerStockChange(data, 'PURCHASE');
 
   google
     .script
@@ -277,4 +283,12 @@ function submitManyMovements(movements) {
     .run
     .withSuccessHandler(reloadMovementsValues)
     .insertManyMovements(movements);
+}
+
+function submitManyStockUpdates(stockChange) {
+  google
+    .script
+    .run
+    .withSuccessHandler(reloadStockValues)
+    .updateManyStock(stockChange);
 }
