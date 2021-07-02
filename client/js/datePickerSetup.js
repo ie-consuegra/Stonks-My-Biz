@@ -10,9 +10,10 @@ const options = {
     weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
     weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
     weekdaysAbbrev: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-    setDefaultDate: true,
-    defaultDate: today,
   },
+  maxDate: today,
+  defaultDate: today,
+  setDefaultDate: true,
 };
 
 function getFormattedDate() {
