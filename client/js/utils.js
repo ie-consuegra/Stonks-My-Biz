@@ -118,27 +118,27 @@ function findOne(values, query) {
  */
 function sum(values, intTypes = 'all') {
   let total = 0;
+  if (values.length > 0) {
+    const isPositive = (num) => num > 0;
+    const isNegative = (num) => num < 0;
 
-  const isPositive = (num) => num > 0;
-  const isNegative = (num) => num < 0;
+    if (intTypes === 'all') {
+      total = values.reduce((acc, value) => {
+        if (!value) { // For null or undefined assign 0 to avoid NaN errors.
+          value = 0;
+        }
+        return acc + value;
+      });
+    }
 
-  if (intTypes === 'all') {
-    total = values.reduce((acc, value) => {
-      if (!value) { // For null or undefined assign 0 to avoid NaN errors.
-        value = 0;
-      }
-      return acc + value;
-    });
+    if (intTypes === 'positive') {
+      total = values.filter(isPositive).reduce((acc, value) => acc + value);
+    }
+
+    if (intTypes === 'negative') {
+      total = values.filter(isNegative).reduce((acc, value) => acc + value);
+    }
   }
-
-  if (intTypes === 'positive') {
-    total = values.filter(isPositive).reduce((acc, value) => acc + value);
-  }
-
-  if (intTypes === 'negative') {
-    total = values.filter(isNegative).reduce((acc, value) => acc + value);
-  }
-
   return total;
 }
 

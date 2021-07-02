@@ -93,10 +93,13 @@ function dashboardComputations() {
   const notificationsElem = document.getElementById('notifications');
 
   // Cashflow totals
-  totals.income = getColumnTotal(dbData.cashflow, 'AMOUNT', 'positive');
-  totals.outcome = getColumnTotal(dbData.cashflow, 'AMOUNT', 'negative') * -1;
+  // Calculate only if there are several entries
+  if (dbData.cashflow.length > 2) {
+    totals.income = getColumnTotal(dbData.cashflow, 'AMOUNT', 'positive');
+    totals.outcome = getColumnTotal(dbData.cashflow, 'AMOUNT', 'negative') * -1;
 
-  totals.balance = totals.income - totals.outcome;
+    totals.balance = totals.income - totals.outcome;
+  }
 
   // Format total values according to user preferences
   const formattedIncome = formatCurrency(totals.income.toString());

@@ -61,7 +61,11 @@ function fetchPortfolio() {
 }
 
 function fetchCashflow() {
-  const values = cashflowDBS.use().fetch();
+  const [month, year] = getMonthAndYear();
+  const sheetName = month;
+  const spreadsheetName = `cashflow-${year}`;
+
+  const values = cashflowDBS.use(sheetName, spreadsheetName).fetch();
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
@@ -72,7 +76,11 @@ function fetchStock() {
 }
 
 function fetchMovements() {
-  const values = movementsDBS.use().fetch();
+  const [month, year] = getMonthAndYear();
+  const sheetName = month;
+  const spreadsheetName = `movements-${year}`;
+
+  const values = movementsDBS.use(sheetName, spreadsheetName).fetch();
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
@@ -112,19 +120,31 @@ function insertPortfolio(data) {
 }
 
 function insertSale(data) {
-  const values = cashflowDBS.use().insert(data);
+  const [month, year] = getMonthAndYear(data.DATE);
+  const sheetName = month;
+  const spreadsheetName = `cashflow-${year}`;
+
+  const values = cashflowDBS.use(sheetName, spreadsheetName).insert(data);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
 
 function insertPurchase(data) {
-  const values = cashflowDBS.use().insert(data);
+  const [month, year] = getMonthAndYear(data.DATE);
+  const sheetName = month;
+  const spreadsheetName = `cashflow-${year}`;
+
+  const values = cashflowDBS.use(sheetName, spreadsheetName).insert(data);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
 
 function insertCashflow(data) {
-  const values = cashflowDBS.use().insert(data);
+  const [month, year] = getMonthAndYear(data.DATE);
+  const sheetName = month;
+  const spreadsheetName = `cashflow-${year}`;
+
+  const values = cashflowDBS.use(sheetName, spreadsheetName).insert(data);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
@@ -135,13 +155,23 @@ function insertStock(data) {
 }
 
 function insertMovement(data) {
-  const values = movementsDBS.use().insert(data);
+  const [month, year] = getMonthAndYear(data.DATE);
+  const sheetName = month;
+  const spreadsheetName = `movements-${year}`;
+
+  const values = movementsDBS.use(sheetName, spreadsheetName).insert(data);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }
 
 function insertManyMovements(data) {
-  const values = movementsDBS.use().insertMany(data);
+  // Data is a 2d array, get the date from the first entry, second column
+  const date = data[0][1];
+  const [month, year] = getMonthAndYear(date);
+  const sheetName = month;
+  const spreadsheetName = `movements-${year}`;
+
+  const values = movementsDBS.use(sheetName, spreadsheetName).insertMany(data);
   const formattedValues = datesFormatter(values);
   return formattedValues;
 }

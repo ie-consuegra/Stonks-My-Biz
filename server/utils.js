@@ -47,3 +47,40 @@ function deleteProperties() {
 function deleteAppSettingsStored() {
   PropertiesService.getScriptProperties().deleteProperty('APP_SETTINGS');
 }
+
+/**
+ * Returns the month and year of the date passed as argument
+ * If none is passed, returns the month of the current date
+ * @param {String} date Date as string, in day, month, year order (hyphens or slashes as separators)
+ * @returns {String[]} Month and year in an array [month, year]
+ */
+function getMonthAndYear(date) {
+  let month = '';
+  let year = '';
+
+  if (date) {
+    let dateArr = [];
+    if (date.includes('/')) {
+      dateArr = date.split('/');
+    } else {
+      dateArr = date.split('-');
+    }
+    month = dateArr[1];
+    // Check if the date passed contains the year
+    if (dateArr.length === 3) {
+      year = dateArr[2];
+    } else {
+      const dateObj = new Date();
+      year = dateObj.getFullYear().toString();
+    }
+  } else {
+    const dateObj = new Date();
+    // Add 1 to make it match with the current month order
+    const monthNumber = String(dateObj.getMonth() + 1);
+    // If the month is not a two-digit number add a 0 to the left
+    month = monthNumber.length > 1 ? monthNumber : `0${monthNumber}`;
+    year = dateObj.getFullYear().toString();
+  }
+
+  return [month, year];
+}
