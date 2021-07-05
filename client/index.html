@@ -627,7 +627,7 @@
                       <label for="new-account-balance">Initial balance</label>
                     </div>
                     <div class="input-field col s2 m1">
-                      <a class="waves-effect light-waves btn" onclick="createAccount()"><i class="material-icons">save</i></a>
+                      <a class="waves-effect light-waves btn" onclick="createAccount()"><i class="material-icons">add</i></a>
                     </div>
                   </div>
                 </div>
@@ -666,20 +666,20 @@
             </li>
           </ul>
           <div class="row">
-            <a class="waves-effect waves-light btn right" id="save-params-btn" onclick="saveSettings()">Save changes</a>
+            <a class="waves-effect waves-light btn right" id="save-params-btn" onclick="saveSettings()"><i class="material-icons left">save</i> Save changes</a>
           </div>
           <div class="row">
             <h6>Advanced</h6>
-            <p>(Continue only if you know what you are doing. Changes in this section can cause malfunctions.)</p>
           </div>
           <ul class="collapsible">
             <li>
               <div class="collapsible-header">
                 <i class="material-icons">update</i>
-                Backup parameters
+                Restore/Backup configuration
               </div>
               <div class="collapsible-body">
-                <a class="waves-effect waves-light btn">Backup</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">settings_backup_restore</i>Restore</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">backup</i>Backup</a>
               </div>
             </li>
             <li>
@@ -688,7 +688,8 @@
                 Database
               </div>
               <div class="collapsible-body">
-                <a class="waves-effect waves-light btn" id="open-database-btn">Open database folder</a>
+                <p id="database-path-message">Go to this folder to locate the spreadsheets used as database:</p>
+                <p id="database-path" style="font-weight: 700;">My Drive > Stonks Apps > My Biz</p>
               </div>
             </li>
           </ul>
