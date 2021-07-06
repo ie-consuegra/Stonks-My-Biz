@@ -11,6 +11,8 @@ const stonksApp = {
   catalogName: 'folderCatalog_',
   appsFolder: 'Stonks Apps',
   catalog: {},
+  STONKS_APPS_SPREADSHEET_NAME: 'STONKS',
+  STONKS_APPS_SHEET_NAME: 'APPS',
   name: '',
   version: '',
   /*
@@ -96,8 +98,8 @@ const stonksApp = {
   },
 
   setAppsDB() {
-    const appsDBSchema = ['app name', 'id', 'shared catalog'];
-    const appsDBModel = new Model('apps', appsDBSchema);
+    const appsDBSchema = ['APPNAME', 'CATALOG'];
+    const appsDBModel = DBS.createModelFrom('apps', appsDBSchema);
 
     this.appsDB = new DBS(appsDBModel, this.stonksAppsFolder, false);
   },
@@ -187,9 +189,88 @@ const stonksApp = {
       .setProperty(propertyName, value);
   },
 
+  /**
+   * Look for the app name passed as argument in the stonks app db
+   * and returns the backup data as object
+   * @param {String} appName Name of the app to lookup
+   * @returns {Object} If there's a backup returns an object, else undefined
+   */
+  getBackupData(appName) {
+    const appBackupEntry = this.appsDB
+      .use(this.STONKS_APPS_SHEET_NAME, this.STONKS_APPS_SPREADSHEET_NAME)
+      .findOne({ field: 'CATALOG', keyword: appName });
+
+    let backupData;
+    if (appBackupEntry) {
+      // 0-Index is the name of the app
+      // 1-index is the backup data
+      backupData = JSON.parse(appBackupEntry[1]);
+    }
+    return backupData;
+  },
+
+  deleteScriptProperties() {
+    PropertiesService
+      .getScriptProperties()
+      .deleteAllProperties();
+  },
+
+  /**
+   * Take the data stored in the apps backup spreadsheet
+   * and save it as script properties
+   * @returns {Boolean} Restore was successful
+   */
+  restoreBackup() {
+    let restoreSuccessful = false;
+    if (this.name) {
+      const appBackupDataObj = this.getBackupData(this.name);
+      if (appBackupDataObj) {
+        const appBackupDataArr = Object.entries(appBackupDataObj);
+
+        // Delete all script properties
+        this.deleteScriptProperties();
+
+        // Set the new properties
+        appBackupDataArr.forEach((propertyName, propertyValue) => {
+          const value = JSON.stringify(propertyValue);
+          PropertiesService
+            .getScriptProperties()
+            .setProperty(propertyName, value);
+        });
+
+        restoreSuccessful = true;
+      }
+    }
+    return restoreSuccessful;
+  },
+
+  backupScriptProperties() {
+    const appsDBData = this.appsDB
+      .use(this.STONKS_APPS_SHEET_NAME, this.STONKS_APPS_SPREADSHEET_NAME)
+      .fetch();
+
+    const appBackupEntryIndex = appsDBData.findIndex((entry) => entry[0] === this.name);
+
+    const scriptProperties = PropertiesService
+      .getScriptProperties()
+      .getProperties();
+
+    const scriptPropertiesStr = JSON.stringify(scriptProperties);
+
+    if (appBackupEntryIndex !== -1) {
+      appsDBData[appBackupEntryIndex] = [this.name, scriptPropertiesStr];
+    } else {
+      appsDBData.push([this.name, scriptPropertiesStr]);
+    }
+
+    this.appsDB
+      .use(this.STONKS_APPS_SHEET_NAME, this.STONKS_APPS_SPREADSHEET_NAME)
+      .write(appsDBData);
+  },
+
   init() {
     this.setAppFolder();
     this.getAppSettings();
-    // this.setAppsDB();
+    this.setAppsDB();
   },
 };
