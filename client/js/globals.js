@@ -25,26 +25,26 @@ const addToSaleToolBtn = document.getElementById('add-to-sale-tool-btn');
 const deleteModal = document.getElementById('delete-modal');
 // "Smart tables"
 const salesPortfolioTable = new SmartTable('sales-portfolio-table-container', 'sales');
-salesPortfolioTable.setTitles(['Qty', 'Description', 'Unit Price', 'Amount']);
+salesPortfolioTable.setTitles([WORD.qty, WORD.description, WORD.unitPrice, WORD.amount]);
 
 const purchasesStockTable = new SmartTable('purchases-stock-table-container', 'purchases');
-purchasesStockTable.setTitles(['Qty', 'Description', 'Unit Price', 'Amount']);
+purchasesStockTable.setTitles([WORD.qty, WORD.description, WORD.unitPrice, WORD.amount]);
 
 const cashflowTable = new SmartTable('cashflow-table-container', 'cashflow');
-cashflowTable.setTitles(['', 'Date', 'Concept', 'Details', 'Amount', 'Account']);
+cashflowTable.setTitles(['', WORD.date, WORD.concept, WORD.details, WORD.amount, WORD.account]);
 
 const portfolioTable = new SmartTable('portfolio-table-container', 'portfolio');
-portfolioTable.setTitles(['', 'Code', 'Item', 'Description', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Stock']);
+portfolioTable.setTitles(['', WORD.cod, WORD.item, WORD.description, WORD.unit, WORD.type, WORD.category, WORD.cost, WORD.price, WORD.stock]);
 const portfolioStockTable = new SmartTable('portfolio-stock-table-container', 'portfolio-stock'); // Check the name of this table
-portfolioStockTable.setTitles(['Qty', 'Product', 'Unit', 'Cost']);
+portfolioStockTable.setTitles([WORD.qty, WORD.product, WORD.unitPrice, WORD.cost]);
 const stockTable = new SmartTable('stock-table-container', 'stock');
-// Temporarily remove 'Description' and 'Supplier' column titles (future feature)
-stockTable.setTitles(['', 'Code', 'Item', 'Unit', 'Type', 'Category', 'Cost', 'Price', 'Min.', 'Stock']);
+// Temporarily remove WORD.description and 'Supplier' column titles (future feature)
+stockTable.setTitles(['', WORD.cod, WORD.item, WORD.unitOfMeasurement, WORD.type, WORD.category, WORD.cost, WORD.price, WORD.minimumStock, WORD.stock]);
 const movementsTable = new SmartTable('movements-table-container', 'movements');
-movementsTable.setTitles(['', 'Date', 'Code', 'Product', 'Category', 'Description', 'Qty']);
+movementsTable.setTitles(['', WORD.date, WORD.cod, WORD.product, WORD.category, WORD.description, WORD.qty]);
 // Table of cashflow update item
 const metaStockItemsTable = new SmartTable('cashflow-update-item-metadescription-table-container', 'stock-items');
-metaStockItemsTable.setTitles(['Qty', 'Description', 'Unit Price', 'Amount']);
+metaStockItemsTable.setTitles([WORD.qty, WORD.description, WORD.unitPrice, WORD.amount]);
 // Future feature
 /*
 const suppliersTable = new SmartTable('suppliers-table-container', 'suppliers');

@@ -22,8 +22,8 @@ function makeParsable(numStr) {
 function processStockData() {
   const stock = [...dbData.stock];
   let stockNotifications = '';
-  const depletedTitle = '<p><strong>Depleted stock</strong></p>';
-  const minimumTitle = '<p><strong>Stock below minimum</strong></p>';
+  const depletedTitle = `<p><strong>${WORD.depletedStock}</strong></p>`;
+  const minimumTitle = `<p><strong>${WORD.stockBelowMinimum}</strong></p>`;
   let depletedStock = '';
   let minimumStock = '';
 
@@ -110,7 +110,7 @@ function dashboardComputations() {
   incomeElem.innerHTML = formattedIncome;
   outcomeElem.innerHTML = formattedOutcome;
   currentMonthBalance.innerHTML = formattedTotal;
-  balanceElem.innerHTML = `Balance: ${formattedBalance}`;
+  balanceElem.innerHTML = `${WORD.balance}: ${formattedBalance}`;
 
   processStockData();
   notificationsElem.innerHTML = settings.notifications;

@@ -48,7 +48,7 @@ function submitNewPortfolio(formData) {
 }
 
 function submitNewSale(formData) {
-  setPreloaderMessage('Saving...');
+  setPreloaderMessage(WORD.saving);
   startPreloader();
   const data = arrangeCashflowData(formData);
   updateAccountBalance(data.ACCOUNT, data.AMOUNT);
@@ -74,7 +74,7 @@ function submitNewSale(formData) {
 }
 
 function submitNewPurchase(formData) {
-  setPreloaderMessage('Saving...');
+  setPreloaderMessage(WORD.saving);
   startPreloader();
   const data = arrangeCashflowData(formData);
   updateAccountBalance(data.ACCOUNT, data.AMOUNT);
@@ -93,7 +93,7 @@ function submitNewPurchase(formData) {
 }
 
 function submitNewCashflow(formData) {
-  setPreloaderMessage('Saving...');
+  setPreloaderMessage(WORD.saving);
   startPreloader();
   const data = arrangeCashflowData(formData);
   updateAccountBalance(data.ACCOUNT, data.AMOUNT);
@@ -105,7 +105,7 @@ function submitNewCashflow(formData) {
 }
 
 function submitNewStock(formData) {
-  setPreloaderMessage('Saving...');
+  setPreloaderMessage(WORD.saving);
   startPreloader();
   google
     .script
@@ -115,7 +115,7 @@ function submitNewStock(formData) {
 }
 
 function submitNewMovement(formData) {
-  setPreloaderMessage('Saving...');
+  setPreloaderMessage(WORD.saving);
   startPreloader();
   google
     .script
@@ -144,7 +144,7 @@ function submitUpdatePortfolio(formData) {
 }
 
 function submitUpdateCashflow(formData) {
-  setPreloaderMessage('Updating information...');
+  setPreloaderMessage(WORD.updatingInformation);
   startPreloader();
   const data = arrangeCashflowData(formData);
 
@@ -161,7 +161,7 @@ function submitUpdateCashflow(formData) {
 }
 
 function submitUpdateStock(formData) {
-  setPreloaderMessage('Updating item information...');
+  setPreloaderMessage(WORD.updatingInformation);
   startPreloader();
   google
     .script
@@ -171,7 +171,7 @@ function submitUpdateStock(formData) {
 }
 
 function submitUpdateMovement(formData) {
-  setPreloaderMessage('Updating receipts and issues registry...');
+  setPreloaderMessage(WORD.updatingInformation);
   startPreloader();
   google
     .script
@@ -211,7 +211,7 @@ function deletePortfolio() {
 }
 
 function deleteCashflow() {
-  setPreloaderMessage('Deleting...');
+  setPreloaderMessage(WORD.deleting);
   startPreloader();
   google
     .script
@@ -221,7 +221,7 @@ function deleteCashflow() {
 }
 
 function deleteStock() {
-  setPreloaderMessage('Deleting...');
+  setPreloaderMessage(WORD.deleting);
   startPreloader();
   google
     .script
@@ -231,7 +231,7 @@ function deleteStock() {
 }
 
 function deleteMovement() {
-  setPreloaderMessage('Deleting...');
+  setPreloaderMessage(WORD.deleting);
   startPreloader();
   google
     .script
@@ -250,7 +250,7 @@ function deleteSuppliers() {
 }
 
 function saveSettings() {
-  setPreloaderMessage('Saving app settings...');
+  setPreloaderMessage(WORD.saving);
   startPreloader();
   saveBusinessInfo();
   google

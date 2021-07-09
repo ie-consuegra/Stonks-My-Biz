@@ -3,13 +3,13 @@ const today = new Date();
 // This values will be in the language file
 const options = {
   i18n: {
-    cancel: 'cancelar',
-    done: 'Aceptar',
-    months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-    weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-    weekdaysAbbrev: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+    cancel: WORD.cancel,
+    done: WORD.done,
+    months: WORD.months,
+    monthsShort: WORD.monthsShort,
+    weekdays: WORD.weekdays,
+    weekdaysShort: WORD.weekdaysShort,
+    weekdaysAbbrev: WORD.weekdaysAbbrev,
   },
   maxDate: today,
   defaultDate: today,
