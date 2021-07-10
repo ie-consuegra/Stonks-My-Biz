@@ -96,6 +96,7 @@ const DICTIONARY = {
     saving: 'Saving...',
     updatingInformation: 'Updating information...',
     deleting: 'Deleting...',
+    loading: 'Loading...',
     // Calendar stuff
     cancel: 'Cancel',
     done: 'Done',
@@ -198,6 +199,7 @@ const DICTIONARY = {
     saving: 'Guardando...',
     updatingInformation: 'Actualizando información...',
     deleting: 'Eliminando...',
+    loading: 'Cargando...',
     // Calendar stuff
     cancel: 'Cancelar',
     done: 'Aceptar',
@@ -300,6 +302,7 @@ const DICTIONARY = {
     saving: 'Salvando...',
     updatingInformation: 'Atualizando os dados...',
     deleting: 'Eliminando...',
+    loading: 'Carregando...',
     // Calendar stuff
     cancel: 'Cancelar',
     done: 'Ok',

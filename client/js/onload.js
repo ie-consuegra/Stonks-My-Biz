@@ -69,7 +69,6 @@ function setLoadedDB() {
   const numOfDbs = 3;
   if (settings.dbsLoaded >= numOfDbs) {
     dbData.loaded = true;
-    setPreloaderMessage('Initializing app...');
     M.AutoInit(); // Initialize Materialize when everything's loaded
     initDatepickers(); // Initialize datepickers
     dashboardComputations(); // Use the data to show info on the dashboard
@@ -212,7 +211,6 @@ function settingsObtained(settingsData) {
     updateSettingsFormatExamples();
     displayAccountForms();
     loadAccounts();
-    setPreloaderMessage('Loading app data...');
     fetchAll();
     switchView('dashboard'); //  <----------------- switch to the last view, by default it is dashboard-view
   }
@@ -232,6 +230,6 @@ function settingsObtained(settingsData) {
 window.addEventListener('load', () => {
   preventFormSubmit();
   startPreloader();
-  setPreloaderMessage('Loading app settings...');
+  setPreloaderMessage(WORD.loading);
   fetchSettings();
 });
