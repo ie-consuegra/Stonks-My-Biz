@@ -267,3 +267,7 @@ function setAppProperty(property) {
 function getAppProperty(propertyName) {
   return stonksApp.getProperty(propertyName);
 }
+
+function backup() {
+  stonksApp.backupProperties();
+}

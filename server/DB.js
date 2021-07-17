@@ -237,6 +237,7 @@ class DB {
     const isEqual = (entry) => entry[index].toString() === keyword.toString();
 
     const foundIndex = values.findIndex(isEqual);
-    return values[foundIndex];
+    const entry = foundIndex !== -1 ? values[foundIndex] : false;
+    return entry;
   }
 }

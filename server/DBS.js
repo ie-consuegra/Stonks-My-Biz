@@ -225,6 +225,7 @@ class DBS {
         const sheet = ss.getSheets()[0];
         sheet.setName(sheetName);
         this.add(sheetName, sheet);
+        this.moveToParentFolder(ss);
       }
       dbName = sheetName;
     } else {

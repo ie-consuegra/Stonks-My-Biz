@@ -292,3 +292,11 @@ function submitManyStockUpdates(stockChange) {
     .withSuccessHandler(reloadStockValues)
     .updateManyStock(stockChange);
 }
+
+function backup() {
+  google
+    .script
+    .run
+    .withSuccessHandler(backupSuccessful)
+    .backup();
+}

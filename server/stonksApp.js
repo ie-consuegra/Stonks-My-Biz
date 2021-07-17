@@ -96,10 +96,11 @@ const stonksApp = {
   },
 
   setAppsDB() {
-    const appsDBSchema = ['app name', 'id', 'shared catalog'];
+    const appsDBSchema = ['APP_NAME', 'APP_PROPERTIES'];
     const appsDBModel = new Model('apps', appsDBSchema);
 
-    this.appsDB = new DBS(appsDBModel, this.stonksAppsFolder, false);
+    // This DBS does not store data in the script properties
+    this.appsDBS = new DBS(appsDBModel, this.stonksAppsFolder, false);
   },
 
   get getFolder() {
@@ -187,9 +188,43 @@ const stonksApp = {
       .setProperty(propertyName, value);
   },
 
+  backupProperties() {
+    // Get the spreadsheet used to store the properties of the apps
+    const ssName = 'Stonks_Apps';
+    const sheetName = 'APPS_PROPERTIES';
+
+    // Get the script properties and stringify it
+    const scriptProperties = PropertiesService.getScriptProperties();
+    const scriptPropertiesStr = JSON.stringify(scriptProperties);
+
+    // Look for the entry of the app name if it does not exist create it
+    const query = { keyword: this.name, field: 'APP_NAME' };
+    const entry = this.appsDBS.use(sheetName, ssName).findOne(query);
+
+    if (entry) {
+      // Change the value of the properties in the entry, located at 1 index, 0 is name of the app
+      entry[1] = scriptPropertiesStr;
+
+      // Update the entry. The update method receives 2d Arrays only, entry is an array.
+      const data = [entry];
+      this
+        .appsDBS
+        .use(sheetName, ssName)
+        .update(data);
+    } else {
+      // Insert the entry. Insert method receives objects, where the key names determine field
+      // and the values what will be written
+      const data = { APP_NAME: this.name, APP_PROPERTIES: scriptPropertiesStr };
+      this
+        .appsDBS
+        .use(sheetName, ssName)
+        .insert(data);
+    }
+  },
+
   init() {
     this.setAppFolder();
     this.getAppSettings();
-    // this.setAppsDB();
+    this.setAppsDB();
   },
 };
